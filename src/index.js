@@ -8,14 +8,14 @@ class MyGame extends Phaser.Scene {
   preload() {
     this.load.image('tiles', 'src/assets/tiles.png');
     this.load.image('player', 'src/assets/player.png');
-    this.load.tilemapTiledJSON('World', 'src/assets/gametile2.json');
+    this.load.tilemapTiledJSON('BaseLayer', 'src/assets/gametile3.json');
   }
 
   create() {
-    const map = this.add.tilemap('World');
+    const map = this.add.tilemap('BaseLayer');
     // this.player = this.add.image('player')
     const tileset = map.addTilesetImage('tiles');
-    this.backgroundLayer = map.createStaticLayer('World', tileset, 0, 0);
+    this.backgroundLayer = map.createStaticLayer('BaseLayer', tileset, 0, 0);
     console.log(this.backgroundLayer);
 
     this.player = this.physics.add.sprite(50, 100, 'player', 6);
@@ -25,7 +25,7 @@ class MyGame extends Phaser.Scene {
 
     this.cameras.main.startFollow(this.player);
     this.player.setCollideWorldBounds(true);
-    this.objects = map.createFromObjects('Object Layer 1', 34, 'rocks');
+    this.objects = map.createFromObjects('Objects', 34, 'rocks');
   }
 
   update() {
