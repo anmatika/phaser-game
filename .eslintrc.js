@@ -14,6 +14,7 @@ module.exports = {
     'no-useless-constructor': ['off'],
     'no-console': ['off'],
     'no-unused-vars': ['warn'],
+    'max-len': ['warn'],
     indent: ['error', 2],
     quotes: ['error', 'single'],
     semi: ['error', 'always'],

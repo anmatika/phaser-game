@@ -3,33 +3,58 @@ import Phaser from 'phaser';
 class MyGame extends Phaser.Scene {
   constructor() {
     super();
+    this.screenWidth = window.innerWidth;
+    this.screenHeight = window.innerHeight;
   }
 
   preload() {
-    this.load.image('tiles', 'src/assets/tiles.png');
+    this.load.image('tileset', 'src/assets/tileset.png');
     this.load.image('player', 'src/assets/player.png');
-    this.load.tilemapTiledJSON('BaseLayer', 'src/assets/gametile3.json');
+    this.load.tilemapTiledJSON('map', 'src/assets/town.json');
   }
 
   create() {
-    const map = this.add.tilemap('BaseLayer');
+    const map = this.make.tilemap({ key: 'map' });
+    // const scale = Math.max(this.screenWidth / map.widthInPixels, this.screenHeight / map.heightInPixels);
+    // const worldWidth = map.widthInPixels * scale;
+    // const worldHeight = map.heightInPixels * scale;
+    // console.log({ worldWidth });
+    // console.log({ worldHeight });
     // this.player = this.add.image('player')
-    const tileset = map.addTilesetImage('tiles');
-    this.backgroundLayer = map.createStaticLayer('BaseLayer', tileset, 0, 0);
-    console.log(this.backgroundLayer);
+    const tileset = map.addTilesetImage('tileset');
+    // this.backgroundLayer = map.createStaticLayer('BaseLayer', tileset, 0, 0);
+    // this.worldLayer = map.createStaticLayer('WorldLayer', tileset, 0, 0);
+    // console.log(this.backgroundLayer);
+    this.backgroundLayer = map.createLayer('Below Player', tileset, 0, 0).setScale(1).setDepth(1);
+    this.worldLayer = map.createLayer('World', tileset, 0, 0).setScale(1).setDepth(2);
+    this.physics.world.setBounds(0, 0, this.backgroundLayer.width, this.backgroundLayer.height);
 
-    this.player = this.physics.add.sprite(50, 100, 'player', 6);
+    // this.worldLayer.setCollisionByProperty({ collides: true });
+    const arr = [];
+    for (let i = 1; i < 671; i++) {
+      arr.push(i);
+    }
+    this.worldLayer.setCollision(arr);
+
+    this.player = this.physics.add.sprite(50, 100, 'player')
+      .setCollideWorldBounds(true)
+      .setDepth(2);
+    this.physics.add.collider(this.player, this.worldLayer);
+
     this.cursors = this.input.keyboard.createCursorKeys();
 
     this.cameras.main.setBounds(0, 0, this.backgroundLayer.width, this.backgroundLayer.height);
 
     this.cameras.main.startFollow(this.player);
-    this.player.setCollideWorldBounds(true);
-    this.objects = map.createFromObjects('Objects', 34, 'rocks');
+    const emptyTiles = this.worldLayer.filterTiles((tile) =>
+    //   console.log({ tile });
+      (tile.index === -1 || !tile.collides));
+    // this.objects = map.createFromObjects('Objects');
   }
 
   update() {
     // NOTE Evernote webclipper must be set off. Breaks the game.
+    // console.log({ y: this.player.y });
 
     //  Horizontal movement every 250ms
     if (this.input.keyboard.checkDown(this.cursors.left, 150)) {
@@ -130,25 +155,48 @@ class MyGame extends Phaser.Scene {
     //     this.player.setVelocityX(-30);
     // }
   }
+
+  render() {
+    console.log('render');
+    this.debug.spriteInfo(this.player, 32, 32);
+  }
 }
 
 const config = {
   type: Phaser.AUTO,
-  parent: 'phaser-example',
-  width: 800,
-  height: 600,
-  scene: MyGame,
+  width: window.innerWidth,
+  height: window.innerHeight,
   physics: {
     default: 'arcade',
     arcade: {
       debug: true,
-    //   debugBodyColor: colors.hexColors.blue,
-    //   debugVelocityColor: colors.hexColors.green
-    },
-    render: () => {
-      this.debug.spriteCoords(this.player, 32, 500);
+      gravity: { y: 0 },
     },
   },
+  scene: MyGame,
+  render: () => {
+    console.log('rend');
+  },
+
 };
+
+// const config = {
+//   type: Phaser.AUTO,
+//   parent: 'phaser-example',
+//   width: 800,
+//   height: 600,
+//   scene: MyGame,
+//   physics: {
+//     default: 'arcade',
+//     arcade: {
+//       debug: true,
+//     //   debugBodyColor: colors.hexColors.blue,
+//     //   debugVelocityColor: colors.hexColors.green
+//     },
+//     render: () => {
+//       this.debug.spriteCoords(this.player, 32, 500);
+//     },
+//   },
+// };
 
 const game = new Phaser.Game(config);
