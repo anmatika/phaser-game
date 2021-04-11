@@ -19,18 +19,20 @@ class MyGame extends Phaser.Scene {
     this.setupPhysics();
     this.setupCamera();
     this.setupInput();
+    console.log('tilemap', this.cache.tilemap.get('map').data);
+    console.log('tileset', this.tileset);
   }
 
   update() {
     // NOTE Evernote webclipper must be set off. Breaks the game.
-    this.handleKeyboard();
+    this.handleMovementWithVelocity();
   }
 
   setupWorld() {
-    const map = this.make.tilemap({ key: 'map' });
-    const tileset = map.addTilesetImage('tileset');
-    this.backgroundLayer = map.createLayer('Below Player', tileset, 0, 0).setScale(1).setDepth(1);
-    this.worldLayer = map.createLayer('World', tileset, 0, 0).setScale(1).setDepth(2);
+    this.map = this.make.tilemap({ key: 'map' });
+    this.tileset = this.map.addTilesetImage('tileset');
+    this.backgroundLayer = this.map.createLayer('Below Player', this.tileset, 0, 0).setScale(1).setDepth(1);
+    this.worldLayer = this.map.createLayer('World', this.tileset, 0, 0).setScale(1).setDepth(2);
     this.worldLayer.setCollisionByProperty({ collides: true });
   }
 
@@ -54,19 +56,24 @@ class MyGame extends Phaser.Scene {
     this.physics.add.collider(this.player, this.worldLayer);
   }
 
-  handleKeyboard() {
-    //  Horizontal movement every 250ms
-    if (this.input.keyboard.checkDown(this.cursors.left, 150)) {
-      this.player.x -= 32;
-    } else if (this.input.keyboard.checkDown(this.cursors.right, 150)) {
-      this.player.x += 32;
+  handleMovementWithVelocity() {
+    const speed = 175;
+
+    // Stop any previous movement from the last frame
+    this.player.body.setVelocity(0);
+
+    // Horizontal movement
+    if (this.cursors.left.isDown) {
+      this.player.body.setVelocityX(-speed);
+    } else if (this.cursors.right.isDown) {
+      this.player.body.setVelocityX(speed);
     }
 
-    //  Vertical movement every 150ms
-    if (this.input.keyboard.checkDown(this.cursors.up, 150)) {
-      this.player.y -= 32;
-    } else if (this.input.keyboard.checkDown(this.cursors.down, 150)) {
-      this.player.y += 32;
+    // Vertical movement
+    if (this.cursors.up.isDown) {
+      this.player.body.setVelocityY(-speed);
+    } else if (this.cursors.down.isDown) {
+      this.player.body.setVelocityY(speed);
     }
   }
 }
@@ -85,24 +92,5 @@ const config = {
   scene: MyGame,
 
 };
-
-// const config = {
-//   type: Phaser.AUTO,
-//   parent: 'phaser-example',
-//   width: 800,
-//   height: 600,
-//   scene: MyGame,
-//   physics: {
-//     default: 'arcade',
-//     arcade: {
-//       debug: true,
-//     //   debugBodyColor: colors.hexColors.blue,
-//     //   debugVelocityColor: colors.hexColors.green
-//     },
-//     render: () => {
-//       this.debug.spriteCoords(this.player, 32, 500);
-//     },
-//   },
-// };
 
 const game = new Phaser.Game(config);
