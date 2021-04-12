@@ -1,0 +1,221 @@
+{
+	"textures": [
+		{
+			"image": "player.png",
+			"normalMap": "player_n.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 346,
+				"h": 202
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "run1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 127,
+						"h": 132
+					},
+					"spriteSourceSize": {
+						"x": 32,
+						"y": 19,
+						"w": 88,
+						"h": 103
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 88,
+						"h": 103
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "still2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 127,
+						"h": 132
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 0,
+						"w": 97,
+						"h": 95
+					},
+					"frame": {
+						"x": 1,
+						"y": 106,
+						"w": 97,
+						"h": 95
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "run3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 127,
+						"h": 132
+					},
+					"spriteSourceSize": {
+						"x": 10,
+						"y": 5,
+						"w": 77,
+						"h": 103
+					},
+					"frame": {
+						"x": 91,
+						"y": 1,
+						"w": 77,
+						"h": 103
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "run4.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 127,
+						"h": 132
+					},
+					"spriteSourceSize": {
+						"x": 8,
+						"y": 37,
+						"w": 87,
+						"h": 95
+					},
+					"frame": {
+						"x": 100,
+						"y": 106,
+						"w": 87,
+						"h": 95
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "run2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 127,
+						"h": 132
+					},
+					"spriteSourceSize": {
+						"x": 25,
+						"y": 16,
+						"w": 86,
+						"h": 102
+					},
+					"frame": {
+						"x": 170,
+						"y": 1,
+						"w": 86,
+						"h": 102
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "pistol-hold.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 127,
+						"h": 132
+					},
+					"spriteSourceSize": {
+						"x": 27,
+						"y": 11,
+						"w": 72,
+						"h": 95
+					},
+					"frame": {
+						"x": 189,
+						"y": 105,
+						"w": 72,
+						"h": 95
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "still1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 127,
+						"h": 132
+					},
+					"spriteSourceSize": {
+						"x": 39,
+						"y": 37,
+						"w": 87,
+						"h": 64
+					},
+					"frame": {
+						"x": 258,
+						"y": 1,
+						"w": 87,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.61417323,
+						"y": 0.52272727
+					}
+				},
+				{
+					"filename": "pistol-aim.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 127,
+						"h": 132
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 8,
+						"w": 74,
+						"h": 98
+					},
+					"frame": {
+						"x": 263,
+						"y": 67,
+						"w": 74,
+						"h": 98
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:afcdd955dc9bf1484612acadaab82c55:a1a324ea47ce54b896aa40b9f8d3a3ca:47dde2bf8891bdcad025cffe8863cc43$"
+	}
+}
