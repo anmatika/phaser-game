@@ -44,7 +44,7 @@
         {
          "columns":50,
          "firstgid":1,
-         "image":"tilsetsraw\/RPGW_GrassLand_v2.0\/MainLev_autotiling.png",
+         "image":"..\/tilesets\/RPGW_GrassLand_v2.0\/MainLev_autotiling.png",
          "imageheight":704,
          "imagewidth":1600,
          "margin":0,
@@ -57,7 +57,7 @@
         {
          "columns":32,
          "firstgid":1101,
-         "image":"tilsetsraw\/RPG_Buildings_HOUSES_v1.1\/houses_outside_shadows.png",
+         "image":"..\/tilesets\/RPG_Buildings_HOUSES_v1.1\/houses_outside_shadows.png",
          "imageheight":1024,
          "imagewidth":1024,
          "margin":0,

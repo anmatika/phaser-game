@@ -4,10 +4,10 @@
   <export target="rpgmap1.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" name="grasstiles" tilewidth="32" tileheight="32" tilecount="1100" columns="50">
-  <image source="tilsetsraw/RPGW_GrassLand_v2.0/MainLev_autotiling.png" width="1600" height="704"/>
+  <image source="../tilesets/RPGW_GrassLand_v2.0/MainLev_autotiling.png" width="1600" height="704"/>
  </tileset>
  <tileset firstgid="1101" name="houses" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
-  <image source="tilsetsraw/RPG_Buildings_HOUSES_v1.1/houses_outside_shadows.png" width="1024" height="1024"/>
+  <image source="../tilesets/RPG_Buildings_HOUSES_v1.1/houses_outside_shadows.png" width="1024" height="1024"/>
   <tile id="170">
    <properties>
     <property name="collides" type="bool" value="true"/>

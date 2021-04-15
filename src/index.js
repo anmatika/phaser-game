@@ -8,15 +8,10 @@ class MyGame extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('grasstiles', 'assets/tilsetsraw/RPGW_GrassLand_v2.0/MainLev_autotiling.png');
-    this.load.image('houses', 'assets/tilsetsraw/RPG_Buildings_HOUSES_v1.1/houses_outside_shadows.png');
-    // this.load.image('player', 'assets/player.png');
-    this.load.tilemapTiledJSON('map', 'assets/rpgmap1.json');
-
-    this.load.multiatlas('atlas', 'assets/spritesheets/player/player.json', 'assets');
-    // this.load.spritesheet('player', 'assets/spritesheets/player/spritesheet/player.png', { frameWidth: 64, frameHeight: 64 });
+    this.load.image('grasstiles', 'assets/tilesets/RPGW_GrassLand_v2.0/MainLev_autotiling.png');
+    this.load.image('houses', 'assets/tilesets/RPG_Buildings_HOUSES_v1.1/houses_outside_shadows.png');
+    this.load.tilemapTiledJSON('map', 'assets/maps/rpgmap1.json');
     this.load.spritesheet('player', 'assets/spritesheets/player.png', { frameWidth: 64, frameHeight: 64 });
-    // this.load.spritesheet('player', 'assets/spritesheets/mummy37x45.png', { frameWidth: 37, frameHeight: 45 });
   }
 
   create() {
@@ -30,10 +25,7 @@ class MyGame extends Phaser.Scene {
     this.worldLayer.setCollisionByExclusion([-1]);
     this.physics.add.collider(this.player, this.worldLayer);
     console.log('tilemap', this.cache.tilemap.get('map').data);
-
-    // this.physics.arcade.enable(this.worldLayer);
     this.worldLayer.debug = true;
-    // console.log('tilesetGrass', this.tileset);
   }
 
   update() {
@@ -76,14 +68,7 @@ class MyGame extends Phaser.Scene {
     this.tilesetGrass = this.map.addTilesetImage('grasstiles');
     this.tilesetWorld = this.map.addTilesetImage('houses');
     this.backgroundLayer = this.map.createLayer('BaseLayer', this.tilesetGrass, 0, 0).setScale(1).setDepth(1);
-
     this.worldLayer = this.map.createLayer('WorldLayer', this.tilesetWorld, 0, 0).setScale(1).setDepth(2);
-    // this.worldLayer.setCollisionByProperty({ collides: true });
-    // this.tilesetWorld.setCollisionByExclusion([-1]);
-    // this.map.setCollisionBetween(1, 999, true, 'WorldLayer');
-    // this.physics.add.collider(this.player, this.tilesetWorld);
-    // this.map.setCollisionBetween(0, 923, true, this.worldLayer);
-    // this.map.setCollisionByExclusion([], true, this.worldLayer);
   }
 
   setupCamera() {
