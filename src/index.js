@@ -8,9 +8,10 @@ class MyGame extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('tileset', 'assets/tileset.png');
+    this.load.image('grasstiles', 'assets/tilsetsraw/RPGW_GrassLand_v2.0/MainLev_autotiling.png');
+    this.load.image('houses', 'assets/tilsetsraw/RPG_Buildings_HOUSES_v1.1/houses_outside_shadows.png');
     // this.load.image('player', 'assets/player.png');
-    this.load.tilemapTiledJSON('map', 'assets/town.json');
+    this.load.tilemapTiledJSON('map', 'assets/rpgmap1.json');
 
     this.load.multiatlas('atlas', 'assets/spritesheets/player/player.json', 'assets');
     // this.load.spritesheet('player', 'assets/spritesheets/player/spritesheet/player.png', { frameWidth: 64, frameHeight: 64 });
@@ -25,14 +26,27 @@ class MyGame extends Phaser.Scene {
     this.setupPhysics();
     this.setupCamera();
     this.setupInput();
+
+    this.worldLayer.setCollisionByExclusion([-1]);
+    this.physics.add.collider(this.player, this.worldLayer);
     console.log('tilemap', this.cache.tilemap.get('map').data);
-    console.log('tileset', this.tileset);
+
+    // this.physics.arcade.enable(this.worldLayer);
+    this.worldLayer.debug = true;
+    // console.log('tilesetGrass', this.tileset);
   }
 
   update() {
     // NOTE Evernote webclipper must be set off. Breaks the game.
+    // console.log('angle', this.player.body.angle);
+
     this.handleMovementWithVelocity();
     this.handleAnims();
+  }
+
+  render() {
+    console.log('render');
+    this.game.debug.text(`Debugging Phaser ${Phaser.VERSION}`, 20, 20, 'yellow', 'Segoe UI');
   }
 
   setupAnims() {
@@ -59,10 +73,17 @@ class MyGame extends Phaser.Scene {
 
   setupWorld() {
     this.map = this.make.tilemap({ key: 'map' });
-    this.tileset = this.map.addTilesetImage('tileset');
-    this.backgroundLayer = this.map.createLayer('Below Player', this.tileset, 0, 0).setScale(1).setDepth(1);
-    this.worldLayer = this.map.createLayer('World', this.tileset, 0, 0).setScale(1).setDepth(2);
-    this.worldLayer.setCollisionByProperty({ collides: true });
+    this.tilesetGrass = this.map.addTilesetImage('grasstiles');
+    this.tilesetWorld = this.map.addTilesetImage('houses');
+    this.backgroundLayer = this.map.createLayer('BaseLayer', this.tilesetGrass, 0, 0).setScale(1).setDepth(1);
+
+    this.worldLayer = this.map.createLayer('WorldLayer', this.tilesetWorld, 0, 0).setScale(1).setDepth(2);
+    // this.worldLayer.setCollisionByProperty({ collides: true });
+    // this.tilesetWorld.setCollisionByExclusion([-1]);
+    // this.map.setCollisionBetween(1, 999, true, 'WorldLayer');
+    // this.physics.add.collider(this.player, this.tilesetWorld);
+    // this.map.setCollisionBetween(0, 923, true, this.worldLayer);
+    // this.map.setCollisionByExclusion([], true, this.worldLayer);
   }
 
   setupCamera() {
@@ -71,11 +92,29 @@ class MyGame extends Phaser.Scene {
   }
 
   setupInput() {
+    this.input.on('wheel', (pointer, currentlyOver, dx, dy, _dz, _event) => {
+      if (dy > 0) {
+        if (this.cameras.main.zoom > 1) {
+          this.cameras.main.setZoom(this.cameras.main.zoom - 0.1);
+        }
+      } else if (dy < 0) {
+        this.cameras.main.setZoom(this.cameras.main.zoom + 0.1);
+      }
+    });
     this.cursors = this.input.keyboard.createCursorKeys();
+    this.cursors.A = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+    this.cursors.S = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+    this.cursors.D = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+    this.cursors.W = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+    this.cursors.isLeftDown = () => this.cursors.left.isDown || this.cursors.A.isDown;
+    this.cursors.isRightDown = () => this.cursors.right.isDown || this.cursors.D.isDown;
+    this.cursors.isUpDown = () => this.cursors.up.isDown || this.cursors.W.isDown;
+    this.cursors.isDownDown = () => this.cursors.down.isDown || this.cursors.S.isDown;
+    console.log('cursors', this.cursors);
   }
 
   setupPlayer() {
-    this.player = this.physics.add.sprite(50, 100, 'player')
+    this.player = this.physics.add.sprite(50, 400, 'player')
       .setCollideWorldBounds(true)
       .setDepth(2);
 
@@ -84,7 +123,6 @@ class MyGame extends Phaser.Scene {
 
   setupPhysics() {
     this.physics.world.setBounds(0, 0, this.backgroundLayer.width, this.backgroundLayer.height);
-    this.physics.add.collider(this.player, this.worldLayer);
   }
 
   handleMovementWithVelocity() {
@@ -94,35 +132,33 @@ class MyGame extends Phaser.Scene {
     this.player.body.setVelocity(0);
 
     // Horizontal movement
-    if (this.cursors.left.isDown) {
+    if (this.cursors.isLeftDown()) {
       this.player.body.setVelocityX(-speed);
-    } else if (this.cursors.right.isDown) {
+    } else if (this.cursors.isRightDown()) {
       this.player.body.setVelocityX(speed);
     }
 
     // Vertical movement
-    if (this.cursors.up.isDown) {
+    if (this.cursors.isUpDown()) {
       this.player.body.setVelocityY(-speed);
-    } else if (this.cursors.down.isDown) {
+    } else if (this.cursors.isDownDown()) {
       this.player.body.setVelocityY(speed);
     }
   }
 
   handleAnims() {
-    if (this.cursors.left.isDown) {
-      // this.player.anims.play('misa-left-walk', true);
+    if (this.cursors.isLeftDown()) {
       this.player.anims.play('runRight', true);
       this.player.setFlipX(true);
-    } else if (this.cursors.right.isDown) {
+    } else if (this.cursors.isRightDown()) {
       this.player.setFlipX(false);
       this.player.anims.play('runRight', true);
-    } else if (this.cursors.up.isDown) {
+    } else if (this.cursors.isUpDown()) {
       this.player.anims.play('runUp', true);
       this.player.setFlipX(false);
-    } else if (this.cursors.down.isDown) {
+    } else if (this.cursors.isDownDown()) {
       this.player.anims.play('runDown', true);
       this.player.setFlipX(false);
-      // this.player.anims.play('misa-front-walk', true);
     } else {
       this.player.anims.stop();
     }
@@ -136,7 +172,7 @@ const config = {
   physics: {
     default: 'arcade',
     arcade: {
-      debug: false,
+      debug: true,
       gravity: { y: 0 },
     },
   },
