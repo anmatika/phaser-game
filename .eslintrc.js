@@ -13,6 +13,7 @@ module.exports = {
     'linebreak-style': ['off'],
     'no-useless-constructor': ['off'],
     'no-console': ['off'],
+    'no-new': ['off'],
     'no-unused-vars': ['warn'],
     'max-len': ['warn'],
     indent: ['error', 2],
