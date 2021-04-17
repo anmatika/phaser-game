@@ -31,24 +31,10 @@ export default class InHouseScene extends Phaser.Scene {
     this.wallsLayer.setCollisionByExclusion([-1]);
     this.cursors = new Input({ scene: this }).cursors;
     this.player = new Player({ scene: this });
-    this.physics.world.setBounds(
-      0, 0, this.backgroundLayer.width, this.backgroundLayer.height,
-    );
-
-    this.physics.add.collider(this.player.sprite, this.wallsLayer);
-    this.cameras.main
-      .setBounds(0, 0,
-        this.backgroundLayer.width, this.backgroundLayer.height);
-    this.cameras.main.startFollow(this.player.sprite);
-    this.input.on('wheel', (pointer, currentlyOver, dx, dy, _dz, _event) => {
-      if (dy > 0) {
-        if (this.cameras.main.zoom > 1) {
-          this.cameras.main.setZoom(this.cameras.main.zoom - 0.1);
-        }
-      } else if (dy < 0) {
-        this.cameras.main.setZoom(this.cameras.main.zoom + 0.1);
-      }
+    new Physics({
+      scene: this, player: this.player, backgroundLayer: this.backgroundLayer, collideLayer: this.wallsLayer,
     });
+    new Camera({ scene: this, backgroundLayer: this.backgroundLayer });
   }
 
   update() {

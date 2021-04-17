@@ -24,8 +24,10 @@ export default class OutdoorsScene extends Phaser.Scene {
     this.world = new World({ scene: this });
     this.cursors = new Input({ scene: this }).cursors;
     this.player = new Player({ scene: this });
-    new Physics({ scene: this });
-    new Camera({ scene: this });
+    new Physics({
+      scene: this, player: this.player, backgroundLayer: this.world.backgroundLayer, collideLayer: this.world.collideLayerTop,
+    });
+    new Camera({ scene: this, backgroundLayer: this.world.backgroundLayer });
 
     console.log('tilemap', this.cache.tilemap.get('map').data);
     console.log('scene', this);

@@ -1,8 +1,9 @@
 class Camera {
   constructor({
-    scene,
+    scene, backgroundLayer,
   }) {
     this.scene = scene;
+    this.backgroundLayer = backgroundLayer;
     this.setupCamera();
     this.setUpZoom();
   }
@@ -10,7 +11,7 @@ class Camera {
   setupCamera() {
     this.scene.cameras.main
       .setBounds(0, 0,
-        this.scene.world.backgroundLayer.width, this.scene.world.backgroundLayer.height);
+        this.backgroundLayer.width, this.backgroundLayer.height);
     this.scene.cameras.main.startFollow(this.scene.player.sprite);
   }
 

@@ -51,10 +51,10 @@
         },
         "maps/house-interior1.tmx": {
             "scale": 1.5,
-            "selectedLayer": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 78.33333333333333,
-                "y": -84
+                "x": 112,
+                "y": 266.6666666666667
             }
         },
         "maps/house-interior1.tmx#houseinterior": {
@@ -145,9 +145,9 @@
     "project": "rpg.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "maps/house-interior1.tmx",
         "maps/rpgmap1.tmx",
         "maps/rpgmap1.json",
-        "maps/house-interior1.tmx",
         "rpgmap1.tmx",
         "town.json",
         "tileset2.tsx",
