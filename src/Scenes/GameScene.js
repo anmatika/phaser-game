@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import Player from '../Player';
 import Input from '../Input';
+import Camera from '../Camera';
 
 export default class MyGame extends Phaser.Scene {
   constructor() {
@@ -27,6 +28,7 @@ export default class MyGame extends Phaser.Scene {
     this.physics.add.collider(this.player.sprite, this.worldLayer);
     console.log('tilemap', this.cache.tilemap.get('map').data);
     this.worldLayer.debug = true;
+    console.log('scene', this);
   }
 
   update() {
@@ -52,8 +54,7 @@ export default class MyGame extends Phaser.Scene {
   }
 
   setupCamera() {
-    this.cameras.main.setBounds(0, 0, this.backgroundLayer.width, this.backgroundLayer.height);
-    this.cameras.main.startFollow(this.player.sprite);
+    this.camera = new Camera({ scene: this });
   }
 
   setupInput() {
@@ -66,15 +67,7 @@ export default class MyGame extends Phaser.Scene {
         this.cameras.main.setZoom(this.cameras.main.zoom + 0.1);
       }
     });
-    // this.cursors = this.input.keyboard.createCursorKeys();
-    // this.cursors.A = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
-    // this.cursors.S = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
-    // this.cursors.D = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
-    // this.cursors.W = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-    // this.cursors.isLeftDown = () => this.cursors.left.isDown || this.cursors.A.isDown;
-    // this.cursors.isRightDown = () => this.cursors.right.isDown || this.cursors.D.isDown;
-    // this.cursors.isUpDown = () => this.cursors.up.isDown || this.cursors.W.isDown;
-    // this.cursors.isDownDown = () => this.cursors.down.isDown || this.cursors.S.isDown;
+
     this.cursors = new Input({ scene: this }).cursors;
     console.log('cursors', this.cursors);
   }
