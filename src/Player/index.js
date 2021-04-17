@@ -1,12 +1,9 @@
-import Phaser from 'phaser';
-
 class Player {
   constructor({
-    scene, speed = 175, cursors, spriteSheetPath,
+    scene, speed = 175,
   }) {
     this.scene = scene;
     this.speed = speed;
-    this.cursors = cursors;
 
     this.sprite = this.scene.physics.add.sprite(50, 400, 'player')
       .setCollideWorldBounds(true)
@@ -69,31 +66,31 @@ class Player {
     this.sprite.body.setVelocity(0);
 
     // Horizontal movement
-    if (this.cursors.isLeftDown()) {
+    if (this.scene.cursors.isLeftDown()) {
       this.moveLeft();
-    } else if (this.cursors.isRightDown()) {
+    } else if (this.scene.cursors.isRightDown()) {
       this.moveRight();
     }
 
     // Vertical movement
-    if (this.cursors.isUpDown()) {
+    if (this.scene.cursors.isUpDown()) {
       this.moveUp();
-    } else if (this.cursors.isDownDown()) {
+    } else if (this.scene.cursors.isDownDown()) {
       this.moveDown();
     }
   }
 
   handleAnims() {
-    if (this.cursors.isLeftDown()) {
+    if (this.scene.cursors.isLeftDown()) {
       this.sprite.anims.play('runRight', true);
       this.sprite.setFlipX(true);
-    } else if (this.cursors.isRightDown()) {
+    } else if (this.scene.cursors.isRightDown()) {
       this.sprite.setFlipX(false);
       this.sprite.anims.play('runRight', true);
-    } else if (this.cursors.isUpDown()) {
+    } else if (this.scene.cursors.isUpDown()) {
       this.sprite.anims.play('runUp', true);
       this.sprite.setFlipX(false);
-    } else if (this.cursors.isDownDown()) {
+    } else if (this.scene.cursors.isDownDown()) {
       this.sprite.anims.play('runDown', true);
       this.sprite.setFlipX(false);
     } else {

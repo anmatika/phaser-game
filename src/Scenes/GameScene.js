@@ -22,7 +22,7 @@ export default class MyGame extends Phaser.Scene {
   create() {
     this.world = new World({ scene: this });
     this.cursors = new Input({ scene: this }).cursors;
-    this.player = new Player({ scene: this, cursors: this.cursors });
+    this.player = new Player({ scene: this });
     new Physics({ scene: this });
     new Camera({ scene: this });
 
