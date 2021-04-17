@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
-import GameScene from './Scenes/GameScene';
+import OutdoorsScene from './Scenes/OutdoorsScene';
+import InHouseScene from './Scenes/InHouseScene';
 
 const config = {
   type: Phaser.AUTO,
@@ -12,7 +13,8 @@ const config = {
       gravity: { y: 0 },
     },
   },
-  scene: [GameScene],
+  // scene: [InHouseScene],
+  scene: [OutdoorsScene, InHouseScene],
 
 };
 

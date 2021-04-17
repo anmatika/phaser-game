@@ -11,7 +11,7 @@ class Physics {
       0, 0, this.scene.world.backgroundLayer.width, this.scene.world.backgroundLayer.height,
     );
 
-    this.scene.physics.add.collider(this.scene.player.sprite, this.scene.world.collideLayer);
+    this.scene.physics.add.collider(this.scene.player.sprite, this.scene.world.collideLayerTop);
   }
 }
 
