@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import Player from '../Player';
 import Input from '../Input';
 import Camera from '../Camera';
+import World from '../World';
 
 export default class MyGame extends Phaser.Scene {
   constructor() {
@@ -24,10 +25,9 @@ export default class MyGame extends Phaser.Scene {
     this.setupPhysics();
     this.setupCamera();
 
-    this.worldLayer.setCollisionByExclusion([-1]);
-    this.physics.add.collider(this.player.sprite, this.worldLayer);
+    this.world.worldLayer.setCollisionByExclusion([-1]);
+    this.physics.add.collider(this.player.sprite, this.world.worldLayer);
     console.log('tilemap', this.cache.tilemap.get('map').data);
-    this.worldLayer.debug = true;
     console.log('scene', this);
   }
 
@@ -46,11 +46,8 @@ export default class MyGame extends Phaser.Scene {
   }
 
   setupWorld() {
-    this.map = this.make.tilemap({ key: 'map' });
-    this.tilesetGrass = this.map.addTilesetImage('grasstiles');
-    this.tilesetWorld = this.map.addTilesetImage('houses');
-    this.backgroundLayer = this.map.createLayer('BaseLayer', this.tilesetGrass, 0, 0).setScale(1).setDepth(1);
-    this.worldLayer = this.map.createLayer('WorldLayer', this.tilesetWorld, 0, 0).setScale(1).setDepth(2);
+    this.world = new World({ scene: this });
+    this.map = this.world.map;
   }
 
   setupCamera() {
@@ -82,6 +79,8 @@ export default class MyGame extends Phaser.Scene {
   }
 
   setupPhysics() {
-    this.physics.world.setBounds(0, 0, this.backgroundLayer.width, this.backgroundLayer.height);
+    this.physics.world.setBounds(
+      0, 0, this.world.backgroundLayer.width, this.world.backgroundLayer.height,
+    );
   }
 }

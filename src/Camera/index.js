@@ -10,7 +10,7 @@ class Camera {
 
   setupCamera() {
     this.scene.cameras.main
-      .setBounds(0, 0, this.scene.backgroundLayer.width, this.scene.backgroundLayer.height);
+      .setBounds(0, 0, this.scene.world.backgroundLayer.width, this.scene.world.backgroundLayer.height);
     this.scene.cameras.main.startFollow(this.scene.player.sprite);
   }
 }
