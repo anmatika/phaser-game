@@ -19,20 +19,23 @@ export default class InHouseScene extends Phaser.Scene {
     // this.load.image('houses', 'assets/tilesets/RPG_Buildings_HOUSES_v1.1/houses_outside_shadows.png');
     // this.load.tilemapTiledJSON('map', 'assets/maps/rpgmap1.json');
     this.load.tilemapTiledJSON('map', 'assets/maps/house-interior1.json');
-    this.load.spritesheet('player', 'assets/spritesheets/player.png', { frameWidth: 64, frameHeight: 64 });
+    this.load.spritesheet('player', 'assets/spritesheets/player2.png', { frameWidth: 32, frameHeight: 40 });
   }
 
   create() {
     this.map = this.make.tilemap({ key: 'map' });
     this.interior = this.map.addTilesetImage('houseinterior');
-
     this.backgroundLayer = this.map.createLayer('BaseLayer', this.interior, 0, 0).setScale(1).setDepth(1);
     this.wallsLayer = this.map.createLayer('Walls', [this.interior, this.tilesetDecorative], 0, 0).setScale(1).setDepth(2);
     this.wallsLayer.setCollisionByExclusion([-1]);
+
     this.cursors = new Input({ scene: this }).cursors;
     this.player = new Player({ scene: this });
     new Physics({
-      scene: this, player: this.player, backgroundLayer: this.backgroundLayer, collideLayer: this.wallsLayer,
+      scene: this,
+      player: this.player,
+      backgroundLayer: this.backgroundLayer,
+      collideLayer: this.wallsLayer,
     });
     new Camera({ scene: this, backgroundLayer: this.backgroundLayer });
   }

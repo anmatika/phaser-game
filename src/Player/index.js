@@ -7,7 +7,8 @@ class Player {
 
     this.sprite = this.scene.physics.add.sprite(50, 400, 'player')
       .setCollideWorldBounds(true)
-      .setDepth(2);
+      .setDepth(2)
+      .setScale(1);
     this.setupAnims();
   }
 

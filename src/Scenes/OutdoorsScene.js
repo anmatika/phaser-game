@@ -17,17 +17,19 @@ export default class OutdoorsScene extends Phaser.Scene {
     this.load.image('decorative', 'assets/tilesets/RPGW_GrassLand_v2.0/decorative.png');
     this.load.image('houses', 'assets/tilesets/RPG_Buildings_HOUSES_v1.1/houses_outside_shadows.png');
     this.load.tilemapTiledJSON('map', 'assets/maps/rpgmap1.json');
-    this.load.spritesheet('player', 'assets/spritesheets/player.png', { frameWidth: 64, frameHeight: 64 });
+    this.load.spritesheet('player', 'assets/spritesheets/player2.png', { frameWidth: 32, frameHeight: 40 });
   }
 
   create() {
     this.world = new World({ scene: this });
+    console.log('world', this.world);
     this.cursors = new Input({ scene: this }).cursors;
     this.player = new Player({ scene: this });
     new Physics({
-      scene: this, player: this.player, backgroundLayer: this.world.backgroundLayer, collideLayer: this.world.collideLayerTop,
+      scene: this, player: this.player, backgroundLayer: this.world.backgroundLayer, collideLayer: this.world.collideLayerTop, map: this.world.map,
     });
     new Camera({ scene: this, backgroundLayer: this.world.backgroundLayer });
+    // const objectLayer = this.world.map.getObjectLayer('Objects').objects;
 
     console.log('tilemap', this.cache.tilemap.get('map').data);
     console.log('scene', this);

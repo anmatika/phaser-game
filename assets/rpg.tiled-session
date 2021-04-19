@@ -49,12 +49,26 @@
             "scaleInDock": 1,
             "scaleInEditor": 0.75
         },
-        "maps/house-interior1.tmx": {
-            "scale": 1.5,
+        "maps/house-interior1.json": {
+            "scale": 1.7891666666666666,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 112,
-                "y": 266.6666666666667
+                "x": 144.201210992082,
+                "y": 240.33535165346998
+            }
+        },
+        "maps/house-interior1.json#houseinterior": {
+            "scaleInDock": 1
+        },
+        "maps/house-interior1.json#housesinteriors2": {
+            "scaleInDock": 1
+        },
+        "maps/house-interior1.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 165.99999999999997,
+                "y": 266
             }
         },
         "maps/house-interior1.tmx#houseinterior": {
@@ -64,11 +78,11 @@
             "scaleInDock": 2
         },
         "maps/rpgmap1.json": {
-            "scale": 0.19949999999999998,
-            "selectedLayer": 0,
+            "scale": 2,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 1598.9974937343359,
-                "y": 1596.4912280701756
+                "x": 432,
+                "y": 378.5
             }
         },
         "maps/rpgmap1.json#decorative": {
@@ -84,8 +98,8 @@
             "scale": 1,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 409.5,
-                "y": 367
+                "x": 1600,
+                "y": 1599.5
             }
         },
         "maps/rpgmap1.tmx#decorative": {
@@ -145,9 +159,9 @@
     "project": "rpg.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "maps/house-interior1.tmx",
-        "maps/rpgmap1.tmx",
         "maps/rpgmap1.json",
+        "maps/rpgmap1.tmx",
+        "maps/house-interior1.tmx",
         "rpgmap1.tmx",
         "town.json",
         "tileset2.tsx",
