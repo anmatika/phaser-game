@@ -10,12 +10,23 @@ const config = {
     default: 'arcade',
     arcade: {
       debug: true,
-      gravity: { y: 0 },
+      gravity: {
+        y: 0
+      }
     },
+    scale: {
+      mode: Phaser.Scale.FIT,
+      autoCenter: Phaser.Scale.CENTER_BOTH,
+      parent: "thegame"
+    },
+    pixelArt: true,
+
   },
   // scene: [InHouseScene],
   scene: [OutdoorsScene, InHouseScene],
 
 };
 
-export default new Phaser.Game(config);
+const game = new Phaser.Game(config);
+window.game = game;
+export default game;

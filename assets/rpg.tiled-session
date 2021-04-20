@@ -3,11 +3,11 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "maps/house-interior1.tmx",
+    "activeFile": "maps/rpgmap1.json",
     "expandedProjectPaths": [
-        "maps",
         "C:/git/phaser-game/src/assets",
-        "."
+        ".",
+        "maps"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -51,10 +51,10 @@
         },
         "maps/house-interior1.json": {
             "scale": 1.7891666666666666,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 144.201210992082,
-                "y": 240.33535165346998
+                "x": 143.92175128085702,
+                "y": 239.4969725197951
             }
         },
         "maps/house-interior1.json#houseinterior": {
@@ -67,8 +67,8 @@
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 165.99999999999997,
-                "y": 266
+                "x": 143.66666666666666,
+                "y": 240.33333333333331
             }
         },
         "maps/house-interior1.tmx#houseinterior": {
@@ -81,8 +81,8 @@
             "scale": 2,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 432,
-                "y": 378.5
+                "x": 502.5,
+                "y": 494.25
             }
         },
         "maps/rpgmap1.json#decorative": {
@@ -98,7 +98,7 @@
             "scale": 1,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 1600,
+                "x": 1599.5,
                 "y": 1599.5
             }
         },
@@ -154,13 +154,15 @@
     "openFiles": [
         "maps/rpgmap1.tmx",
         "maps/rpgmap1.json",
-        "maps/house-interior1.tmx"
+        "maps/house-interior1.tmx",
+        "maps/house-interior1.json"
     ],
     "project": "rpg.tiled-project",
     "property.type": "bool",
     "recentFiles": [
         "maps/rpgmap1.json",
         "maps/rpgmap1.tmx",
+        "maps/house-interior1.json",
         "maps/house-interior1.tmx",
         "rpgmap1.tmx",
         "town.json",
@@ -169,8 +171,7 @@
         "C:/git/phaser-game/src/assets/gametile.tmx",
         "C:/Users/anttim/Documents/game/assets/assets/town.tmx",
         "C:/Users/anttim/AppData/Local/Temp/Temp1_assets.zip/assets/town.tmx",
-        "C:/Users/anttim/gametile.tmx",
-        "C:/Users/anttim/Documents/oldworld.tsx"
+        "C:/Users/anttim/gametile.tmx"
     ],
     "tileset.embedInMap": true,
     "tileset.lastUsedFormat": "tsx"
