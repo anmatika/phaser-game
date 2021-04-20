@@ -39,6 +39,23 @@ export default class InHouseScene extends Phaser.Scene {
       collideLayer: this.wallsLayer,
     });
     new Camera({ scene: this, backgroundLayer: this.backgroundLayer });
+
+    this.objectGroup = this.physics.add.staticGroup();
+    const co = this.map.createFromObjects('Objects');
+    console.log('co2', this.co2)
+
+    co.forEach((object) => {
+      console.log('object', object)
+      let obj = this.objectGroup.create(object.x, object.y);
+      obj.setOrigin(0);
+      obj.body.width = object.width;
+      obj.body.height = object.height;
+    });
+
+    this.physics.add.overlap(this.player.sprite, this.objectGroup, () => {
+      console.log('collides')
+      this.scene.start('outDoors')
+    })
   }
 
   update() {

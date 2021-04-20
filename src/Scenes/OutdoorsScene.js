@@ -44,53 +44,25 @@ export default class OutdoorsScene extends Phaser.Scene {
     );
     this.physics.add.collider(this.player.sprite, this.collideLayerTop);
 
-    // new Physics({
-    //   scene: this, player: this.player, backgroundLayer: this._world.backgroundLayer, collideLayer: this._world.collideLayerTop, map: this._world.map,
-    // });
-    // this.mummo = this.physics.add.group({
-    //   key: 'mummo',
-    //   repeat: 1,
-    //   setXY: { x: 12, y: 0, stepX: 70 }
-    // })
     console.log('this2', this)
     new Camera({ scene: this, backgroundLayer: this.backgroundLayer });
-    // const objectLayer = this.world.map.getObjectLayer('Objects').objects;
-    // this.co2 = this.map.getObjectLayer('Objects').objects;
-
-    // this.objectGroup = this.physics.add.group({
-    //   key: 'mummo',
-    //   repeat: 1,
-    //   setXY: { x: 50, y: 50 }
-    // })
-    // this.co2 = this.map.getObjectLayer('Objects')['objects'];
+    ;
     this.objectGroup = this.physics.add.staticGroup();
-    // this.objectGroup.enableBody = true;
     const co = this.map.createFromObjects('Objects');
-    // this.objectGroup
     console.log('co2', this.co2)
 
     co.forEach((object) => {
       console.log('object', object)
       let obj = this.objectGroup.create(object.x, object.y);
-      // this.objectGroup.add(object, true)
-      // obj.setScale(object.width / 32, object.height / 32); //my tile size was 32
-      obj.setOrigin(0); //the positioning was off, and B3L7 mentioned the default was 0.5
+      obj.setOrigin(0);
       obj.body.width = object.width;
       obj.body.height = object.height;
-      // obj.body.width = object.width; //body of the physics body
-      // obj.body.height = object.height;
     });
-    // this.objectGroup.create(50, 300, 'mummo')
-    // this.objectGroup.setDepth(4)
-    // const collider = new this.physics.Collider(this.physics.world, this.objectGroup, this.player, this.collideCallback)
+
     this.physics.add.overlap(this.player.sprite, this.objectGroup, () => {
       console.log('collides')
       this.scene.start('inHouse')
     })
-    // this.physics.add.collider(this.player, this.objectGroup, this.collideCallback, null, this);
-    // this.objectGroup.refresh()
-    console.log('objectgroupt', this.objectGroup)
-
 
     console.log('tilemap', this.cache.tilemap.get('map').data);
     console.log('scene', this);
