@@ -30,10 +30,10 @@ export default class OutdoorsScene extends Phaser.Scene {
     console.log('houses', this.tilesetHouses);
     this.tilesetDecorative = this.map.addTilesetImage('decorative');
     console.log('deco', this.tilesetDecorative);
-    this.backgroundLayer = this.map.createStaticLayer('BaseLayer', this.tilesetGrass, 0, 0).setScale(1).setDepth(1);
-    this.collideLayerTop = this.map.createStaticLayer('CollideLayerTop', [this.tilesetHouses, this.tilesetDecorative], 0, 0).setScale(1).setDepth(4);
-    this.collideLayer1 = this.map.createStaticLayer('CollideLayer1', this.tilesetHouses, 0, 0).setScale(1).setDepth(3);
-    this.collideLayer2 = this.map.createStaticLayer('CollideLayer2', this.tilesetHouses, 0, 0).setScale(1).setDepth(2);
+    this.backgroundLayer = this.map.createLayer('BaseLayer', this.tilesetGrass, 0, 0).setScale(1).setDepth(1);
+    this.collideLayerTop = this.map.createLayer('CollideLayerTop', [this.tilesetHouses, this.tilesetDecorative], 0, 0).setScale(1).setDepth(4);
+    this.collideLayer1 = this.map.createLayer('CollideLayer1', this.tilesetHouses, 0, 0).setScale(1).setDepth(3);
+    this.collideLayer2 = this.map.createLayer('CollideLayer2', this.tilesetHouses, 0, 0).setScale(1).setDepth(2);
     this.collideLayerTop.setCollisionByExclusion([-1]);
     console.log('world', this.world);
     this.cursors = new Input({ scene: this }).cursors;
@@ -42,7 +42,7 @@ export default class OutdoorsScene extends Phaser.Scene {
     this.physics.world.setBounds(
       0, 0, this.backgroundLayer.width, this.backgroundLayer.height,
     );
-    this.physics.add.collider(this.player.sprite, this.collideLayer);
+    this.physics.add.collider(this.player.sprite, this.collideLayerTop);
 
     // new Physics({
     //   scene: this, player: this.player, backgroundLayer: this._world.backgroundLayer, collideLayer: this._world.collideLayerTop, map: this._world.map,
@@ -62,29 +62,30 @@ export default class OutdoorsScene extends Phaser.Scene {
     //   repeat: 1,
     //   setXY: { x: 50, y: 50 }
     // })
-    this.co2 = this.map.getObjectLayer('Objects')['objects'];
+    // this.co2 = this.map.getObjectLayer('Objects')['objects'];
     this.objectGroup = this.physics.add.staticGroup();
     // this.objectGroup.enableBody = true;
-    // const co = this._world.map.createFromObjects('Objects', { gid: 2930 });
+    const co = this.map.createFromObjects('Objects');
     // this.objectGroup
     console.log('co2', this.co2)
 
-    // this.co2.forEach((object) => {
-    //   console.log('object', object)
-    //   let obj = this.objectGroup.create(object.x, object.y, "mummo");
-    //   // this.objectGroup.add(object, true)
-    //   // obj.setScale(object.width / 32, object.height / 32); //my tile size was 32
-    //   obj.setOrigin(0); //the positioning was off, and B3L7 mentioned the default was 0.5
-    //   obj.body.width = object.width;
-    //   obj.body.height = object.height;
-    //   // obj.body.width = object.width; //body of the physics body
-    //   // obj.body.height = object.height;
-    // });
-    this.objectGroup.create(50, 300, 'mummo')
-    this.objectGroup.setDepth(4)
+    co.forEach((object) => {
+      console.log('object', object)
+      let obj = this.objectGroup.create(object.x, object.y);
+      // this.objectGroup.add(object, true)
+      // obj.setScale(object.width / 32, object.height / 32); //my tile size was 32
+      obj.setOrigin(0); //the positioning was off, and B3L7 mentioned the default was 0.5
+      obj.body.width = object.width;
+      obj.body.height = object.height;
+      // obj.body.width = object.width; //body of the physics body
+      // obj.body.height = object.height;
+    });
+    // this.objectGroup.create(50, 300, 'mummo')
+    // this.objectGroup.setDepth(4)
     // const collider = new this.physics.Collider(this.physics.world, this.objectGroup, this.player, this.collideCallback)
     this.physics.add.overlap(this.player.sprite, this.objectGroup, () => {
       console.log('collides')
+      this.scene.start('inHouse')
     })
     // this.physics.add.collider(this.player, this.objectGroup, this.collideCallback, null, this);
     // this.objectGroup.refresh()
