@@ -1,9 +1,16 @@
+import Player from "../Player";
+
 class Camera {
+  private scene!: Phaser.Scene
+  private backgroundLayer!: any
+  private player!: Player
+
   constructor({
-    scene, backgroundLayer,
+    scene, backgroundLayer, player
   }) {
     this.scene = scene;
     this.backgroundLayer = backgroundLayer;
+    this.player = player
     this.setupCamera();
     this.setUpZoom();
   }
@@ -12,7 +19,7 @@ class Camera {
     this.scene.cameras.main
       .setBounds(0, 0,
         this.backgroundLayer.width, this.backgroundLayer.height);
-    this.scene.cameras.main.startFollow(this.scene.player.sprite);
+    this.scene.cameras.main.startFollow(this.player.sprite);
   }
 
   setUpZoom() {

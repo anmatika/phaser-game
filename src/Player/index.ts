@@ -1,10 +1,26 @@
+import Input from "../Input";
+
+type Position = {
+  x: number,
+  y: number
+}
+interface Player {
+  scene: Phaser.Scene;
+  speed: number;
+  position: Position
+}
+
 class Player {
+  public sprite!: any
+  private input: Input
+
   constructor({
     scene, speed = 175, position
   }) {
     this.scene = scene;
     this.speed = speed;
     this.position = position
+    this.input = new Input({ scene })
 
     this.sprite = this.scene.physics.add.sprite(position?.x ?? 50, position?.y ?? 400, 'player')
       .setCollideWorldBounds(true)
@@ -68,36 +84,36 @@ class Player {
     this.sprite.body.setVelocity(0);
 
     // Horizontal movement
-    if (this.scene.cursors.isLeftDown()) {
+    if (this.input.isLeftDown) {
       this.moveLeft();
-    } else if (this.scene.cursors.isRightDown()) {
+    } else if (this.input.isRightDown) {
       this.moveRight();
     }
 
     // Vertical movement
-    if (this.scene.cursors.isUpDown()) {
+    if (this.input.isUpDown) {
       this.moveUp();
-    } else if (this.scene.cursors.isDownDown()) {
+    } else if (this.input.isDownDown) {
       this.moveDown();
     }
   }
 
   handleAnims() {
-    if (this.scene.cursors.isLeftDown()) {
-      this.sprite.anims.play('runRight', true);
-      this.sprite.setFlipX(true);
-    } else if (this.scene.cursors.isRightDown()) {
-      this.sprite.setFlipX(false);
-      this.sprite.anims.play('runRight', true);
-    } else if (this.scene.cursors.isUpDown()) {
-      this.sprite.anims.play('runUp', true);
-      this.sprite.setFlipX(false);
-    } else if (this.scene.cursors.isDownDown()) {
-      this.sprite.anims.play('runDown', true);
-      this.sprite.setFlipX(false);
-    } else {
-      this.sprite.anims.stop();
-    }
+    // if (this.scene.cursors.isLeftDown()) {
+    //   this.sprite.anims.play('runRight', true);
+    //   this.sprite.setFlipX(true);
+    // } else if (this.scene.cursors.isRightDown()) {
+    //   this.sprite.setFlipX(false);
+    //   this.sprite.anims.play('runRight', true);
+    // } else if (this.scene.cursors.isUpDown()) {
+    //   this.sprite.anims.play('runUp', true);
+    //   this.sprite.setFlipX(false);
+    // } else if (this.scene.cursors.isDownDown()) {
+    //   this.sprite.anims.play('runDown', true);
+    //   this.sprite.setFlipX(false);
+    // } else {
+    //   this.sprite.anims.stop();
+    // }
   }
 }
 

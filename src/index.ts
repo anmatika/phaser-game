@@ -1,4 +1,4 @@
-import Phaser from 'phaser';
+import 'phaser';
 import OutdoorsScene from './Scenes/OutdoorsScene';
 import InHouseScene from './Scenes/InHouseScene';
 
@@ -28,5 +28,4 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
-window.game = game;
 export default game;

@@ -1,15 +1,27 @@
-import Phaser from 'phaser';
+import 'phaser';
 import Player from '../Player';
 import Input from '../Input';
 import Camera from '../Camera';
-import World from '../World';
-import Physics from '../Physics';
+// import World from '../World';
+// import Physics from '../Physics';
 
 export default class InHouseScene extends Phaser.Scene {
+  private map!: Phaser.Tilemaps.Tilemap
+  private interior!: Phaser.Tilemaps.Tileset
+  private interior2!: Phaser.Tilemaps.Tileset
+  private furniture!: Phaser.Tilemaps.Tileset
+  private backgroundLayer!: Phaser.Tilemaps.TilemapLayer
+  private wallsLayer!: Phaser.Tilemaps.TilemapLayer
+  private furnitureLayer!: Phaser.Tilemaps.TilemapLayer
+  private player!: Player
+  public physics!: Phaser.Physics.Arcade.ArcadePhysics
+  private objectGroup!: Phaser.Physics.Arcade.StaticGroup
+  private objects!: any
+
+
+
   constructor() {
     super({ key: 'inHouse' });
-    this.screenWidth = window.innerWidth;
-    this.screenHeight = window.innerHeight;
   }
 
   preload() {
@@ -35,27 +47,28 @@ export default class InHouseScene extends Phaser.Scene {
     this.furnitureLayer.setCollisionByExclusion([-1]);
 
 
-    this.cursors = new Input({ scene: this }).cursors;
+    // this.keys = new Input({ scene: this }).cursors;
     this.player = new Player({ scene: this, position: { x: 50, y: 50 } });
-    new Physics({
-      scene: this,
-      player: this.player,
-      backgroundLayer: this.backgroundLayer,
-      collideLayer: this.wallsLayer,
-    });
-    new Camera({ scene: this, backgroundLayer: this.backgroundLayer });
+    // new Physics({
+    //   scene: this,
+    //   player: this.player,
+    //   backgroundLayer: this.backgroundLayer,
+    //   collideLayer: this.wallsLayer,
+    // });
+    new Camera({ scene: this, backgroundLayer: this.backgroundLayer, player: this.player });
     this.physics.add.collider(this.player.sprite, this.furnitureLayer);
 
     this.objectGroup = this.physics.add.staticGroup();
-    const co = this.map.createFromObjects('Objects');
-    console.log('co2', this.co2)
+    const objects = this.map.createFromObjects('Objects', {});
+    // console.log('co2', this.co2)
 
-    co.forEach((object) => {
+    objects.forEach((object) => {
       console.log('object', object)
-      let obj = this.objectGroup.create(object.x, object.y);
+      // let obj = this.objectGroup.create(object.x, object.y);
+      let obj = this.objectGroup.create();
       obj.setOrigin(0);
-      obj.body.width = object.width;
-      obj.body.height = object.height;
+      // obj.body.width = object.width;
+      // obj.body.height = object.height;
     });
 
     this.physics.add.overlap(this.player.sprite, this.objectGroup, () => {
@@ -71,6 +84,6 @@ export default class InHouseScene extends Phaser.Scene {
   }
 
   render() {
-    this.game.debug.text(`Debugging Phaser ${Phaser.VERSION}`, 20, 20, 'yellow', 'Segoe UI');
+    // this.game.debug.text(`Debugging Phaser ${Phaser.VERSION}`, 20, 20, 'yellow', 'Segoe UI');
   }
 }
