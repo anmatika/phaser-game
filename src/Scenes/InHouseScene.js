@@ -13,25 +13,30 @@ export default class InHouseScene extends Phaser.Scene {
   }
 
   preload() {
-    // this.load.image('grasstiles', 'assets/tilesets/RPGW_GrassLand_v2.0/MainLev_autotiling.png');
-    // this.load.image('decorative', 'assets/tilesets/RPGW_GrassLand_v2.0/decorative.png');
     this.load.image('houseinterior', 'assets/tilesets/RPGW_HousesAndInt_v1.1/interiors.png');
-    this.load.image('houseinterior2', 'assets/tilesets/RPG_Buildings_HOUSES_v1.1/houses_interriors.png');
-    // this.load.tilemapTiledJSON('map', 'assets/maps/rpgmap1.json');
+    this.load.image('housesinteriors2', 'assets/tilesets/RPG_Buildings_HOUSES_v1.1/houses_interriors.png');
+    this.load.image('furniture', 'assets/tilesets/RPGW_HousesAndInt_v1.1/furniture.png');
     this.load.tilemapTiledJSON('interiorMap', 'assets/maps/house-interior1.json');
     this.load.spritesheet('player', 'assets/spritesheets/player2.png', { frameWidth: 32, frameHeight: 40 });
   }
 
   create() {
     this.map = this.make.tilemap({ key: 'interiorMap' });
+
     this.interior = this.map.addTilesetImage('houseinterior');
-    this.interior2 = this.map.addTilesetImage('houseinterior2')
+    this.interior2 = this.map.addTilesetImage('housesinteriors2')
+    this.furniture = this.map.addTilesetImage('furniture')
+
     this.backgroundLayer = this.map.createLayer('BaseLayer', this.interior, 0, 0).setScale(1).setDepth(1);
     this.wallsLayer = this.map.createLayer('Walls', [this.interior, this.interior2], 0, 0).setScale(1).setDepth(2);
+    this.furnitureLayer = this.map.createLayer('Furniture', [this.furniture, this.interior], 0, 0).setScale(1).setDepth(2);
+
     this.wallsLayer.setCollisionByExclusion([-1]);
+    this.furnitureLayer.setCollisionByExclusion([-1]);
+
 
     this.cursors = new Input({ scene: this }).cursors;
-    this.player = new Player({ scene: this });
+    this.player = new Player({ scene: this, position: { x: 50, y: 50 } });
     new Physics({
       scene: this,
       player: this.player,
@@ -39,6 +44,7 @@ export default class InHouseScene extends Phaser.Scene {
       collideLayer: this.wallsLayer,
     });
     new Camera({ scene: this, backgroundLayer: this.backgroundLayer });
+    this.physics.add.collider(this.player.sprite, this.furnitureLayer);
 
     this.objectGroup = this.physics.add.staticGroup();
     const co = this.map.createFromObjects('Objects');

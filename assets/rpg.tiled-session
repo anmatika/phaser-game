@@ -51,11 +51,14 @@
         },
         "maps/house-interior1.json": {
             "scale": 1.7891666666666666,
-            "selectedLayer": 4,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 143.3628318584071,
-                "y": 240.05589194224504
+                "x": 159.57149510945507,
+                "y": 239.4969725197951
             }
+        },
+        "maps/house-interior1.json#furniture": {
+            "scaleInDock": 1
         },
         "maps/house-interior1.json#houseinterior": {
             "scaleInDock": 1
@@ -82,7 +85,7 @@
             "selectedLayer": 4,
             "viewCenter": {
                 "x": 324.75,
-                "y": 295.75
+                "y": 305.75
             }
         },
         "maps/rpgmap1.json#decorative": {
@@ -146,7 +149,7 @@
     },
     "last.exportedFilePath": "C:/git/phaser-game/assets/maps",
     "last.externalTilesetPath": "C:/git/phaser-game/src/assets",
-    "last.imagePath": "C:/git/phaser-game/assets/tilesets/RPG_Buildings_HOUSES_v1.1",
+    "last.imagePath": "/home/antti/code/phaser-game/assets/tilesets/RPGW_HousesAndInt_v1.1",
     "map.height": 25,
     "map.lastUsedExportFilter": "JSON map files (*.json)",
     "map.lastUsedFormat": "tmx",

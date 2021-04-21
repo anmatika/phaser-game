@@ -1,13 +1,14 @@
 class Player {
   constructor({
-    scene, speed = 175,
+    scene, speed = 175, position
   }) {
     this.scene = scene;
     this.speed = speed;
+    this.position = position
 
-    this.sprite = this.scene.physics.add.sprite(50, 400, 'player')
+    this.sprite = this.scene.physics.add.sprite(position?.x ?? 50, position?.y ?? 400, 'player')
       .setCollideWorldBounds(true)
-      .setDepth(1)
+      .setDepth(4)
       .setScale(1);
     this.setupAnims();
   }
