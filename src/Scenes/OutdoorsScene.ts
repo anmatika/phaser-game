@@ -3,6 +3,10 @@ import Player from '../Player';
 import Input from '../Input';
 import Camera from '../Camera';
 // import World from '../World';
+interface GameObjectWithPosition extends Phaser.GameObjects.GameObject {
+  x: integer,
+  y: integer
+}
 
 export default class OutdoorsScene extends Phaser.Scene {
   private map!: Phaser.Tilemaps.Tilemap
@@ -15,12 +19,15 @@ export default class OutdoorsScene extends Phaser.Scene {
   private collideLayer2!: Phaser.Tilemaps.TilemapLayer
   private player!: Player
   public physics!: Phaser.Physics.Arcade.ArcadePhysics
-  private objectGroup!: Phaser.Physics.Arcade.StaticGroup
-  private objects!: any
+  private objectGroup!: any
+  private objects!: Phaser.Types.Tilemaps.TiledObject[]
+
 
 
   constructor() {
     super({ key: 'outDoors' });
+    // this.screenWidth = window.innerWidth;
+    // this.screenHeight = window.innerHeight;
   }
 
   preload() {
@@ -46,29 +53,19 @@ export default class OutdoorsScene extends Phaser.Scene {
     this.collideLayer1 = this.map.createLayer('CollideLayer1', this.tilesetHouses, 0, 0).setScale(1).setDepth(3);
     this.collideLayer2 = this.map.createLayer('CollideLayer2', this.tilesetHouses, 0, 0).setScale(1).setDepth(2);
     this.collideLayerTop.setCollisionByExclusion([-1]);
-    // console.log('world', this.world);
-    // this.keyboard = new Input({ scene: this }).cursors;
-    console.log('this', this)
-    this.player = new Player({ scene: this, speed: 175, position: { x: 50, y: 50 } });
+
+    this.player = new Player({ scene: this, speed: 175, position: { x: 350, y: 550 } });
     this.physics.world.setBounds(
       0, 0, this.backgroundLayer.width, this.backgroundLayer.height,
     );
     this.physics.add.collider(this.player.sprite, this.collideLayerTop);
 
-    console.log('this2', this)
     new Camera({ scene: this, backgroundLayer: this.backgroundLayer, player: this.player });
-    ;
     this.objectGroup = this.physics.add.staticGroup();
-    const objects = this.map.createFromObjects('Objects', {});
-    // console.log('co2', this.co2)
+    this.objects = this.map.getObjectLayer('Objects').objects
 
-    objects.forEach((object) => {
-      console.log('object', object)
-      // let obj = this.objectGroup.create(object.x, object.y);
-      let obj = this.objectGroup.create();
-      obj.setOrigin(0);
-      // obj.body.width = object.width;
-      // obj.body.height = object.height;
+    this.objects.forEach((object) => {
+      this.objectGroup.create(object.x, object.y);
     });
 
     this.physics.add.overlap(this.player.sprite, this.objectGroup, () => {

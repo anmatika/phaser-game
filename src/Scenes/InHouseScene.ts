@@ -16,8 +16,7 @@ export default class InHouseScene extends Phaser.Scene {
   private player!: Player
   public physics!: Phaser.Physics.Arcade.ArcadePhysics
   private objectGroup!: Phaser.Physics.Arcade.StaticGroup
-  private objects!: any
-
+  private objects!: Phaser.Types.Tilemaps.TiledObject[]
 
 
   constructor() {
@@ -46,35 +45,43 @@ export default class InHouseScene extends Phaser.Scene {
     this.wallsLayer.setCollisionByExclusion([-1]);
     this.furnitureLayer.setCollisionByExclusion([-1]);
 
+    this.objects = this.map.getObjectLayer('Objects').objects
+    const door = this.objects.find(c => c.name === 'HouseExit')
 
-    // this.keys = new Input({ scene: this }).cursors;
-    this.player = new Player({ scene: this, position: { x: 50, y: 50 } });
-    // new Physics({
-    //   scene: this,
-    //   player: this.player,
-    //   backgroundLayer: this.backgroundLayer,
-    //   collideLayer: this.wallsLayer,
-    // });
+    const doorPosition = this.getDoorPosition(door);
+    this.player = new Player({ scene: this, position: { x: doorPosition.x, y: doorPosition.y } });
+
     new Camera({ scene: this, backgroundLayer: this.backgroundLayer, player: this.player });
     this.physics.add.collider(this.player.sprite, this.furnitureLayer);
+    this.physics.add.collider(this.player.sprite, this.wallsLayer);
 
     this.objectGroup = this.physics.add.staticGroup();
-    const objects = this.map.createFromObjects('Objects', {});
-    // console.log('co2', this.co2)
 
-    objects.forEach((object) => {
-      console.log('object', object)
-      // let obj = this.objectGroup.create(object.x, object.y);
-      let obj = this.objectGroup.create();
-      obj.setOrigin(0);
-      // obj.body.width = object.width;
-      // obj.body.height = object.height;
+    this.objects.forEach((object) => {
+      this.objectGroup.create(object.x, object.y);
     });
 
     this.physics.add.overlap(this.player.sprite, this.objectGroup, () => {
       console.log('collides')
       this.scene.start('outDoors')
     })
+  }
+
+  getDoorPosition(door: Phaser.Types.Tilemaps.TiledObject | undefined) {
+    if (door) {
+      const offSet = 40;
+
+      return {
+        x: door.x,
+        y: door?.y === undefined ? 0 : door.y - offSet
+      }
+    }
+
+    return {
+      x: 50,
+      y: 50
+    }
+
   }
 
   update() {

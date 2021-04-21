@@ -15,11 +15,11 @@ const config = {
       }
     },
     scale: {
-      mode: Phaser.Scale.FIT,
-      autoCenter: Phaser.Scale.CENTER_BOTH,
-      parent: "thegame"
+      // mode: Phaser.Scale.FIT,
+      // autoCenter: Phaser.Scale.CENTER_BOTH,
+      // parent: "thegame"
     },
-    pixelArt: true,
+    // pixelArt: true,
 
   },
   // scene: [InHouseScene],
