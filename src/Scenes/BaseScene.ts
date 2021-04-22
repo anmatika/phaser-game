@@ -3,6 +3,7 @@ import Player from '../Player';
 import Camera from '../Camera';
 import Layer from './Layer'
 import Portal from './Portal'
+import SpawnPosition from './SpawnPosition'
 
 export default class BaseScene extends Phaser.Scene {
   protected map!: Phaser.Tilemaps.Tilemap
@@ -10,13 +11,16 @@ export default class BaseScene extends Phaser.Scene {
   protected player!: Player
   public physics!: Phaser.Physics.Arcade.ArcadePhysics
   protected portalGroup!: any
+  protected spawnGroup!: any
   private gameObjects!: Phaser.GameObjects.GameObject[]
   private mapPath: string
   private mapKey!: string
   private layers: Layer[]
+  private key: string
 
   constructor({ key, mapPath, layers }) {
     super({ key });
+    this.key = key
     this.layers = layers
     this.mapPath = mapPath
     console.log('base constructor')
@@ -62,9 +66,10 @@ export default class BaseScene extends Phaser.Scene {
     return this.layers
   }
 
-  protected create() {
+  protected create(data) {
     this.createColliders()
     this.createPortals()
+    this.createSpawnPositions()
     this.createCamera()
 
     console.log('tilemap', this.cache.tilemap.get(this.mapKey).data);
@@ -76,6 +81,11 @@ export default class BaseScene extends Phaser.Scene {
     })
   }
 
+  protected getSpawnPositions() {
+    return this.spawnGroup.children.entries.map(e => {
+      return new SpawnPosition(e.x, e.y, e.data.list.fromScene, e.name)
+    })
+  }
 
   private createColliders() {
     this.layers.filter(c => c.collides).forEach((collideLayer) => {
@@ -96,8 +106,16 @@ export default class BaseScene extends Phaser.Scene {
     this.physics.add.overlap(this.player.sprite, this.portalGroup, (player, portal) => {
       console.log('collides', player, portal, this.portalGroup)
 
-      this.scene.start(portal.data.list.toScene)
+      this.scene.start(portal.data.list.toScene, { fromScene: this.key })
     })
+  }
+  private createSpawnPositions() {
+    this.spawnGroup = this.physics.add.staticGroup();
+    this.gameObjects = this.map.createFromObjects('Objects', {})
+
+    this.gameObjects.filter(c => c.type === 'spawnPosition').forEach((object) => {
+      this.spawnGroup.add(object)
+    });
   }
 
   private createCamera() {

@@ -20,11 +20,11 @@ export default class InHouseScene extends BaseScene {
     super.preload()
   }
 
-  create() {
+  create(data) {
 
     this.player = new Player({ scene: this, speed: 175, position: { x: 350, y: 550 } });
     super.createLayers()
-    super.create()
+    super.create(data)
 
     const portals = this.getPortals()
     this.player.sprite.setPosition(portals[0].x, portals[0].y - 50)

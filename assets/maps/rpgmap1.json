@@ -66,6 +66,29 @@
                 {
                  "height":0,
                  "id":12,
+                 "name":"spawn1",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"fromScene",
+                         "type":"string",
+                         "value":"house1"
+                        }, 
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"spawnPosition"
+                        }],
+                 "rotation":0,
+                 "type":"spawnPosition",
+                 "visible":true,
+                 "width":0,
+                 "x":433,
+                 "y":425
+                }, 
+                {
+                 "height":0,
+                 "id":13,
                  "name":"door1",
                  "point":true,
                  "properties":[
@@ -83,8 +106,31 @@
                  "type":"portal",
                  "visible":true,
                  "width":0,
-                 "x":433,
-                 "y":375
+                 "x":432,
+                 "y":382.5
+                }, 
+                {
+                 "height":0,
+                 "id":14,
+                 "name":"spawn0",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"fromScene",
+                         "type":"string",
+                         "value":"gameStart"
+                        }, 
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"spawnPosition"
+                        }],
+                 "rotation":0,
+                 "type":"spawnPosition",
+                 "visible":true,
+                 "width":0,
+                 "x":401.5,
+                 "y":535.5
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -92,8 +138,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":8,
- "nextobjectid":13,
+ "nextlayerid":9,
+ "nextobjectid":15,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.5.0",
