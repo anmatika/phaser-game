@@ -49,23 +49,9 @@ export default class OutdoorsScene extends BaseScene {
 
   create() {
 
-    const layers = super.createLayers()
-
-
-    this.player = new Player({ scene: this, speed: 175, position: { x: 350, y: 550 } });
-
-    const collideLayer = layers.find(c => c.collides)?.tileMapLayer
-
-    if (collideLayer) {
-      this.physics.add.collider(this.player.sprite, collideLayer);
-    }
-
+    super.createLayers()
     super.create()
 
-  }
-
-  collideCallback() {
-    console.log('collides!')
   }
 
   update() {
@@ -76,8 +62,7 @@ export default class OutdoorsScene extends BaseScene {
     // const isOverlapping = this.physics.world.overlap(this.objectGroup, this.player,);
     // console.log('isOverLapping', isOverlapping)
 
-    this.player.handleMovement();
-    this.player.handleAnims();
+    super.update()
   }
 
   render() {

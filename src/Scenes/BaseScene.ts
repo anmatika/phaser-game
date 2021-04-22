@@ -58,7 +58,13 @@ export default class BaseScene extends Phaser.Scene {
 
   protected create() {
     const backgroundLayer = this.layers.find(l => l.isBackground)
+    this.player = new Player({ scene: this, speed: 175, position: { x: 350, y: 550 } });
 
+    const collideLayer = this.layers.find(c => c.collides)?.tileMapLayer
+
+    if (collideLayer) {
+      this.physics.add.collider(this.player.sprite, collideLayer);
+    }
 
     new Camera({ scene: this, backgroundLayer, player: this.player });
     this.objectGroup = this.physics.add.staticGroup();
