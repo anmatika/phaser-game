@@ -1,6 +1,6 @@
 import Point from "./Point"
 
-export default class SpawnPosition extends Point {
+export default class SpawnPoint extends Point {
   private _fromScene: string
 
   constructor(x: integer, y: integer, fromScene: string, name: string) {

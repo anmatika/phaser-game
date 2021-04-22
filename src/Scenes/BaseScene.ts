@@ -3,7 +3,7 @@ import Player from '../Player';
 import Camera from '../Camera';
 import Layer from './Layer'
 import Portal from './Portal'
-import SpawnPosition from './SpawnPosition'
+import SpawnPoint from './SpawnPoint'
 
 export default class BaseScene extends Phaser.Scene {
   protected map!: Phaser.Tilemaps.Tilemap
@@ -81,9 +81,9 @@ export default class BaseScene extends Phaser.Scene {
     })
   }
 
-  protected getSpawnPositions() {
+  protected getSpawnPoints() {
     return this.spawnGroup.children.entries.map(e => {
-      return new SpawnPosition(e.x, e.y, e.data.list.fromScene, e.name)
+      return new SpawnPoint(e.x, e.y, e.data.list.fromScene, e.name)
     })
   }
 
@@ -113,7 +113,7 @@ export default class BaseScene extends Phaser.Scene {
     this.spawnGroup = this.physics.add.staticGroup();
     this.gameObjects = this.map.createFromObjects('Objects', {})
 
-    this.gameObjects.filter(c => c.type === 'spawnPosition').forEach((object) => {
+    this.gameObjects.filter(c => c.type === 'spawnPoint').forEach((object) => {
       this.spawnGroup.add(object)
     });
   }

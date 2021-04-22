@@ -30,7 +30,7 @@ export default class OutdoorsScene extends BaseScene {
     super.createLayers()
     super.create(data)
 
-    const spawnPositions = this.getSpawnPositions()
+    const spawnPositions = this.getSpawnPoints()
     const spawnPosition = spawnPositions.find(p => p.fromScene === (data.fromScene ?? 'gameStart'))
     this.player.sprite.setPosition(spawnPosition.x, spawnPosition.y)
   }

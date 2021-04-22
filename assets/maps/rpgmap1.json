@@ -77,10 +77,10 @@
                         {
                          "name":"type",
                          "type":"string",
-                         "value":"spawnPosition"
+                         "value":"spawnPoint"
                         }],
                  "rotation":0,
-                 "type":"spawnPosition",
+                 "type":"spawnPoint",
                  "visible":true,
                  "width":0,
                  "x":433,
@@ -123,10 +123,10 @@
                         {
                          "name":"type",
                          "type":"string",
-                         "value":"spawnPosition"
+                         "value":"spawnPoint"
                         }],
                  "rotation":0,
-                 "type":"spawnPosition",
+                 "type":"spawnPoint",
                  "visible":true,
                  "width":0,
                  "x":401.5,
