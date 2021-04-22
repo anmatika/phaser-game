@@ -21,15 +21,13 @@ export default class InHouseScene extends BaseScene {
   }
 
   create(data) {
-
     this.player = new Player({ scene: this, speed: 175, position: { x: 350, y: 550 } });
     super.createLayers()
     super.create(data)
 
-    const portals = this.getPortals()
-    this.player.sprite.setPosition(portals[0].x, portals[0].y - 50)
-
-    console.log('portals', portals)
+    const spawnPositions = this.getSpawnPositions()
+    const spawnPosition = spawnPositions.find(p => p.fromScene === data.fromScene)
+    this.player.sprite.setPosition(spawnPosition.x, spawnPosition.y)
   }
 
   update() {

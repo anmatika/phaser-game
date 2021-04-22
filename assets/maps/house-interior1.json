@@ -66,6 +66,29 @@
                 {
                  "height":0,
                  "id":1,
+                 "name":"spawn1",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"fromScene",
+                         "type":"string",
+                         "value":"outDoors"
+                        }, 
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"spawnPosition"
+                        }],
+                 "rotation":0,
+                 "type":"spawnPosition",
+                 "visible":true,
+                 "width":0,
+                 "x":142.524452724732,
+                 "y":402.9809035864
+                }, 
+                {
+                 "height":0,
+                 "id":2,
                  "name":"door1",
                  "point":true,
                  "properties":[
@@ -83,8 +106,8 @@
                  "type":"portal",
                  "visible":true,
                  "width":0,
-                 "x":142.524452724732,
-                 "y":443.223102002795
+                 "x":144.760130414532,
+                 "y":443.782021425245
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -93,7 +116,7 @@
          "y":0
         }],
  "nextlayerid":6,
- "nextobjectid":2,
+ "nextobjectid":3,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.5.0",
