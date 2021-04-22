@@ -11,7 +11,7 @@ interface Player {
 }
 
 class Player {
-  public sprite!: any
+  public sprite: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody
   private input: Input
 
   constructor({

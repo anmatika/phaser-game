@@ -66,10 +66,21 @@
                 {
                  "height":0,
                  "id":1,
-                 "name":"HouseExit",
+                 "name":"door1",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"toScene",
+                         "type":"string",
+                         "value":"outDoors"
+                        }, 
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"portal"
+                        }],
                  "rotation":0,
-                 "type":"door-io",
+                 "type":"portal",
                  "visible":true,
                  "width":0,
                  "x":142.524452724732,

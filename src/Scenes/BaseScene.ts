@@ -2,6 +2,7 @@ import 'phaser';
 import Player from '../Player';
 import Camera from '../Camera';
 import Layer from './Layer'
+import Portal from './Portal'
 
 export default class BaseScene extends Phaser.Scene {
   protected map!: Phaser.Tilemaps.Tilemap
@@ -69,6 +70,12 @@ export default class BaseScene extends Phaser.Scene {
     console.log('tilemap', this.cache.tilemap.get(this.mapKey).data);
   }
 
+  protected getPortals() {
+    return this.portalGroup.children.entries.map(e => {
+      return new Portal(e.x, e.y, e.data.list.toScene, e.name)
+    })
+  }
+
 
   private createColliders() {
     this.layers.filter(c => c.collides).forEach((collideLayer) => {
@@ -83,6 +90,8 @@ export default class BaseScene extends Phaser.Scene {
     this.gameObjects.filter(c => c.type === 'portal').forEach((object) => {
       this.portalGroup.add(object)
     });
+
+    console.log('portalGroup', this.portalGroup)
 
     this.physics.add.overlap(this.player.sprite, this.portalGroup, (player, portal) => {
       console.log('collides', player, portal, this.portalGroup)
