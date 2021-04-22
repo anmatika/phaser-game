@@ -3,28 +3,30 @@ import Player from '../Player';
 import Input from '../Input';
 import Camera from '../Camera';
 // import World from '../World';
+import BaseScene from './BaseScene'
 interface GameObjectWithPosition extends Phaser.GameObjects.GameObject {
   x: integer,
   y: integer
 }
 
-export default class OutdoorsScene extends Phaser.Scene {
-  private map!: Phaser.Tilemaps.Tilemap
+export default class OutdoorsScene extends BaseScene {
+  protected map!: Phaser.Tilemaps.Tilemap
   private tilesetGrass!: Phaser.Tilemaps.Tileset
   private tilesetHouses!: Phaser.Tilemaps.Tileset
   private tilesetDecorative!: Phaser.Tilemaps.Tileset
-  private backgroundLayer!: Phaser.Tilemaps.TilemapLayer
+  protected backgroundLayer!: Phaser.Tilemaps.TilemapLayer
   private collideLayerTop!: Phaser.Tilemaps.TilemapLayer
   private collideLayer1!: Phaser.Tilemaps.TilemapLayer
   private collideLayer2!: Phaser.Tilemaps.TilemapLayer
-  private player!: Player
+  protected player!: Player
   public physics!: Phaser.Physics.Arcade.ArcadePhysics
-  private objectGroup!: any
-  private objects!: Phaser.Types.Tilemaps.TiledObject[]
+  // private objectGroup!: any
+  // private objects!: Phaser.Types.Tilemaps.TiledObject[]
 
 
 
   constructor() {
+    console.log('outdoors constructor')
     super({ key: 'outDoors' });
     // this.screenWidth = window.innerWidth;
     // this.screenHeight = window.innerHeight;
@@ -39,8 +41,8 @@ export default class OutdoorsScene extends Phaser.Scene {
     this.load.spritesheet('player', 'assets/spritesheets/player2.png', { frameWidth: 32, frameHeight: 40 });
   }
 
-  create(data) {
-    console.log('data', data)
+  create() {
+    // console.log('data', data)
     //this._world = new World({ scene: this });
     this.map = this.make.tilemap({ key: 'map' });
     this.tilesetGrass = this.map.addTilesetImage('grasstiles');
@@ -61,21 +63,24 @@ export default class OutdoorsScene extends Phaser.Scene {
     );
     this.physics.add.collider(this.player.sprite, this.collideLayerTop);
 
-    new Camera({ scene: this, backgroundLayer: this.backgroundLayer, player: this.player });
-    this.objectGroup = this.physics.add.staticGroup();
-    this.objects = this.map.getObjectLayer('Objects').objects
+    super.create()
 
-    this.objects.forEach((object) => {
-      this.objectGroup.create(object.x, object.y);
-    });
+    // new Camera({ scene: this, backgroundLayer: this.backgroundLayer, player: this.player });
+    // this.objectGroup = this.physics.add.staticGroup();
+    // this.objects = this.map.getObjectLayer('Objects').objects
 
-    this.physics.add.overlap(this.player.sprite, this.objectGroup, () => {
-      console.log('collides')
-      this.scene.start('inHouse')
-    })
+    // this.objects.forEach((object) => {
+    //   this.objectGroup.create(object.x, object.y);
+    // });
 
-    console.log('tilemap', this.cache.tilemap.get('map').data);
-    console.log('scene', this);
+    // this.physics.add.overlap(this.player.sprite, this.objectGroup, () => {
+    //   console.log('collides')
+    //   this.scene.start('inHouse')
+    // })
+
+    // console.log('tilemap', this.cache.tilemap.get('map').data);
+    // console.log('scene', this);
+
   }
 
   collideCallback() {
