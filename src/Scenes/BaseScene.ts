@@ -14,9 +14,10 @@ export default class BaseScene extends Phaser.Scene {
   // private collideLayer2!: Phaser.Tilemaps.TilemapLayer
   protected player!: Player
   public physics!: Phaser.Physics.Arcade.ArcadePhysics
-  protected objectGroup!: any
-  private objects!: Phaser.Types.Tilemaps.TiledObject[]
+  protected portalGroup!: any
+  private gameObjects!: Phaser.GameObjects.GameObject[]
   private mapPath: string
+  private mapKey!: string
   private layers: Layer[]
 
   constructor({ key, mapPath, layers }) {
@@ -27,8 +28,9 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   protected preload() {
-
-    this.load.tilemapTiledJSON('map', this.mapPath);
+    const fractions = this.mapPath.split('/')
+    this.mapKey = fractions[fractions.length - 1].split('.')[0]
+    this.load.tilemapTiledJSON(this.mapKey, this.mapPath);
     this.load.spritesheet('player', 'assets/spritesheets/player2.png', { frameWidth: 32, frameHeight: 40 });
 
     this.layers.forEach((layer, i) => {
@@ -39,12 +41,15 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   protected createLayers(): Layer[] {
-    this.map = this.make.tilemap({ key: 'map' });
+    this.map = this.make.tilemap({ key: this.mapKey });
     // loop in reverse order
     for (let i = this.layers.length - 1; i >= 0; i--) {
       const layer = this.layers[i]
       const tilesetIds = layer.tilesets.map(c => c.id)
-      const tilesetImages = tilesetIds.map(i => this.map.addTilesetImage(i))
+      const tilesetImages = tilesetIds.map(id => this.map.addTilesetImage(id))
+      if (tilesetImages.some(i => i == null)) {
+        throw new Error("Cannot add all tileset images")
+      }
       const createdTileMapLayer = this.map.createLayer(layer.name, tilesetImages)
 
       if (layer.collides) {
@@ -65,27 +70,32 @@ export default class BaseScene extends Phaser.Scene {
   protected create() {
     const backgroundLayer = this.layers.find(l => l.isBackground)
 
-    const collideLayer = this.layers.find(c => c.collides)?.tileMapLayer
+    const collideLayers = this.layers.filter(c => c.collides)
 
-    if (collideLayer) {
-      this.physics.add.collider(this.player.sprite, collideLayer);
-    }
+    collideLayers.forEach((collideLayer) => {
+      this.physics.add.collider(this.player.sprite, collideLayer.tileMapLayer);
+    })
 
     new Camera({ scene: this, backgroundLayer, player: this.player });
-    this.objectGroup = this.physics.add.staticGroup();
-    this.objects = this.map.getObjectLayer('Objects').objects
+    this.portalGroup = this.physics.add.staticGroup();
+    // this.objects = this.map.getObjectLayer('Objects').objects
+    this.gameObjects = this.map.createFromObjects('Objects', {})
 
-    this.objects.forEach((object) => {
-      this.objectGroup.create(object.x, object.y);
+    this.gameObjects.filter(c => c.type === 'portal').forEach((object) => {
+      this.portalGroup.add(object)
     });
+    // this.foo.forEach((object) => {
+    //   this.portalGroup.add(object)
+    // });
 
-    this.physics.add.overlap(this.player.sprite, this.objectGroup, () => {
-      console.log('collides')
-      this.scene.start('inHouse')
+    this.physics.add.overlap(this.player.sprite, this.portalGroup, (player, portal) => {
+      console.log('collides', player, portal, this.portalGroup)
+
+      this.scene.start(portal.data.list.toScene)
     })
 
 
-    console.log('tilemap', this.cache.tilemap.get('map').data);
+    console.log('tilemap', this.cache.tilemap.get(this.mapKey).data);
     console.log('scene', this);
   }
 

@@ -66,10 +66,21 @@
                 {
                  "height":0,
                  "id":12,
-                 "name":"Door1",
+                 "name":"door1",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"toScene",
+                         "type":"string",
+                         "value":"house1"
+                        }, 
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"portal"
+                        }],
                  "rotation":0,
-                 "type":"door-oi",
+                 "type":"portal",
                  "visible":true,
                  "width":0,
                  "x":433,

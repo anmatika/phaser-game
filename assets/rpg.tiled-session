@@ -53,8 +53,8 @@
             "scale": 1.7891666666666666,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 100.0465766185375,
-                "y": 229.43642291569637
+                "x": 159.57149510945507,
+                "y": 239.4969725197951
             }
         },
         "maps/house-interior1.json#furniture": {
@@ -63,7 +63,13 @@
         "maps/house-interior1.json#houseinterior": {
             "scaleInDock": 1
         },
+        "maps/house-interior1.json#houses_interriors": {
+            "scaleInDock": 1
+        },
         "maps/house-interior1.json#housesinteriors2": {
+            "scaleInDock": 1
+        },
+        "maps/house-interior1.json#interiors": {
             "scaleInDock": 1
         },
         "maps/house-interior1.tmx": {
@@ -82,10 +88,10 @@
         },
         "maps/rpgmap1.json": {
             "scale": 2,
-            "selectedLayer": 3,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 278.5,
-                "y": 304.25
+                "x": 306.25,
+                "y": 314.25
             }
         },
         "maps/rpgmap1.json#MainLev_autotiling": {
@@ -167,7 +173,7 @@
         "maps/house-interior1.json"
     ],
     "project": "rpg.tiled-project",
-    "property.type": "bool",
+    "property.type": "string",
     "recentFiles": [
         "maps/rpgmap1.json",
         "maps/house-interior1.json",
