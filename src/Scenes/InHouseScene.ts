@@ -1,12 +1,7 @@
 import 'phaser';
 import Player from '../Player';
-import Input from '../Input';
-import Camera from '../Camera';
 import BaseScene from './BaseScene';
 import Layer from './Layer'
-// import World from '../World';
-// import Physics from '../Physics';
-
 export default class InHouseScene extends BaseScene {
   protected player!: Player
 
@@ -35,35 +30,10 @@ export default class InHouseScene extends BaseScene {
     this.player.sprite.setPosition(portals[0].x, portals[0].y - 50)
 
     console.log('portals', portals)
-    // const doorPosition = this.getDoorPosition(door);
-    // this.player = new Player({ scene: this, position: { x: doorPosition.x, y: doorPosition.y } });
-
-  }
-
-  getDoorPosition(door: Phaser.Types.Tilemaps.TiledObject | undefined) {
-    if (door) {
-      const offSet = 40;
-
-      return {
-        x: door.x,
-        y: door?.y === undefined ? 0 : door.y - offSet
-      }
-    }
-
-    return {
-      x: 50,
-      y: 50
-    }
-
   }
 
   update() {
     // NOTE Evernote webclipper must be set off. Breaks the game.
     super.update()
-
-  }
-
-  render() {
-    // this.game.debug.text(`Debugging Phaser ${Phaser.VERSION}`, 20, 20, 'yellow', 'Segoe UI');
   }
 }
