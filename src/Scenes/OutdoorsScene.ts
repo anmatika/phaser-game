@@ -1,36 +1,16 @@
 import 'phaser';
 import Player from '../Player';
-import Input from '../Input';
-import Camera from '../Camera';
-// import World from '../World';
 import BaseScene from './BaseScene'
 import Layer from './Layer';
-interface GameObjectWithPosition extends Phaser.GameObjects.GameObject {
-  x: integer,
-  y: integer
-}
-
 export default class OutdoorsScene extends BaseScene {
-  protected map!: Phaser.Tilemaps.Tilemap
-  private tilesetGrass!: Phaser.Tilemaps.Tileset
-  private tilesetHouses!: Phaser.Tilemaps.Tileset
-  private tilesetDecorative!: Phaser.Tilemaps.Tileset
-  protected backgroundLayer!: Phaser.Tilemaps.TilemapLayer
-  private collideLayerTop!: Phaser.Tilemaps.TilemapLayer
-  private collideLayer1!: Phaser.Tilemaps.TilemapLayer
-  private collideLayer2!: Phaser.Tilemaps.TilemapLayer
   protected player!: Player
-  public physics!: Phaser.Physics.Arcade.ArcadePhysics
-  // private objectGroup!: any
-  // private objects!: Phaser.Types.Tilemaps.TiledObject[]
-
-
 
   constructor() {
     console.log('outdoors constructor')
 
     super({
       key: 'outDoors',
+      mapPath: 'assets/maps/rpgmap1.json',
       layers: [
         new Layer('CollideLayerTop', [
           'assets/tilesets/RPGW_GrassLand_v2.0/decorative.png',
@@ -42,13 +22,12 @@ export default class OutdoorsScene extends BaseScene {
   }
 
   preload() {
-    this.load.tilemapTiledJSON('map', 'assets/maps/rpgmap1.json');
-    this.load.spritesheet('player', 'assets/spritesheets/player2.png', { frameWidth: 32, frameHeight: 40 });
     super.preload()
   }
 
   create() {
 
+    this.player = new Player({ scene: this, speed: 175, position: { x: 350, y: 550 } });
     super.createLayers()
     super.create()
 
@@ -56,16 +35,8 @@ export default class OutdoorsScene extends BaseScene {
 
   update() {
     // NOTE Evernote webclipper must be set off. Breaks the game.
-    // this.physics.world.overlap(this.player, this.objectGroup, (plane, obstacle) => {
-    //   console.log('collide door', plane, obstacle);
-    // }, () => { console.log('foo') }, this);
-    // const isOverlapping = this.physics.world.overlap(this.objectGroup, this.player,);
-    // console.log('isOverLapping', isOverlapping)
-
     super.update()
   }
 
-  render() {
-    // this.game.debug.text(`Debugging Phaser ${Phaser.VERSION}`, 20, 20, 'yellow', 'Segoe UI');
-  }
+
 }

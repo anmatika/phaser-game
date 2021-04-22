@@ -16,15 +16,21 @@ export default class BaseScene extends Phaser.Scene {
   public physics!: Phaser.Physics.Arcade.ArcadePhysics
   protected objectGroup!: any
   private objects!: Phaser.Types.Tilemaps.TiledObject[]
+  private mapPath: string
   private layers: Layer[]
 
-  constructor({ key, layers }) {
+  constructor({ key, mapPath, layers }) {
     super({ key });
     this.layers = layers
+    this.mapPath = mapPath
     console.log('base constructor')
   }
 
   protected preload() {
+
+    this.load.tilemapTiledJSON('map', this.mapPath);
+    this.load.spritesheet('player', 'assets/spritesheets/player2.png', { frameWidth: 32, frameHeight: 40 });
+
     this.layers.forEach((layer, i) => {
       layer.tilesets.forEach((tileset, j) => {
         this.load.image(tileset.id, tileset.path)
@@ -58,7 +64,6 @@ export default class BaseScene extends Phaser.Scene {
 
   protected create() {
     const backgroundLayer = this.layers.find(l => l.isBackground)
-    this.player = new Player({ scene: this, speed: 175, position: { x: 350, y: 550 } });
 
     const collideLayer = this.layers.find(c => c.collides)?.tileMapLayer
 
