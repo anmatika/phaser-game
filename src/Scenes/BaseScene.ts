@@ -5,13 +5,7 @@ import Layer from './Layer'
 
 export default class BaseScene extends Phaser.Scene {
   protected map!: Phaser.Tilemaps.Tilemap
-  // private tilesetGrass!: Phaser.Tilemaps.Tileset
-  // private tilesetHouses!: Phaser.Tilemaps.Tileset
-  // private tilesetDecorative!: Phaser.Tilemaps.Tileset
   protected backgroundLayer!: Phaser.Tilemaps.TilemapLayer
-  // private collideLayerTop!: Phaser.Tilemaps.TilemapLayer
-  // private collideLayer1!: Phaser.Tilemaps.TilemapLayer
-  // private collideLayer2!: Phaser.Tilemaps.TilemapLayer
   protected player!: Player
   public physics!: Phaser.Physics.Arcade.ArcadePhysics
   protected portalGroup!: any
@@ -68,54 +62,44 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   protected create() {
-    const backgroundLayer = this.layers.find(l => l.isBackground)
+    this.createColliders()
+    this.createPortals()
+    this.createCamera()
 
-    const collideLayers = this.layers.filter(c => c.collides)
+    console.log('tilemap', this.cache.tilemap.get(this.mapKey).data);
+  }
 
-    collideLayers.forEach((collideLayer) => {
+
+  private createColliders() {
+    this.layers.filter(c => c.collides).forEach((collideLayer) => {
       this.physics.add.collider(this.player.sprite, collideLayer.tileMapLayer);
     })
+  }
 
-    new Camera({ scene: this, backgroundLayer, player: this.player });
+  private createPortals() {
     this.portalGroup = this.physics.add.staticGroup();
-    // this.objects = this.map.getObjectLayer('Objects').objects
     this.gameObjects = this.map.createFromObjects('Objects', {})
 
     this.gameObjects.filter(c => c.type === 'portal').forEach((object) => {
       this.portalGroup.add(object)
     });
-    // this.foo.forEach((object) => {
-    //   this.portalGroup.add(object)
-    // });
 
     this.physics.add.overlap(this.player.sprite, this.portalGroup, (player, portal) => {
       console.log('collides', player, portal, this.portalGroup)
 
       this.scene.start(portal.data.list.toScene)
     })
-
-
-    console.log('tilemap', this.cache.tilemap.get(this.mapKey).data);
-    console.log('scene', this);
   }
 
-  collideCallback() {
-    console.log('collides!')
+  private createCamera() {
+    new Camera({ scene: this, backgroundLayer: this.layers.find(l => l.isBackground), player: this.player });
   }
+
 
   update() {
     // NOTE Evernote webclipper must be set off. Breaks the game.
-    // this.physics.world.overlap(this.player, this.objectGroup, (plane, obstacle) => {
-    //   console.log('collide door', plane, obstacle);
-    // }, () => { console.log('foo') }, this);
-    // const isOverlapping = this.physics.world.overlap(this.objectGroup, this.player,);
-    // console.log('isOverLapping', isOverlapping)
 
     this.player.handleMovement();
     this.player.handleAnims();
-  }
-
-  render() {
-    // this.game.debug.text(`Debugging Phaser ${Phaser.VERSION}`, 20, 20, 'yellow', 'Segoe UI');
   }
 }
