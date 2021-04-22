@@ -63,7 +63,7 @@ export default class InHouseScene extends Phaser.Scene {
 
     this.physics.add.overlap(this.player.sprite, this.objectGroup, () => {
       console.log('collides')
-      this.scene.start('outDoors')
+      this.scene.start('outDoors', { foo: 1 })
     })
   }
 

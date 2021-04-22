@@ -99,21 +99,21 @@ class Player {
   }
 
   handleAnims() {
-    // if (this.scene.cursors.isLeftDown()) {
-    //   this.sprite.anims.play('runRight', true);
-    //   this.sprite.setFlipX(true);
-    // } else if (this.scene.cursors.isRightDown()) {
-    //   this.sprite.setFlipX(false);
-    //   this.sprite.anims.play('runRight', true);
-    // } else if (this.scene.cursors.isUpDown()) {
-    //   this.sprite.anims.play('runUp', true);
-    //   this.sprite.setFlipX(false);
-    // } else if (this.scene.cursors.isDownDown()) {
-    //   this.sprite.anims.play('runDown', true);
-    //   this.sprite.setFlipX(false);
-    // } else {
-    //   this.sprite.anims.stop();
-    // }
+    if (this.input.isLeftDown) {
+      this.sprite.anims.play('runRight', true);
+      this.sprite.setFlipX(true);
+    } else if (this.input.isRightDown) {
+      this.sprite.setFlipX(false);
+      this.sprite.anims.play('runRight', true);
+    } else if (this.input.isUpDown) {
+      this.sprite.anims.play('runUp', true);
+      this.sprite.setFlipX(false);
+    } else if (this.input.isDownDown) {
+      this.sprite.anims.play('runDown', true);
+      this.sprite.setFlipX(false);
+    } else {
+      this.sprite.anims.stop();
+    }
   }
 }
 

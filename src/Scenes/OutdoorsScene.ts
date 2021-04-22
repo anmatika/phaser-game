@@ -39,7 +39,8 @@ export default class OutdoorsScene extends Phaser.Scene {
     this.load.spritesheet('player', 'assets/spritesheets/player2.png', { frameWidth: 32, frameHeight: 40 });
   }
 
-  create() {
+  create(data) {
+    console.log('data', data)
     //this._world = new World({ scene: this });
     this.map = this.make.tilemap({ key: 'map' });
     this.tilesetGrass = this.map.addTilesetImage('grasstiles');
