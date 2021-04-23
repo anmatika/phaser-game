@@ -4,8 +4,6 @@ import BaseScene from './BaseScene'
 import Layer from './Layer';
 export default class Outdoors1Scene extends BaseScene {
   constructor() {
-    console.log('outdoors constructor')
-
     super({
       key: 'outDoors1',
       mapPath: 'assets/maps/outdoors1.json',

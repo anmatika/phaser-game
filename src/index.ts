@@ -28,7 +28,6 @@ const config = {
     // pixelArt: true,
 
   },
-  // scene: [InHouseScene],
   scene: [OutdoorsScene, InHouseScene],
 
 };
