@@ -8,11 +8,11 @@ export default class Outdoors1Scene extends BaseScene {
       mapPath: 'assets/maps/outdoors1.json',
       layers: [
         new Layer('CollideLayerTop', [
-          'assets/tilesets/RPGW_GrassLand_v2.0/decorative.png',
-          'assets/tilesets/RPG_Buildings_HOUSES_v1.1/houses_outside_shadows.png'], true, false),
-        new Layer('CollideLayer2', ['assets/tilesets/RPG_Buildings_HOUSES_v1.1/houses_outside_shadows.png'], false, false),
-        new Layer('CollideLayer1', ['assets/tilesets/RPG_Buildings_HOUSES_v1.1/houses_outside_shadows.png'], false, false),
-        new Layer('BaseLayer', ['assets/tilesets/RPGW_GrassLand_v2.0/MainLev_autotiling.png'], false, true)]
+          'assets/tilesets/grassland/decorative.png',
+          'assets/tilesets/houses_and_interiors/houses_outside_shadows.png'], true, false),
+        new Layer('CollideLayer2', ['assets/tilesets/houses_and_interiors/houses_outside_shadows.png'], false, false),
+        new Layer('CollideLayer1', ['assets/tilesets/houses_and_interiors/houses_outside_shadows.png'], false, false),
+        new Layer('BaseLayer', ['assets/tilesets/grassland/MainLev_autotiling.png'], false, true)]
     });
   }
 

@@ -7,11 +7,11 @@ export default class House1Scene extends BaseScene {
       key: 'house1',
       mapPath: 'assets/maps/house1.json',
       layers: [
-        new Layer('Furniture', ['assets/tilesets/RPGW_HousesAndInt_v1.1/furniture.png'], true, false),
+        new Layer('Furniture', ['assets/tilesets/houses_and_interiors2/furniture.png'], true, false),
         new Layer('Walls', [
-          'assets/tilesets/RPGW_HousesAndInt_v1.1/interiors.png',
-          'assets/tilesets/RPG_Buildings_HOUSES_v1.1/houses_interriors.png'], true, false),
-        new Layer('BaseLayer', ['assets/tilesets/RPGW_HousesAndInt_v1.1/interiors.png'], false, true)]
+          'assets/tilesets/houses_and_interiors2/interiors.png',
+          'assets/tilesets/houses_and_interiors/houses_interriors.png'], true, false),
+        new Layer('BaseLayer', ['assets/tilesets/houses_and_interiors2/interiors.png'], false, true)]
     });
   }
 
