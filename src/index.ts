@@ -1,5 +1,5 @@
 import 'phaser';
-import OutdoorsScene from './Scenes/OutdoorsScene';
+import OutdoorsScene from './Scenes/Outdoors1Scene';
 import InHouseScene from './Scenes/House1Scene';
 
 const config = {

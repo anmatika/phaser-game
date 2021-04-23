@@ -2,7 +2,7 @@ import 'phaser';
 import Player from '../Player';
 import BaseScene from './BaseScene'
 import Layer from './Layer';
-export default class OutdoorsScene extends BaseScene {
+export default class Outdoors1Scene extends BaseScene {
   protected player!: Player
 
   constructor() {
