@@ -6,12 +6,11 @@ import Portal from './Portal'
 import SpawnPoint from './SpawnPoint'
 
 export default class BaseScene extends Phaser.Scene {
-  protected map!: Phaser.Tilemaps.Tilemap
-  protected backgroundLayer!: Phaser.Tilemaps.TilemapLayer
-  protected player!: Player
   public physics!: Phaser.Physics.Arcade.ArcadePhysics
-  protected portalGroup!: any
-  protected spawnGroup!: any
+  protected player!: Player
+  private map!: Phaser.Tilemaps.Tilemap
+  private portalGroup!: any
+  private spawnGroup!: any
   private gameObjects!: Phaser.GameObjects.GameObject[]
   private mapPath: string
   private mapKey!: string
@@ -38,8 +37,30 @@ export default class BaseScene extends Phaser.Scene {
       })
     })
   }
+  protected create(data) {
 
-  protected createLayers(): Layer[] {
+    this.player = new Player({ scene: this, speed: 175, position: { x: 350, y: 550 } });
+    this.createLayers()
+    this.createColliders()
+    this.createPortals()
+    this.createSpawnPoints()
+    this.createCamera()
+    this.insertPlayerToSpawnPoint(data.fromScene)
+
+    console.log('tilemap', this.cache.tilemap.get(this.mapKey).data);
+  }
+
+  public update() {
+    // NOTE Evernote webclipper must be set off. Breaks the game.
+    this.player.handleMovement();
+    this.player.handleAnims();
+  }
+
+  /**
+   * Create Layer[] by given constructor layers in reverse order
+   * @returns Layer
+   */
+  private createLayers(): Layer[] {
     this.map = this.make.tilemap({ key: this.mapKey });
     // loop in reverse order
     for (let i = this.layers.length - 1; i >= 0; i--) {
@@ -66,38 +87,9 @@ export default class BaseScene extends Phaser.Scene {
     return this.layers
   }
 
-  protected create(data) {
-
-    this.player = new Player({ scene: this, speed: 175, position: { x: 350, y: 550 } });
-    this.createLayers()
-    this.createColliders()
-    this.createPortals()
-    this.createSpawnPositions()
-    this.createCamera()
-    const spawnPositions = this.getSpawnPoints()
-    const spawnPosition = spawnPositions.find(p => p.fromScene === (data.fromScene ?? 'gameStart'))
-    this.player.sprite.setPosition(spawnPosition.x, spawnPosition.y)
-    console.log('tilemap', this.cache.tilemap.get(this.mapKey).data);
-  }
-
-  protected getPortals() {
-    return this.portalGroup.children.entries.map(e => {
-      return new Portal(e.x, e.y, e.data.list.toScene, e.name)
-    })
-  }
-
-  protected getSpawnPoints() {
-    return this.spawnGroup.children.entries.map(e => {
-      return new SpawnPoint(e.x, e.y, e.data.list.fromScene, e.name)
-    })
-  }
-
-  private createColliders() {
-    this.layers.filter(c => c.collides).forEach((collideLayer) => {
-      this.physics.add.collider(this.player.sprite, collideLayer.tileMapLayer);
-    })
-  }
-
+  /**
+   * Creates Portals which indicates locations where the Player enters to different Scene
+   */
   private createPortals() {
     this.portalGroup = this.physics.add.staticGroup();
     this.gameObjects = this.map.createFromObjects('Objects', {})
@@ -114,7 +106,11 @@ export default class BaseScene extends Phaser.Scene {
       this.scene.start(portal.data.list.toScene, { fromScene: this.key })
     })
   }
-  private createSpawnPositions() {
+
+  /**
+   * Creates spawn points which indicates locations where the Player appears on the map when it switches the Scene
+   */
+  private createSpawnPoints() {
     this.spawnGroup = this.physics.add.staticGroup();
     this.gameObjects = this.map.createFromObjects('Objects', {})
 
@@ -123,15 +119,31 @@ export default class BaseScene extends Phaser.Scene {
     });
   }
 
+  private getPortals() {
+    return this.portalGroup.children.entries.map(e => {
+      return new Portal(e.x, e.y, e.data.list.toScene, e.name)
+    })
+  }
+
+  private getSpawnPoints() {
+    return this.spawnGroup.children.entries.map(e => {
+      return new SpawnPoint(e.x, e.y, e.data.list.fromScene, e.name)
+    })
+  }
+
+  private createColliders() {
+    this.layers.filter(c => c.collides).forEach((collideLayer) => {
+      this.physics.add.collider(this.player.sprite, collideLayer.tileMapLayer);
+    })
+  }
+
   private createCamera() {
     new Camera({ scene: this, backgroundLayer: this.layers.find(l => l.isBackground), player: this.player });
   }
 
-
-  update() {
-    // NOTE Evernote webclipper must be set off. Breaks the game.
-
-    this.player.handleMovement();
-    this.player.handleAnims();
+  private insertPlayerToSpawnPoint(fromScene) {
+    const spawnPositions = this.getSpawnPoints()
+    const spawnPosition = spawnPositions.find(p => p.fromScene === (fromScene ?? 'gameStart'))
+    this.player.sprite.setPosition(spawnPosition.x, spawnPosition.y)
   }
 }
