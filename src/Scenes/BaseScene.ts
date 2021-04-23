@@ -63,6 +63,7 @@ export default class BaseScene extends Phaser.Scene {
   private createLayers(): Layer[] {
     this.map = this.make.tilemap({ key: this.mapKey });
     // loop in reverse order
+    let depth = 1;
     for (let i = this.layers.length - 1; i >= 0; i--) {
       const layer = this.layers[i]
       const tilesetIds = layer.tilesets.map(c => c.id)
@@ -70,7 +71,7 @@ export default class BaseScene extends Phaser.Scene {
       if (tilesetImages.some(i => i == null)) {
         throw new Error("Cannot add all tileset images")
       }
-      const createdTileMapLayer = this.map.createLayer(layer.name, tilesetImages)
+      const createdTileMapLayer = this.map.createLayer(layer.name, tilesetImages).setDepth(depth)
 
       if (layer.collides) {
         createdTileMapLayer.setCollisionByExclusion([-1]);
@@ -83,6 +84,7 @@ export default class BaseScene extends Phaser.Scene {
       }
 
       layer.tileMapLayer = createdTileMapLayer
+      depth++;
     }
     return this.layers
   }
@@ -95,10 +97,10 @@ export default class BaseScene extends Phaser.Scene {
     this.gameObjects = this.map.createFromObjects('Objects', {})
 
     this.gameObjects.filter(c => c.type === 'portal').forEach((object) => {
-      this.portalGroup.add(object)
+      const sprite = object as Phaser.GameObjects.Sprite
+      sprite.setVisible(false)
+      this.portalGroup.add(sprite)
     });
-
-    console.log('portalGroup', this.portalGroup)
 
     this.physics.add.overlap(this.player.sprite, this.portalGroup, (player, portal) => {
       console.log('collides', player, portal, this.portalGroup)
@@ -115,7 +117,9 @@ export default class BaseScene extends Phaser.Scene {
     this.gameObjects = this.map.createFromObjects('Objects', {})
 
     this.gameObjects.filter(c => c.type === 'spawnPoint').forEach((object) => {
-      this.spawnGroup.add(object)
+      const sprite = object as Phaser.GameObjects.Sprite
+      sprite.setVisible(false)
+      this.spawnGroup.add(sprite)
     });
   }
 
