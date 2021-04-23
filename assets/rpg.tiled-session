@@ -3,11 +3,11 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "maps/rpgmap1.json",
+    "activeFile": "maps/house1.json",
     "expandedProjectPaths": [
+        "maps",
         "C:/git/phaser-game/src/assets",
-        ".",
-        "maps"
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -49,86 +49,86 @@
             "scaleInDock": 1,
             "scaleInEditor": 0.75
         },
-        "maps/house-interior1.json": {
+        "maps/house1.json": {
             "scale": 1.7891666666666666,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 143.08337214718213,
+                "x": 142.80391243595716,
                 "y": 402.70144387517473
             }
         },
-        "maps/house-interior1.json#furniture": {
+        "maps/house1.json#furniture": {
             "scaleInDock": 1
         },
-        "maps/house-interior1.json#houseinterior": {
+        "maps/house1.json#houseinterior": {
             "scaleInDock": 1
         },
-        "maps/house-interior1.json#houses_interriors": {
+        "maps/house1.json#houses_interriors": {
             "scaleInDock": 1
         },
-        "maps/house-interior1.json#housesinteriors2": {
+        "maps/house1.json#housesinteriors2": {
             "scaleInDock": 1
         },
-        "maps/house-interior1.json#interiors": {
+        "maps/house1.json#interiors": {
             "scaleInDock": 1
         },
-        "maps/house-interior1.tmx": {
+        "maps/house1.tmx": {
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 118,
-                "y": 415.66666666666663
+                "x": 143.66666666666666,
+                "y": 240.33333333333331
             }
         },
-        "maps/house-interior1.tmx#houseinterior": {
+        "maps/house1.tmx#houseinterior": {
             "scaleInDock": 1
         },
-        "maps/house-interior1.tmx#housesinteriors2": {
+        "maps/house1.tmx#housesinteriors2": {
             "scaleInDock": 2
         },
-        "maps/rpgmap1.json": {
+        "maps/outdoors1.json": {
             "scale": 2,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 401.5,
-                "y": 535.25
+                "x": 1599.75,
+                "y": 1599.75
             }
         },
-        "maps/rpgmap1.json#MainLev_autotiling": {
+        "maps/outdoors1.json#MainLev_autotiling": {
             "scaleInDock": 1
         },
-        "maps/rpgmap1.json#decorative": {
+        "maps/outdoors1.json#decorative": {
             "scaleInDock": 1
         },
-        "maps/rpgmap1.json#grasstiles": {
+        "maps/outdoors1.json#grasstiles": {
             "scaleInDock": 1
         },
-        "maps/rpgmap1.json#houses": {
+        "maps/outdoors1.json#houses": {
             "scaleInDock": 1
         },
-        "maps/rpgmap1.json#houses_outside_shadows": {
+        "maps/outdoors1.json#houses_outside_shadows": {
             "scaleInDock": 1
         },
-        "maps/rpgmap1.tmx": {
+        "maps/outdoors1.tmx": {
             "scale": 1,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 1508,
-                "y": 542.5
+                "x": 1599.5,
+                "y": 1599.5
             }
         },
-        "maps/rpgmap1.tmx#decorative": {
+        "maps/outdoors1.tmx#decorative": {
             "scaleInDock": 1
         },
-        "maps/rpgmap1.tmx#grasstiles": {
+        "maps/outdoors1.tmx#grasstiles": {
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
-        "maps/rpgmap1.tmx#houses": {
+        "maps/outdoors1.tmx#houses": {
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
-        "rpgmap1.tmx": {
+        "outdoors1.tmx": {
             "scale": 2,
             "selectedLayer": 1,
             "viewCenter": {
@@ -136,10 +136,10 @@
                 "y": 90
             }
         },
-        "rpgmap1.tmx#grasstiles": {
+        "outdoors1.tmx#grasstiles": {
             "scaleInDock": 1
         },
-        "rpgmap1.tmx#houses": {
+        "outdoors1.tmx#houses": {
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
@@ -167,19 +167,19 @@
     "map.lastUsedFormat": "tmx",
     "map.width": 25,
     "openFiles": [
-        "maps/rpgmap1.tmx",
-        "maps/rpgmap1.json",
-        "maps/house-interior1.tmx",
-        "maps/house-interior1.json"
+        "maps/outdoors1.tmx",
+        "maps/outdoors1.json",
+        "maps/house1.tmx",
+        "maps/house1.json"
     ],
     "project": "rpg.tiled-project",
     "property.type": "string",
     "recentFiles": [
-        "maps/rpgmap1.json",
-        "maps/house-interior1.json",
-        "maps/rpgmap1.tmx",
-        "maps/house-interior1.tmx",
-        "rpgmap1.tmx",
+        "maps/outdoors1.tmx",
+        "maps/outdoors1.json",
+        "maps/house1.tmx",
+        "maps/house1.json",
+        "outdoors1.tmx",
         "town.json",
         "tileset2.tsx",
         "C:/git/phaser-game/src/assets/tiles.tsx",

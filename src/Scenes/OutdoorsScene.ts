@@ -10,7 +10,7 @@ export default class OutdoorsScene extends BaseScene {
 
     super({
       key: 'outDoors',
-      mapPath: 'assets/maps/rpgmap1.json',
+      mapPath: 'assets/maps/outdoors1.json',
       layers: [
         new Layer('CollideLayerTop', [
           'assets/tilesets/RPGW_GrassLand_v2.0/decorative.png',

@@ -2,13 +2,13 @@ import 'phaser';
 import Player from '../Player';
 import BaseScene from './BaseScene';
 import Layer from './Layer'
-export default class InHouseScene extends BaseScene {
+export default class House1Scene extends BaseScene {
   protected player!: Player
 
   constructor() {
     super({
       key: 'house1',
-      mapPath: 'assets/maps/house-interior1.json',
+      mapPath: 'assets/maps/house1.json',
       layers: [
         new Layer('Furniture', ['assets/tilesets/RPGW_HousesAndInt_v1.1/furniture.png'], true, false),
         new Layer('Walls', ['assets/tilesets/RPGW_HousesAndInt_v1.1/interiors.png', 'assets/tilesets/RPG_Buildings_HOUSES_v1.1/houses_interriors.png'], true, false),
