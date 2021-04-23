@@ -3,13 +3,11 @@ import Player from '../Player';
 import BaseScene from './BaseScene'
 import Layer from './Layer';
 export default class Outdoors1Scene extends BaseScene {
-  protected player!: Player
-
   constructor() {
     console.log('outdoors constructor')
 
     super({
-      key: 'outDoors',
+      key: 'outDoors1',
       mapPath: 'assets/maps/outdoors1.json',
       layers: [
         new Layer('CollideLayerTop', [

@@ -44,7 +44,6 @@ class TileSet {
   get id(): string {
     const fractions = this._path.split('/')
     const id = fractions[fractions.length - 1].split('.')[0]
-    console.log('id', id)
     return id;
   }
 

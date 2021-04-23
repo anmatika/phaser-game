@@ -53,8 +53,8 @@
             "scale": 1.7891666666666666,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 142.80391243595716,
-                "y": 402.70144387517473
+                "x": 280.57755006986497,
+                "y": 402.1425244527248
             }
         },
         "maps/house1.json#furniture": {
@@ -90,8 +90,8 @@
             "scale": 2,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 1599.75,
-                "y": 1599.75
+                "x": 417.5,
+                "y": 503.25
             }
         },
         "maps/outdoors1.json#MainLev_autotiling": {
@@ -113,7 +113,7 @@
             "scale": 1,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 1599.5,
+                "x": 1599,
                 "y": 1599.5
             }
         },
@@ -175,10 +175,10 @@
     "project": "rpg.tiled-project",
     "property.type": "string",
     "recentFiles": [
+        "maps/house1.json",
         "maps/outdoors1.tmx",
         "maps/outdoors1.json",
         "maps/house1.tmx",
-        "maps/house1.json",
         "outdoors1.tmx",
         "town.json",
         "tileset2.tsx",
