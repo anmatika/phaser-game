@@ -21,13 +21,13 @@ export default class House1Scene extends BaseScene {
   }
 
   create(data) {
-    this.player = new Player({ scene: this, speed: 175, position: { x: 350, y: 550 } });
-    super.createLayers()
+    // this.player = new Player({ scene: this, speed: 175, position: { x: 350, y: 550 } });
+    // super.createLayers()
     super.create(data)
 
-    const spawnPositions = this.getSpawnPoints()
-    const spawnPosition = spawnPositions.find(p => p.fromScene === data.fromScene)
-    this.player.sprite.setPosition(spawnPosition.x, spawnPosition.y)
+    // const spawnPositions = this.getSpawnPoints()
+    // const spawnPosition = spawnPositions.find(p => p.fromScene === data.fromScene)
+    // this.player.sprite.setPosition(spawnPosition.x, spawnPosition.y)
   }
 
   update() {

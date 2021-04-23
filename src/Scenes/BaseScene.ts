@@ -67,11 +67,16 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   protected create(data) {
+
+    this.player = new Player({ scene: this, speed: 175, position: { x: 350, y: 550 } });
+    this.createLayers()
     this.createColliders()
     this.createPortals()
     this.createSpawnPositions()
     this.createCamera()
-
+    const spawnPositions = this.getSpawnPoints()
+    const spawnPosition = spawnPositions.find(p => p.fromScene === (data.fromScene ?? 'gameStart'))
+    this.player.sprite.setPosition(spawnPosition.x, spawnPosition.y)
     console.log('tilemap', this.cache.tilemap.get(this.mapKey).data);
   }
 

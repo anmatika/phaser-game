@@ -26,19 +26,11 @@ export default class Outdoors1Scene extends BaseScene {
   }
 
   create(data) {
-    this.player = new Player({ scene: this, speed: 175, position: { x: 350, y: 550 } });
-    super.createLayers()
     super.create(data)
-
-    const spawnPositions = this.getSpawnPoints()
-    const spawnPosition = spawnPositions.find(p => p.fromScene === (data.fromScene ?? 'gameStart'))
-    this.player.sprite.setPosition(spawnPosition.x, spawnPosition.y)
   }
 
   update() {
     // NOTE Evernote webclipper must be set off. Breaks the game.
     super.update()
   }
-
-
 }
