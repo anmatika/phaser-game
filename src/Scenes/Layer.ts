@@ -6,10 +6,10 @@ export default class Layer {
   private _tilemapLayer!: Phaser.Tilemaps.TilemapLayer
 
   constructor(name: string, tilesetPaths: string[], collides: boolean, isBackGround: boolean) {
-    this._name = name
-    this._tilesetPaths = tilesetPaths
-    this._collides = collides
-    this._isBackGround = isBackGround
+    this._name = name;
+    this._tilesetPaths = tilesetPaths;
+    this._collides = collides;
+    this._isBackGround = isBackGround;
   }
 
   get name(): string {
@@ -17,8 +17,8 @@ export default class Layer {
   }
   get tilesets(): TileSet[] {
     return this._tilesetPaths.map(p => {
-      return new TileSet(p)
-    })
+      return new TileSet(p);
+    });
   }
   get collides(): boolean {
     return this._collides;
@@ -40,14 +40,17 @@ class TileSet {
   constructor(path) {
     this._path = path;
   }
-
+  /**
+   * Gets tileset id by tileset file name e.g. assets/tilesets/foo/bar.png -> bar
+   * @returns tileset id
+   */
   get id(): string {
-    const fractions = this._path.split('/')
-    const id = fractions[fractions.length - 1].split('.')[0]
+    const fractions = this._path.split('/');
+    const id = fractions[fractions.length - 1].split('.')[0];
     return id;
   }
 
   get path(): string {
-    return this._path
+    return this._path;
   }
 }

@@ -1,6 +1,5 @@
 import 'phaser';
-import Player from '../Player';
-import BaseScene from './BaseScene'
+import BaseScene from './BaseScene';
 import Layer from './Layer';
 export default class Outdoors1Scene extends BaseScene {
   constructor() {
@@ -17,16 +16,16 @@ export default class Outdoors1Scene extends BaseScene {
     });
   }
 
-  preload() {
-    super.preload()
+  preload(): void {
+    super.preload();
   }
 
-  create(data) {
-    super.create(data)
+  create(data: any): void {
+    super.create(data);
   }
 
-  update() {
+  update(): void {
     // NOTE Evernote webclipper must be set off. Breaks the game.
-    super.update()
+    super.update();
   }
 }

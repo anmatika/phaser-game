@@ -3,8 +3,11 @@ module.exports = {
     browser: true,
     es2021: true,
   },
+  parser: '@typescript-eslint/parser',
   extends: [
-    'airbnb-base',
+    'eslint:recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended'
   ],
   parserOptions: {
     ecmaVersion: 12,
@@ -15,9 +18,10 @@ module.exports = {
     'no-console': ['off'],
     'no-new': ['off'],
     'no-unused-vars': ['warn'],
-    'max-len': ['warn'],
+    'max-len': ['off'],
     indent: ['error', 2],
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
+
   },
 };

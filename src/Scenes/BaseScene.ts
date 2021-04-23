@@ -1,9 +1,9 @@
 import 'phaser';
 import Player from '../Player';
 import Camera from '../Camera';
-import Layer from './Layer'
-import Portal from './Portal'
-import SpawnPoint from './SpawnPoint'
+import Layer from './Layer';
+import Portal from './Portal';
+import SpawnPoint from './SpawnPoint';
 
 export default class BaseScene extends Phaser.Scene {
   public physics!: Phaser.Physics.Arcade.ArcadePhysics
@@ -19,38 +19,38 @@ export default class BaseScene extends Phaser.Scene {
 
   constructor({ key, mapPath, layers }) {
     super({ key });
-    this.key = key
-    this.layers = layers
-    this.mapPath = mapPath
-    console.log('base constructor')
+    this.key = key;
+    this.layers = layers;
+    this.mapPath = mapPath;
+    console.log('base constructor');
   }
 
-  protected preload() {
-    const fractions = this.mapPath.split('/')
-    this.mapKey = fractions[fractions.length - 1].split('.')[0]
+  protected preload(): void {
+    const fractions = this.mapPath.split('/');
+    this.mapKey = fractions[fractions.length - 1].split('.')[0];
     this.load.tilemapTiledJSON(this.mapKey, this.mapPath);
     this.load.spritesheet('player', 'assets/spritesheets/player2.png', { frameWidth: 32, frameHeight: 40 });
 
     this.layers.forEach((layer, i) => {
       layer.tilesets.forEach((tileset, j) => {
-        this.load.image(tileset.id, tileset.path)
-      })
-    })
+        this.load.image(tileset.id, tileset.path);
+      });
+    });
   }
   protected create(data) {
 
     this.player = new Player({ scene: this, speed: 175, position: { x: 350, y: 550 } });
-    this.createLayers()
-    this.createColliders()
-    this.createPortals()
-    this.createSpawnPoints()
-    this.createCamera()
-    this.insertPlayerToSpawnPoint(data.fromScene)
+    this.createLayers();
+    this.createColliders();
+    this.createPortals();
+    this.createSpawnPoints();
+    this.createCamera();
+    this.insertPlayerToSpawnPoint(data.fromScene);
 
     console.log('tilemap', this.cache.tilemap.get(this.mapKey).data);
   }
 
-  public update() {
+  public update(): void {
     // NOTE Evernote webclipper must be set off. Breaks the game.
     this.player.handleMovement();
     this.player.handleAnims();
@@ -65,13 +65,13 @@ export default class BaseScene extends Phaser.Scene {
     // loop in reverse order
     let depth = 1;
     for (let i = this.layers.length - 1; i >= 0; i--) {
-      const layer = this.layers[i]
-      const tilesetIds = layer.tilesets.map(c => c.id)
-      const tilesetImages = tilesetIds.map(id => this.map.addTilesetImage(id))
+      const layer = this.layers[i];
+      const tilesetIds = layer.tilesets.map(c => c.id);
+      const tilesetImages = tilesetIds.map(id => this.map.addTilesetImage(id));
       if (tilesetImages.some(i => i == null)) {
-        throw new Error("Cannot add all tileset images")
+        throw new Error('Cannot add all tileset images');
       }
-      const createdTileMapLayer = this.map.createLayer(layer.name, tilesetImages).setDepth(depth)
+      const createdTileMapLayer = this.map.createLayer(layer.name, tilesetImages).setDepth(depth);
 
       if (layer.collides) {
         createdTileMapLayer.setCollisionByExclusion([-1]);
@@ -80,13 +80,13 @@ export default class BaseScene extends Phaser.Scene {
       if (layer.isBackground) {
         this.physics.world.setBounds(
           0, 0, createdTileMapLayer.width, createdTileMapLayer.height,
-        )
+        );
       }
 
-      layer.tileMapLayer = createdTileMapLayer
+      layer.tileMapLayer = createdTileMapLayer;
       depth++;
     }
-    return this.layers
+    return this.layers;
   }
 
   /**
@@ -94,19 +94,19 @@ export default class BaseScene extends Phaser.Scene {
    */
   private createPortals() {
     this.portalGroup = this.physics.add.staticGroup();
-    this.gameObjects = this.map.createFromObjects('Objects', {})
+    this.gameObjects = this.map.createFromObjects('Objects', {});
 
     this.gameObjects.filter(c => c.type === 'portal').forEach((object) => {
-      const sprite = object as Phaser.GameObjects.Sprite
-      sprite.setVisible(false)
-      this.portalGroup.add(sprite)
+      const sprite = object as Phaser.GameObjects.Sprite;
+      sprite.setVisible(false);
+      this.portalGroup.add(sprite);
     });
 
     this.physics.add.overlap(this.player.sprite, this.portalGroup, (player, portal) => {
-      console.log('collides', player, portal, this.portalGroup)
+      console.log('collides', player, portal, this.portalGroup);
 
-      this.scene.start(portal.data.list.toScene, { fromScene: this.key })
-    })
+      this.scene.start(portal.data.list.toScene, { fromScene: this.key });
+    });
   }
 
   /**
@@ -114,31 +114,31 @@ export default class BaseScene extends Phaser.Scene {
    */
   private createSpawnPoints() {
     this.spawnGroup = this.physics.add.staticGroup();
-    this.gameObjects = this.map.createFromObjects('Objects', {})
+    this.gameObjects = this.map.createFromObjects('Objects', {});
 
     this.gameObjects.filter(c => c.type === 'spawnPoint').forEach((object) => {
-      const sprite = object as Phaser.GameObjects.Sprite
-      sprite.setVisible(false)
-      this.spawnGroup.add(sprite)
+      const sprite = object as Phaser.GameObjects.Sprite;
+      sprite.setVisible(false);
+      this.spawnGroup.add(sprite);
     });
   }
 
   private getPortals() {
     return this.portalGroup.children.entries.map(e => {
-      return new Portal(e.x, e.y, e.data.list.toScene, e.name)
-    })
+      return new Portal(e.x, e.y, e.data.list.toScene, e.name);
+    });
   }
 
   private getSpawnPoints() {
     return this.spawnGroup.children.entries.map(e => {
-      return new SpawnPoint(e.x, e.y, e.data.list.fromScene, e.name)
-    })
+      return new SpawnPoint(e.x, e.y, e.data.list.fromScene, e.name);
+    });
   }
 
   private createColliders() {
     this.layers.filter(c => c.collides).forEach((collideLayer) => {
       this.physics.add.collider(this.player.sprite, collideLayer.tileMapLayer);
-    })
+    });
   }
 
   private createCamera() {
@@ -146,8 +146,8 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   private insertPlayerToSpawnPoint(fromScene) {
-    const spawnPositions = this.getSpawnPoints()
-    const spawnPosition = spawnPositions.find(p => p.fromScene === (fromScene ?? 'gameStart'))
-    this.player.sprite.setPosition(spawnPosition.x, spawnPosition.y)
+    const spawnPositions = this.getSpawnPoints();
+    const spawnPosition = spawnPositions.find(p => p.fromScene === (fromScene ?? 'gameStart'));
+    this.player.sprite.setPosition(spawnPosition.x, spawnPosition.y);
   }
 }

@@ -1,4 +1,4 @@
-import Input from "../Input";
+import Input from '../Input';
 
 type Position = {
   x: number,
@@ -19,8 +19,8 @@ class Player {
   }) {
     this.scene = scene;
     this.speed = speed;
-    this.position = position
-    this.input = new Input({ scene })
+    this.position = position;
+    this.input = new Input({ scene });
 
     this.sprite = this.scene.physics.add.sprite(position?.x ?? 50, position?.y ?? 400, 'player')
       .setCollideWorldBounds(true)
@@ -29,7 +29,7 @@ class Player {
     this.setupAnims();
   }
 
-  setupAnims() {
+  setupAnims(): void {
     const { anims } = this.scene;
     anims.create({
       key: 'runRight',
@@ -51,35 +51,35 @@ class Player {
     });
   }
 
-  moveRight() {
+  moveRight(): void {
     this.sprite.body.setVelocityX(this.speed);
     // this.sprite.setFlipX(false);
     // this.sprite.anims.play('runRight', true);
   }
 
-  moveLeft() {
+  moveLeft(): void {
     this.sprite.body.setVelocityX(-this.speed);
     // this.sprite.anims.play('runRight', true);
     // this.sprite.setFlipX(true);
   }
 
-  moveUp() {
+  moveUp(): void {
     this.sprite.body.setVelocityY(-this.speed);
     // this.sprite.anims.play('runUp', true);
     // this.sprite.setFlipX(false);
   }
 
-  moveDown() {
+  moveDown(): void {
     this.sprite.body.setVelocityY(this.speed);
     // this.sprite.anims.play('runDown', true);
     // this.sprite.setFlipX(false);
   }
 
-  stopAnimation() {
+  stopAnimation(): void {
     this.sprite.anims.stop();
   }
 
-  handleMovement() {
+  handleMovement(): void {
     // Stop any previous movement from the last frame
     this.sprite.body.setVelocity(0);
 
@@ -98,7 +98,7 @@ class Player {
     }
   }
 
-  handleAnims() {
+  handleAnims(): void {
     if (this.input.isLeftDown) {
       this.sprite.anims.play('runRight', true);
       this.sprite.setFlipX(true);

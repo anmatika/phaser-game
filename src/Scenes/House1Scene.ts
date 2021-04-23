@@ -1,6 +1,6 @@
 import 'phaser';
 import BaseScene from './BaseScene';
-import Layer from './Layer'
+import Layer from './Layer';
 export default class House1Scene extends BaseScene {
   constructor() {
     super({
@@ -15,16 +15,16 @@ export default class House1Scene extends BaseScene {
     });
   }
 
-  preload() {
-    super.preload()
+  preload(): void {
+    super.preload();
   }
 
-  create(data) {
-    super.create(data)
+  create(data): void {
+    super.create(data);
   }
 
-  update() {
+  update(): void {
     // NOTE Evernote webclipper must be set off. Breaks the game.
-    super.update()
+    super.update();
   }
 }
