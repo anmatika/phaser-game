@@ -3,10 +3,10 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "maps/house1.json",
+    "activeFile": "maps/outdoors1.json",
     "expandedProjectPaths": [
-        "maps",
         "C:/git/phaser-game/src/assets",
+        "maps",
         "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -53,8 +53,8 @@
             "scale": 1.7891666666666666,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 280.57755006986497,
-                "y": 402.1425244527248
+                "x": 159.85095482068004,
+                "y": 239.4969725197951
             }
         },
         "maps/house1.json#furniture": {
@@ -76,7 +76,7 @@
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 143.66666666666666,
+                "x": 143.99999999999997,
                 "y": 240.33333333333331
             }
         },
@@ -87,17 +87,23 @@
             "scaleInDock": 2
         },
         "maps/outdoors1.json": {
-            "scale": 2,
-            "selectedLayer": 4,
+            "scale": 1,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 417.5,
-                "y": 503.25
+                "x": 1600,
+                "y": 1599.5
             }
+        },
+        "maps/outdoors1.json#MainLev2.0": {
+            "scaleInDock": 1
         },
         "maps/outdoors1.json#MainLev_autotiling": {
             "scaleInDock": 1
         },
         "maps/outdoors1.json#decorative": {
+            "scaleInDock": 1
+        },
+        "maps/outdoors1.json#fence": {
             "scaleInDock": 1
         },
         "maps/outdoors1.json#grasstiles": {
@@ -109,11 +115,20 @@
         "maps/outdoors1.json#houses_outside_shadows": {
             "scaleInDock": 1
         },
+        "maps/outdoors1.json#propsA": {
+            "scaleInDock": 1
+        },
+        "maps/outdoors1.json#propsB": {
+            "scaleInDock": 1
+        },
+        "maps/outdoors1.json#walls_ground_decorative": {
+            "scaleInDock": 1
+        },
         "maps/outdoors1.tmx": {
             "scale": 1,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 1599,
+                "x": 1600,
                 "y": 1599.5
             }
         },
@@ -161,7 +176,7 @@
     },
     "last.exportedFilePath": "C:/git/phaser-game/assets/maps",
     "last.externalTilesetPath": "C:/git/phaser-game/src/assets",
-    "last.imagePath": "/home/antti/code/phaser-game/assets/tilesets/RPGW_HousesAndInt_v1.1",
+    "last.imagePath": "/home/antti/code/phaser-game/assets/tilesets/RPGW_Marshland_v2.0",
     "map.height": 25,
     "map.lastUsedExportFilter": "JSON map files (*.json)",
     "map.lastUsedFormat": "tmx",
@@ -175,10 +190,10 @@
     "project": "rpg.tiled-project",
     "property.type": "string",
     "recentFiles": [
-        "maps/house1.json",
         "maps/outdoors1.tmx",
-        "maps/outdoors1.json",
+        "maps/house1.json",
         "maps/house1.tmx",
+        "maps/outdoors1.json",
         "outdoors1.tmx",
         "town.json",
         "tileset2.tsx",
