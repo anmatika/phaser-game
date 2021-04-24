@@ -9,9 +9,11 @@ export default class House1Scene extends BaseScene {
       layers: [
         new Layer('FurnitureNoCollide',
           ['assets/tilesets/houses_and_interiors2/furniture.png',
-            'assets/tilesets/houses_and_interiors/furnitures.png'], false, false),
+            'assets/tilesets/houses_and_interiors/furnitures.png',
+            'assets/tilesets/houses_and_interiors2/interiors.png'], false, false),
         new Layer('Furniture', ['assets/tilesets/houses_and_interiors2/furniture.png',
-          'assets/tilesets/houses_and_interiors/furnitures.png'], true, false),
+          'assets/tilesets/houses_and_interiors/furnitures.png',
+          'assets/tilesets/houses_and_interiors2/interiors.png'], true, false),
         new Layer('WallsNoCollide', [
           'assets/tilesets/houses_and_interiors2/interiors.png',
           'assets/tilesets/houses_and_interiors/houses_interriors.png'], false, false),

@@ -5,13 +5,14 @@
     },
     "activeFile": "maps/house1.json",
     "expandedProjectPaths": [
-        ".",
         "C:/git/phaser-game/src/assets",
-        "maps"
+        "maps",
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "": {
+            "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "C:/Users/anttim/AppData/Local/Temp/Temp1_assets.zip/assets/town.tmx#tileset": {
@@ -51,9 +52,9 @@
         },
         "maps/house1.json": {
             "scale": 1.7891666666666666,
-            "selectedLayer": 5,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 118.21145784816024,
+                "x": 178.85421518397766,
                 "y": 241.17373078714485
             }
         },
@@ -68,7 +69,8 @@
             "scaleInEditor": 1
         },
         "maps/house1.json#houses_interriors": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "maps/house1.json#housesinteriors2": {
             "scaleInDock": 1
@@ -81,8 +83,8 @@
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 143.66666666666669,
-                "y": 240.33333333333331
+                "x": 122,
+                "y": 295
             }
         },
         "maps/house1.tmx#houseinterior": {
@@ -95,8 +97,8 @@
             "scale": 1,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 1599.5,
-                "y": 1599.5
+                "x": 406,
+                "y": 361.5
             }
         },
         "maps/outdoors1.json#MainLev2.0": {
@@ -133,8 +135,8 @@
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1599.5,
-                "y": 1599.5
+                "x": 479,
+                "y": 277.5
             }
         },
         "maps/outdoors1.tmx#decorative": {
