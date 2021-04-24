@@ -7,7 +7,11 @@ export default class House1Scene extends BaseScene {
       key: 'house1',
       mapPath: 'assets/maps/house1.json',
       layers: [
-        new Layer('Furniture', ['assets/tilesets/houses_and_interiors2/furniture.png'], true, false),
+        new Layer('FurnitureNoCollide', ['assets/tilesets/houses_and_interiors2/furniture.png', 'assets/tilesets/houses_and_interiors/furnitures.png'], true, false),
+        new Layer('Furniture', ['assets/tilesets/houses_and_interiors2/furniture.png', 'assets/tilesets/houses_and_interiors/furnitures.png'], true, false),
+        new Layer('WallsNoCollide', [
+          'assets/tilesets/houses_and_interiors2/interiors.png',
+          'assets/tilesets/houses_and_interiors/houses_interriors.png'], false, false),
         new Layer('Walls', [
           'assets/tilesets/houses_and_interiors2/interiors.png',
           'assets/tilesets/houses_and_interiors/houses_interriors.png'], true, false),

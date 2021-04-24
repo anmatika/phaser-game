@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" width="10" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
+<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" width="10" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="1">
  <editorsettings>
   <export target="house1.json" format="json"/>
  </editorsettings>
@@ -32,7 +32,7 @@
   <data encoding="csv">
 2,9,9,9,9,9,9,9,9,11,
 137,36,38,36,36,36,38,36,36,43,
-137,67,67,67,67,67,67,67,67,43,
+66,0,0,0,0,0,0,0,0,43,
 137,0,0,0,0,0,0,0,0,43,
 137,0,0,0,0,0,0,0,0,43,
 137,0,0,0,0,0,0,0,0,43,
@@ -45,6 +45,25 @@
 147,3221225843,3221225843,3221225651,0,147,3221225843,3221225843,3221225843,147,
 147,119,119,1610613119,0,2684354943,119,119,119,147,
 147,119,119,1610613119,56,2684354943,119,119,119,147
+</data>
+ </layer>
+ <layer id="5" name="WallsNoCollide" width="10" height="15">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,67,67,67,67,67,67,67,67,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
  <layer id="4" name="Curtains" width="10" height="15">

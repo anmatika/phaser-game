@@ -1,4 +1,4 @@
-import Player from "../Player";
+import Player from '../Player';
 
 class Camera {
   private scene!: Phaser.Scene
@@ -10,7 +10,7 @@ class Camera {
   }) {
     this.scene = scene;
     this.backgroundLayer = backgroundLayer;
-    this.player = player
+    this.player = player;
     this.setupCamera();
     this.setUpZoom();
   }

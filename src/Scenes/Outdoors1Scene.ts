@@ -7,6 +7,9 @@ export default class Outdoors1Scene extends BaseScene {
       key: 'outdoors1',
       mapPath: 'assets/maps/outdoors1.json',
       layers: [
+        new Layer(
+          'AirLayer', ['assets/tilesets/grassland/decorative.png',
+        ], false, false),
         new Layer('CollideLayerTop', [
           'assets/tilesets/grassland/decorative.png',
           'assets/tilesets/houses_and_interiors/houses_outside_shadows.png'], true, false),

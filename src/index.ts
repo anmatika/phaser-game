@@ -4,8 +4,8 @@ import InHouseScene from './Scenes/House1Scene';
 
 const config = {
   type: Phaser.AUTO,
-  width: window.innerWidth,
-  height: window.innerHeight,
+  // width: window.innerWidth,
+  // height: window.innerHeight,
   fps: {
     // target: 120,
     // min: 60,
@@ -14,16 +14,15 @@ const config = {
   physics: {
     default: 'arcade',
     arcade: {
-      debug: false,
+      debug: true,
       gravity: {
         y: 0
       }
     },
 
     scale: {
-      // mode: Phaser.Scale.FIT,
-      // autoCenter: Phaser.Scale.CENTER_BOTH,
-      // parent: "thegame"
+      mode: Phaser.Scale.FIT,
+      autoCenter: Phaser.Scale.CENTER_BOTH,
     },
     // pixelArt: true,
 
