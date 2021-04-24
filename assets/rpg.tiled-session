@@ -5,9 +5,9 @@
     },
     "activeFile": "maps/outdoors1.json",
     "expandedProjectPaths": [
-        "C:/git/phaser-game/src/assets",
+        ".",
         "maps",
-        "."
+        "C:/git/phaser-game/src/assets"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -51,10 +51,10 @@
         },
         "maps/house1.json": {
             "scale": 1.7891666666666666,
-            "selectedLayer": 4,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 160.40987424312996,
-                "y": 240.05589194224504
+                "x": 136.096879366558,
+                "y": 241.17373078714485
             }
         },
         "maps/house1.json#furniture": {
@@ -76,8 +76,8 @@
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 144,
-                "y": 239.66666666666666
+                "x": 144.33333333333334,
+                "y": 240.33333333333331
             }
         },
         "maps/house1.tmx#houseinterior": {
@@ -88,9 +88,9 @@
         },
         "maps/outdoors1.json": {
             "scale": 1,
-            "selectedLayer": 1,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 417,
+                "x": 380.5,
                 "y": 440.5
             }
         },
@@ -126,13 +126,16 @@
         },
         "maps/outdoors1.tmx": {
             "scale": 1,
-            "selectedLayer": 3,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 1600,
-                "y": 1599.5
+                "x": 357.5,
+                "y": 279.5
             }
         },
         "maps/outdoors1.tmx#decorative": {
+            "scaleInDock": 1
+        },
+        "maps/outdoors1.tmx#fence": {
             "scaleInDock": 1
         },
         "maps/outdoors1.tmx#grasstiles": {
@@ -176,7 +179,7 @@
     },
     "last.exportedFilePath": "C:/git/phaser-game/assets/maps",
     "last.externalTilesetPath": "C:/git/phaser-game/src/assets",
-    "last.imagePath": "/home/antti/code/phaser-game/assets/tilesets/RPGW_Marshland_v2.0",
+    "last.imagePath": "/home/antti/code/phaser-game/assets/tilesets/decorative",
     "map.height": 25,
     "map.lastUsedExportFilter": "JSON map files (*.json)",
     "map.lastUsedFormat": "tmx",
@@ -190,10 +193,10 @@
     "project": "rpg.tiled-project",
     "property.type": "string",
     "recentFiles": [
-        "maps/house1.json",
-        "maps/house1.tmx",
-        "maps/outdoors1.tmx",
         "maps/outdoors1.json",
+        "maps/house1.json",
+        "maps/outdoors1.tmx",
+        "maps/house1.tmx",
         "outdoors1.tmx",
         "town.json",
         "tileset2.tsx",

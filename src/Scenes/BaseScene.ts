@@ -11,7 +11,8 @@ export default class BaseScene extends Phaser.Scene {
   private map!: Phaser.Tilemaps.Tilemap
   private portalGroup!: any
   private spawnGroup!: any
-  private gameObjects!: Phaser.GameObjects.GameObject[]
+  private spawnPointGameObjects!: Phaser.GameObjects.GameObject[]
+  private portalGameObjects!: Phaser.GameObjects.GameObject[]
   private mapPath: string
   private mapKey!: string
   private layers: Layer[]
@@ -94,9 +95,9 @@ export default class BaseScene extends Phaser.Scene {
    */
   private createPortals() {
     this.portalGroup = this.physics.add.staticGroup();
-    this.gameObjects = this.map.createFromObjects('Objects', {});
+    const portalGameObjects = this.map.createFromObjects('Portals', {});
 
-    this.gameObjects.filter(c => c.type === 'portal').forEach((object) => {
+    portalGameObjects.forEach((object) => {
       const sprite = object as Phaser.GameObjects.Sprite;
       sprite.setVisible(false);
       this.portalGroup.add(sprite);
@@ -114,9 +115,9 @@ export default class BaseScene extends Phaser.Scene {
    */
   private createSpawnPoints() {
     this.spawnGroup = this.physics.add.staticGroup();
-    this.gameObjects = this.map.createFromObjects('Objects', {});
+    const spawnPointGameObjects = this.map.createFromObjects('SpawnPoints', {});
 
-    this.gameObjects.filter(c => c.type === 'spawnPoint').forEach((object) => {
+    spawnPointGameObjects.forEach((object) => {
       const sprite = object as Phaser.GameObjects.Sprite;
       sprite.setVisible(false);
       this.spawnGroup.add(sprite);
