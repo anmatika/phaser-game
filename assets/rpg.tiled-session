@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "maps/outdoors1.json",
+    "activeFile": "maps/house1.json",
     "expandedProjectPaths": [
         ".",
         "maps",
@@ -51,7 +51,7 @@
         },
         "maps/house1.json": {
             "scale": 1.7891666666666666,
-            "selectedLayer": 5,
+            "selectedLayer": 4,
             "viewCenter": {
                 "x": 118.21145784816024,
                 "y": 241.17373078714485
@@ -81,7 +81,7 @@
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 213.66666666666666,
+                "x": 143.66666666666669,
                 "y": 240.33333333333331
             }
         },
@@ -95,8 +95,8 @@
             "scale": 1,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 484.5,
-                "y": 440.5
+                "x": 1599.5,
+                "y": 1599.5
             }
         },
         "maps/outdoors1.json#MainLev2.0": {
@@ -133,8 +133,8 @@
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 357.5,
-                "y": 279.5
+                "x": 1599.5,
+                "y": 1599.5
             }
         },
         "maps/outdoors1.tmx#decorative": {
@@ -199,8 +199,8 @@
     "property.type": "string",
     "recentFiles": [
         "maps/house1.json",
-        "maps/outdoors1.json",
         "maps/outdoors1.tmx",
+        "maps/outdoors1.json",
         "maps/house1.tmx",
         "outdoors1.tmx",
         "town.json",
