@@ -32,9 +32,14 @@ export default class BaseScene extends Phaser.Scene {
     this.load.tilemapTiledJSON(this.mapKey, this.mapPath);
     this.load.spritesheet('player', 'assets/spritesheets/player2.png', { frameWidth: 32, frameHeight: 40 });
 
+
+    const loadedTilesetIds: string[] = [];
     this.layers.forEach((layer, i) => {
       layer.tilesets.forEach((tileset, j) => {
-        this.load.image(tileset.id, tileset.path);
+        if (!loadedTilesetIds.includes(tileset.id)) {
+          this.load.image(tileset.id, tileset.path);
+          loadedTilesetIds.push(tileset.id);
+        }
       });
     });
   }

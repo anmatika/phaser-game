@@ -6,8 +6,8 @@
     "activeFile": "maps/house1.json",
     "expandedProjectPaths": [
         ".",
-        "maps",
-        "C:/git/phaser-game/src/assets"
+        "C:/git/phaser-game/src/assets",
+        "maps"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -51,7 +51,7 @@
         },
         "maps/house1.json": {
             "scale": 1.7891666666666666,
-            "selectedLayer": 4,
+            "selectedLayer": 5,
             "viewCenter": {
                 "x": 118.21145784816024,
                 "y": 241.17373078714485
