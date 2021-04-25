@@ -20,6 +20,7 @@ export default class House1Scene extends BaseScene {
         new Layer('Walls', [
           'assets/tilesets/houses_and_interiors2/interiors.png',
           'assets/tilesets/houses_and_interiors/houses_interriors.png'], true, false),
+        new Layer('OnFloor', ['assets/tilesets/houses_and_interiors2/interiors.png'], false, false),
         new Layer('BaseLayer', ['assets/tilesets/houses_and_interiors2/interiors.png'], false, true)]
     });
   }

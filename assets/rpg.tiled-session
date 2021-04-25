@@ -6,8 +6,8 @@
     "activeFile": "maps/house1.json",
     "expandedProjectPaths": [
         "C:/git/phaser-game/src/assets",
-        "maps",
-        "."
+        ".",
+        "maps"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -52,9 +52,9 @@
         },
         "maps/house1.json": {
             "scale": 1.7891666666666666,
-            "selectedLayer": 4,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 178.85421518397766,
+                "x": 178.29529576152777,
                 "y": 241.17373078714485
             }
         },
@@ -83,8 +83,8 @@
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 122,
-                "y": 295
+                "x": 143.66666666666666,
+                "y": 240.33333333333331
             }
         },
         "maps/house1.tmx#houseinterior": {
@@ -97,8 +97,8 @@
             "scale": 1,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 406,
-                "y": 361.5
+                "x": 1599.5,
+                "y": 1599.5
             }
         },
         "maps/outdoors1.json#MainLev2.0": {
@@ -135,8 +135,8 @@
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 479,
-                "y": 277.5
+                "x": 1599.5,
+                "y": 1599.5
             }
         },
         "maps/outdoors1.tmx#decorative": {
@@ -192,17 +192,17 @@
     "map.lastUsedFormat": "tmx",
     "map.width": 25,
     "openFiles": [
-        "maps/outdoors1.tmx",
-        "maps/outdoors1.json",
+        "maps/house1.json",
         "maps/house1.tmx",
-        "maps/house1.json"
+        "maps/outdoors1.tmx",
+        "maps/outdoors1.json"
     ],
     "project": "rpg.tiled-project",
     "property.type": "string",
     "recentFiles": [
         "maps/house1.json",
-        "maps/outdoors1.tmx",
         "maps/outdoors1.json",
+        "maps/outdoors1.tmx",
         "maps/house1.tmx",
         "outdoors1.tmx",
         "town.json",
