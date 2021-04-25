@@ -1,6 +1,7 @@
 import 'phaser';
 import OutdoorsScene from './Scenes/Outdoors1Scene';
 import InHouseScene from './Scenes/House1Scene';
+import House1Upstairs from './Scenes/House1Upstairs';
 
 const config = {
   type: Phaser.AUTO,
@@ -27,7 +28,7 @@ const config = {
     // pixelArt: true,
 
   },
-  scene: [OutdoorsScene, InHouseScene],
+  scene: [OutdoorsScene, InHouseScene, House1Upstairs],
 
 };
 

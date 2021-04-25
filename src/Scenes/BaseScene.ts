@@ -20,7 +20,7 @@ export default class BaseScene extends Phaser.Scene {
   private portalGroup!: any
   private spawnGroup!: any
   private mapPath: string
-  private mapKey!: string
+  private mapKey: any
   private layers: Layer[]
   private tileSets: TileSet[]
   private key: string
@@ -36,7 +36,16 @@ export default class BaseScene extends Phaser.Scene {
 
   protected preload(): void {
     const fractions = this.mapPath.split('/');
-    this.mapKey = fractions[fractions.length - 1].split('.')[0];
+    const fraction = fractions[fractions.length - 1];
+
+    // parse the file name from path without extension
+    const regex = /(.+?)(\.[^.]*$|$)/g;
+    const matches = fraction.match(regex);
+    if (matches == null) {
+      throw new Error('map key couldn\'t be parsed');
+    }
+    this.mapKey = matches[0];
+
     this.load.tilemapTiledJSON(this.mapKey, this.mapPath);
     this.load.spritesheet('player', 'assets/spritesheets/player2.png', { frameWidth: 32, frameHeight: 40 });
 
@@ -44,6 +53,7 @@ export default class BaseScene extends Phaser.Scene {
       this.load.image(tileset.id, tileset.path);
     });
   }
+
   protected create(data) {
 
     this.player = new Player({ scene: this, speed: 175, position: { x: 350, y: 550 } });
