@@ -23,7 +23,7 @@ class Player {
     this.sprite = this.scene.physics.add.sprite(this.position?.x ?? 50, this.position?.y ?? 400, 'player')
       .setCollideWorldBounds(true)
       .setDepth(4)
-      .setScale(1);
+      .setScale(0.8);
     this.setupAnims();
   }
 

@@ -18,7 +18,8 @@ class Camera {
   setupCamera(): void {
     this.scene.cameras.main
       .setBounds(0, 0,
-        this.backgroundLayer.tileMapLayer.width, this.backgroundLayer.tileMapLayer.height);
+        this.backgroundLayer.tileMapLayer.width, this.backgroundLayer.tileMapLayer.height)
+      .setZoom(1.1);
     this.scene.cameras.main.startFollow(this.player.sprite);
   }
 
