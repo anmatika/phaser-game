@@ -1,6 +1,5 @@
 import 'phaser';
 import BaseScene from './BaseScene';
-import Layer from './Layer';
 export default class House1Scene extends BaseScene {
   constructor() {
     super({
@@ -13,12 +12,12 @@ export default class House1Scene extends BaseScene {
         'assets/tilesets/houses_and_interiors/houses_interriors.png'
       ],
       layers: [
-        new Layer('FurnitureNoCollide'),
-        new Layer('Furniture'),
-        new Layer('WallsNoCollide'),
-        new Layer('Walls'),
-        new Layer('OnFloor'),
-        new Layer('BaseLayer')]
+        'FurnitureNoCollide',
+        'Furniture',
+        'WallsNoCollide',
+        'Walls',
+        'OnFloor',
+        'BaseLayer']
     });
   }
 

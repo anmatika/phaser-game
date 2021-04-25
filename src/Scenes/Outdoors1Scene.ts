@@ -1,6 +1,5 @@
 import 'phaser';
 import BaseScene from './BaseScene';
-import Layer from './Layer';
 export default class Outdoors1Scene extends BaseScene {
   constructor() {
     super({
@@ -14,10 +13,10 @@ export default class Outdoors1Scene extends BaseScene {
         'assets/tilesets/grassland/MainLev_autotiling.png'
       ],
       layers: [
-        new Layer('AirLayer'),
-        new Layer('CollideLayer'),
-        new Layer('CollideLayerBase'),
-        new Layer('BaseLayer')]
+        'AirLayer',
+        'CollideLayer',
+        'CollideLayerBase',
+        'BaseLayer']
     });
   }
 

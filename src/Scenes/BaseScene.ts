@@ -19,8 +19,6 @@ export default class BaseScene extends Phaser.Scene {
   private map!: Phaser.Tilemaps.Tilemap
   private portalGroup!: any
   private spawnGroup!: any
-  private spawnPointGameObjects!: Phaser.GameObjects.GameObject[]
-  private portalGameObjects!: Phaser.GameObjects.GameObject[]
   private mapPath: string
   private mapKey!: string
   private layers: Layer[]
@@ -33,7 +31,7 @@ export default class BaseScene extends Phaser.Scene {
     this.layers = layers;
     this.mapPath = mapPath;
     this.tileSets = tileSets.map(c => new TileSet(c));
-    console.log('base constructor');
+    this.layers = layers.map(c => new Layer(c));
   }
 
   protected preload(): void {
