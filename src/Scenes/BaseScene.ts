@@ -4,6 +4,7 @@ import Camera from '../Camera';
 import Layer from './Layer';
 import Portal from './Portal';
 import SpawnPoint from './SpawnPoint';
+import TileSet from './TileSet';
 
 type TileMapLayerProperty = {
   name: string,
@@ -23,13 +24,15 @@ export default class BaseScene extends Phaser.Scene {
   private mapPath: string
   private mapKey!: string
   private layers: Layer[]
+  private tileSets: TileSet[]
   private key: string
 
-  constructor({ key, mapPath, layers }) {
+  constructor({ key, mapPath, layers, tileSets }) {
     super({ key });
     this.key = key;
     this.layers = layers;
     this.mapPath = mapPath;
+    this.tileSets = tileSets.map(c => new TileSet(c));
     console.log('base constructor');
   }
 
@@ -39,15 +42,8 @@ export default class BaseScene extends Phaser.Scene {
     this.load.tilemapTiledJSON(this.mapKey, this.mapPath);
     this.load.spritesheet('player', 'assets/spritesheets/player2.png', { frameWidth: 32, frameHeight: 40 });
 
-
-    const loadedTilesetIds: string[] = [];
-    this.layers.forEach((layer, i) => {
-      layer.tilesets.forEach((tileset, j) => {
-        if (!loadedTilesetIds.includes(tileset.id)) {
-          this.load.image(tileset.id, tileset.path);
-          loadedTilesetIds.push(tileset.id);
-        }
-      });
+    this.tileSets.forEach((tileset, i) => {
+      this.load.image(tileset.id, tileset.path);
     });
   }
   protected create(data) {
@@ -79,7 +75,7 @@ export default class BaseScene extends Phaser.Scene {
     let depth = 1;
     for (let i = this.layers.length - 1; i >= 0; i--) {
       const layer = this.layers[i];
-      const tilesetIds = layer.tilesets.map(c => c.id);
+      const tilesetIds = this.tileSets.map(c => c.id);
       const tilesetImages = tilesetIds.map(id => this.map.addTilesetImage(id));
       if (tilesetImages.some(i => i == null)) {
         throw new Error('Cannot add all tileset images');

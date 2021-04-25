@@ -1,22 +1,15 @@
 export default class Layer {
   private _name: string
-  private _tilesetPaths: string[]
   private _collides!: boolean
   private _isBackground!: boolean
   private _tilemapLayer!: Phaser.Tilemaps.TilemapLayer
 
-  constructor(name: string, tilesetPaths: string[]) {
+  constructor(name: string) {
     this._name = name;
-    this._tilesetPaths = tilesetPaths;
   }
 
   get name(): string {
     return this._name;
-  }
-  get tilesets(): TileSet[] {
-    return this._tilesetPaths.map(p => {
-      return new TileSet(p);
-    });
   }
 
   set collides(v: boolean) {
@@ -43,22 +36,3 @@ export default class Layer {
   }
 }
 
-class TileSet {
-  private _path: string
-  constructor(path) {
-    this._path = path;
-  }
-  /**
-   * Gets tileset id by tileset file name e.g. assets/tilesets/foo/bar.png -> bar
-   * @returns tileset id
-   */
-  get id(): string {
-    const fractions = this._path.split('/');
-    const id = fractions[fractions.length - 1].split('.')[0];
-    return id;
-  }
-
-  get path(): string {
-    return this._path;
-  }
-}
