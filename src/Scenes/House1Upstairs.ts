@@ -25,7 +25,7 @@ export default class House1UpstairsScene extends BaseScene {
     super.preload();
   }
 
-  create(data): void {
+  create(data: SceneData): void {
     super.create(data);
   }
 

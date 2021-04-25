@@ -1,28 +1,26 @@
 import Input from '../Input';
 
-type Position = {
+declare type Position = {
   x: number,
   y: number
-}
-interface Player {
-  scene: Phaser.Scene;
-  speed: number;
-  position: Position
 }
 
 class Player {
   public sprite: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody
   private input: Input
+  private speed: number
+  private position: Position
+  private scene: Phaser.Scene
 
   constructor({
     scene, speed = 175, position
-  }) {
+  }: PlayerArgs) {
     this.scene = scene;
     this.speed = speed;
     this.position = position;
     this.input = new Input({ scene });
 
-    this.sprite = this.scene.physics.add.sprite(position?.x ?? 50, position?.y ?? 400, 'player')
+    this.sprite = this.scene.physics.add.sprite(this.position?.x ?? 50, this.position?.y ?? 400, 'player')
       .setCollideWorldBounds(true)
       .setDepth(4)
       .setScale(1);
@@ -53,26 +51,18 @@ class Player {
 
   moveRight(): void {
     this.sprite.body.setVelocityX(this.speed);
-    // this.sprite.setFlipX(false);
-    // this.sprite.anims.play('runRight', true);
   }
 
   moveLeft(): void {
     this.sprite.body.setVelocityX(-this.speed);
-    // this.sprite.anims.play('runRight', true);
-    // this.sprite.setFlipX(true);
   }
 
   moveUp(): void {
     this.sprite.body.setVelocityY(-this.speed);
-    // this.sprite.anims.play('runUp', true);
-    // this.sprite.setFlipX(false);
   }
 
   moveDown(): void {
     this.sprite.body.setVelocityY(this.speed);
-    // this.sprite.anims.play('runDown', true);
-    // this.sprite.setFlipX(false);
   }
 
   stopAnimation(): void {

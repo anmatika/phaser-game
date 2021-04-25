@@ -31,7 +31,7 @@ export default class Layer {
   get tileMapLayer(): Phaser.Tilemaps.TilemapLayer {
     return this._tilemapLayer;
   }
-  set tileMapLayer(tilemapLayer) {
+  set tileMapLayer(tilemapLayer: Phaser.Tilemaps.TilemapLayer) {
     this._tilemapLayer = tilemapLayer;
   }
 }

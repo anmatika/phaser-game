@@ -5,30 +5,23 @@ import Layer from './Layer';
 import Portal from './Portal';
 import SpawnPoint from './SpawnPoint';
 import TileSet from './TileSet';
-
-type TileMapLayerProperty = {
-  name: string,
-  collides: boolean,
-  isBackground: boolean
-  value: boolean
-}
+import { Physics } from 'phaser';
 
 export default class BaseScene extends Phaser.Scene {
   public physics!: Phaser.Physics.Arcade.ArcadePhysics
   protected player!: Player
   private map!: Phaser.Tilemaps.Tilemap
-  private portalGroup!: any
-  private spawnGroup!: any
+  private portalGroup!: Physics.Arcade.StaticGroup
+  private spawnGroup!: Physics.Arcade.StaticGroup
   private mapPath: string
-  private mapKey: any
+  private mapKey!: string
   private layers: Layer[]
   private tileSets: TileSet[]
   private key: string
 
-  constructor({ key, mapPath, layers, tileSets }) {
+  constructor({ key, mapPath, layers, tileSets }: BaseSceneArgs) {
     super({ key });
     this.key = key;
-    this.layers = layers;
     this.mapPath = mapPath;
     this.tileSets = tileSets.map(c => new TileSet(c));
     this.layers = layers.map(c => new Layer(c));
@@ -49,12 +42,12 @@ export default class BaseScene extends Phaser.Scene {
     this.load.tilemapTiledJSON(this.mapKey, this.mapPath);
     this.load.spritesheet('player', 'assets/spritesheets/player2.png', { frameWidth: 32, frameHeight: 40 });
 
-    this.tileSets.forEach((tileset, i) => {
+    this.tileSets.forEach((tileset) => {
       this.load.image(tileset.id, tileset.path);
     });
   }
 
-  protected create(data) {
+  protected create(data: SceneData): void {
 
     this.player = new Player({ scene: this, speed: 175, position: { x: 350, y: 550 } });
     this.createLayers();
@@ -145,13 +138,15 @@ export default class BaseScene extends Phaser.Scene {
 
   private getPortals() {
     return this.portalGroup.children.entries.map(e => {
-      return new Portal(e.x, e.y, e.data.list.toScene, e.name);
+      const sprite = e as Phaser.GameObjects.Sprite;
+      return new Portal(sprite.x, sprite.y, e.data.list.toScene, e.name);
     });
   }
 
   private getSpawnPoints() {
     return this.spawnGroup.children.entries.map(e => {
-      return new SpawnPoint(e.x, e.y, e.data.list.fromScene, e.name);
+      const sprite = e as Phaser.GameObjects.Sprite;
+      return new SpawnPoint(sprite.x, sprite.y, e.data.list.fromScene, e.name);
     });
   }
 
@@ -168,6 +163,9 @@ export default class BaseScene extends Phaser.Scene {
   private insertPlayerToSpawnPoint(fromScene) {
     const spawnPositions = this.getSpawnPoints();
     const spawnPosition = spawnPositions.find(p => p.fromScene === (fromScene ?? 'gameStart'));
+    if (spawnPosition == null) {
+      throw new Error(`SpawnPoint not found fromScene ${fromScene}`);
+    }
     this.player.sprite.setPosition(spawnPosition.x, spawnPosition.y);
   }
 }

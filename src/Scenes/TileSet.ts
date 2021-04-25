@@ -1,6 +1,6 @@
 export default class TileSet {
   private _path: string
-  constructor(path) {
+  constructor(path: string) {
     this._path = path;
   }
   /**

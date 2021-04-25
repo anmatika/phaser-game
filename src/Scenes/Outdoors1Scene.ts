@@ -24,7 +24,7 @@ export default class Outdoors1Scene extends BaseScene {
     super.preload();
   }
 
-  create(data: any): void {
+  create(data: SceneData): void {
     super.create(data);
   }
 

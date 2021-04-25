@@ -4,10 +4,11 @@
         "module": "CommonJS",
         "sourceMap": true,
         "noImplicitAny": false,
-        "strict": true
+        "strict": true,
     },
     "include": [
         "src/*",
         "index.d.ts",
+        "src/types/main.d.ts"
     ]
 }
