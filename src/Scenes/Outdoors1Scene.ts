@@ -8,16 +8,18 @@ export default class Outdoors1Scene extends BaseScene {
       mapPath: 'assets/maps/outdoors1.json',
       layers: [
         new Layer(
-          'AirLayer', ['assets/tilesets/grassland/decorative.png',
-        ], false, false),
-        new Layer('CollideLayerTop', [
+          'AirLayer', ['assets/tilesets/grassland/decorative.png']),
+        new Layer('CollideLayer', [
           'assets/tilesets/grassland/decorative.png',
-          'assets/tilesets/houses_and_interiors/houses_outside_shadows.png'], true, false),
-        new Layer('CollideLayer2', ['assets/tilesets/houses_and_interiors/houses_outside_shadows.png'], true, false),
-        new Layer('CollideLayer1', [
-          'assets/tilesets/houses_and_interiors/houses_outside_shadows.png',
-          'assets/tilesets/decorative/fence.png'], true, false),
-        new Layer('BaseLayer', ['assets/tilesets/grassland/MainLev_autotiling.png'], false, true)]
+          'assets/tilesets/town/houses.png',
+          'assets/tilesets/decorative/fence.png'
+        ]),
+        new Layer('CollideLayerBase', [
+          'assets/tilesets/grassland/decorative.png',
+          'assets/tilesets/town/houses.png',
+          'assets/tilesets/decorative/fence.png'
+        ]),
+        new Layer('BaseLayer', ['assets/tilesets/grassland/MainLev_autotiling.png'])]
     });
   }
 

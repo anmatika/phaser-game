@@ -1,15 +1,13 @@
 export default class Layer {
   private _name: string
   private _tilesetPaths: string[]
-  private _collides: boolean
-  private _isBackGround: boolean
+  private _collides!: boolean
+  private _isBackground!: boolean
   private _tilemapLayer!: Phaser.Tilemaps.TilemapLayer
 
-  constructor(name: string, tilesetPaths: string[], collides: boolean, isBackGround: boolean) {
+  constructor(name: string, tilesetPaths: string[]) {
     this._name = name;
     this._tilesetPaths = tilesetPaths;
-    this._collides = collides;
-    this._isBackGround = isBackGround;
   }
 
   get name(): string {
@@ -20,11 +18,21 @@ export default class Layer {
       return new TileSet(p);
     });
   }
+
+  set collides(v: boolean) {
+    this._collides = v;
+  }
+
   get collides(): boolean {
     return this._collides;
   }
+
+  set isBackground(v: boolean) {
+    this._isBackground = v;
+  }
+
   get isBackground(): boolean {
-    return this._isBackGround;
+    return this._isBackground;
   }
 
   get tileMapLayer(): Phaser.Tilemaps.TilemapLayer {

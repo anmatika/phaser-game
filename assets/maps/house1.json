@@ -16,6 +16,12 @@
          "id":1,
          "name":"BaseLayer",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"isBackground",
+                 "type":"bool",
+                 "value":true
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":10,
@@ -40,6 +46,12 @@
          "id":3,
          "name":"Walls",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"collides",
+                 "type":"bool",
+                 "value":true
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":10,
@@ -76,6 +88,12 @@
          "id":2,
          "name":"Furniture",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"collides",
+                 "type":"bool",
+                 "value":true
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":10,

@@ -5,6 +5,13 @@ import Layer from './Layer';
 import Portal from './Portal';
 import SpawnPoint from './SpawnPoint';
 
+type TileMapLayerProperty = {
+  name: string,
+  collides: boolean,
+  isBackground: boolean
+  value: boolean
+}
+
 export default class BaseScene extends Phaser.Scene {
   public physics!: Phaser.Physics.Arcade.ArcadePhysics
   protected player!: Player
@@ -78,12 +85,15 @@ export default class BaseScene extends Phaser.Scene {
         throw new Error('Cannot add all tileset images');
       }
       const createdTileMapLayer = this.map.createLayer(layer.name, tilesetImages).setDepth(depth);
+      const layerProperties = createdTileMapLayer.layer.properties as TileMapLayerProperty[];
 
-      if (layer.collides) {
+      if (layerProperties.some(c => c.name === 'collides' && c.value)) {
         createdTileMapLayer.setCollisionByExclusion([-1]);
+        layer.collides = true;
       }
 
-      if (layer.isBackground) {
+      if (layerProperties.some(c => c.name === 'isBackground' && c.value)) {
+        layer.isBackground = true;
         this.physics.world.setBounds(
           0, 0, createdTileMapLayer.width, createdTileMapLayer.height,
         );

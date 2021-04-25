@@ -10,18 +10,18 @@ export default class House1Scene extends BaseScene {
         new Layer('FurnitureNoCollide',
           ['assets/tilesets/houses_and_interiors2/furniture.png',
             'assets/tilesets/houses_and_interiors/furnitures.png',
-            'assets/tilesets/houses_and_interiors2/interiors.png'], false, false),
+            'assets/tilesets/houses_and_interiors2/interiors.png']),
         new Layer('Furniture', ['assets/tilesets/houses_and_interiors2/furniture.png',
           'assets/tilesets/houses_and_interiors/furnitures.png',
-          'assets/tilesets/houses_and_interiors2/interiors.png'], true, false),
+          'assets/tilesets/houses_and_interiors2/interiors.png']),
         new Layer('WallsNoCollide', [
           'assets/tilesets/houses_and_interiors2/interiors.png',
-          'assets/tilesets/houses_and_interiors/houses_interriors.png'], false, false),
+          'assets/tilesets/houses_and_interiors/houses_interriors.png']),
         new Layer('Walls', [
           'assets/tilesets/houses_and_interiors2/interiors.png',
-          'assets/tilesets/houses_and_interiors/houses_interriors.png'], true, false),
-        new Layer('OnFloor', ['assets/tilesets/houses_and_interiors2/interiors.png'], false, false),
-        new Layer('BaseLayer', ['assets/tilesets/houses_and_interiors2/interiors.png'], false, true)]
+          'assets/tilesets/houses_and_interiors/houses_interriors.png']),
+        new Layer('OnFloor', ['assets/tilesets/houses_and_interiors2/interiors.png']),
+        new Layer('BaseLayer', ['assets/tilesets/houses_and_interiors2/interiors.png'])]
     });
   }
 
