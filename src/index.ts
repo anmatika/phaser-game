@@ -5,8 +5,8 @@ import House1Upstairs from './Scenes/House1Upstairs';
 
 const config = {
   type: Phaser.AUTO,
-  // width: window.innerWidth,
-  // height: window.innerHeight,
+  width: window.innerWidth,
+  height: window.innerHeight - 4,
   fps: {
     // target: 120,
     // min: 60,
