@@ -143,6 +143,33 @@
         }, 
         {
          "draworder":"topdown",
+         "id":10,
+         "name":"Text",
+         "objects":[
+                {
+                 "height":19,
+                 "id":5,
+                 "name":"",
+                 "rotation":0,
+                 "text":
+                    {
+                     "text":"Hello World",
+                     "wrap":true
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":92.375,
+                 "x":179.177675052168,
+                 "y":354.423023417575
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":7,
          "name":"SpawnPoints",
          "objects":[
@@ -170,8 +197,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":10,
- "nextobjectid":3,
+ "nextlayerid":11,
+ "nextobjectid":6,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.5.0",

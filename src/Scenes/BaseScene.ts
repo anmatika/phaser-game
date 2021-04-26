@@ -126,6 +126,13 @@ export default class BaseScene extends Phaser.Scene {
    * Creates spawn points which indicates locations where the Player appears on the map when it switches the Scene
    */
   private createSpawnPoints() {
+    // const foo = this.map.createFromObjects('Text', {});
+    // foo.forEach((object) => {
+    //   const sprite = object as Phaser.GameObjects.Sprite;
+    //   sprite.setVisible(true);
+    //   this.spawnGroup.add(sprite);
+    // });
+
     this.spawnGroup = this.physics.add.staticGroup();
     const spawnPointGameObjects = this.map.createFromObjects('SpawnPoints', {});
 

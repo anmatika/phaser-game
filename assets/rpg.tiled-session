@@ -3,11 +3,11 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "maps/outdoors1.json",
+    "activeFile": "maps/house1.upstairs.json",
     "expandedProjectPaths": [
-        "maps",
         "C:/git/phaser-game/src/assets",
-        "."
+        ".",
+        "maps"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -74,8 +74,8 @@
             "scale": 1.7891666666666666,
             "selectedLayer": 8,
             "viewCenter": {
-                "x": 159.5714951094551,
-                "y": 239.4969725197951
+                "x": 159.85095482068004,
+                "y": 240.05589194224504
             }
         },
         "maps/house1.json#furniture": {
@@ -117,8 +117,8 @@
             "scale": 1.7970833333333331,
             "selectedLayer": 8,
             "viewCenter": {
-                "x": 160.53790864827266,
-                "y": 240.11129144447023
+                "x": 160.81613725944817,
+                "y": 228.98214699744958
             }
         },
         "maps/house1.upstairs.json#furniture": {
@@ -145,7 +145,7 @@
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 480.5,
+                "x": 480,
                 "y": 310.5
             }
         },
@@ -248,8 +248,8 @@
     "property.type": "string",
     "recentFiles": [
         "maps/house1.json",
-        "maps/house1.upstairs.json",
         "maps/outdoors1.json",
+        "maps/house1.upstairs.json",
         "maps/outdoors1.tmx",
         "maps/house1 Upstairs.json",
         "maps/house1Upstairs.json",
