@@ -13,6 +13,7 @@ export default class BaseScene extends Phaser.Scene {
   private map!: Phaser.Tilemaps.Tilemap
   private portalGroup!: Physics.Arcade.StaticGroup
   private spawnGroup!: Physics.Arcade.StaticGroup
+  private pickupsGroup!: Physics.Arcade.StaticGroup
   private mapPath: string
   private mapKey!: string
   private layers: Layer[]
@@ -41,6 +42,7 @@ export default class BaseScene extends Phaser.Scene {
 
     this.load.tilemapTiledJSON(this.mapKey, this.mapPath);
     this.load.spritesheet('player', 'assets/spritesheets/player2.png', { frameWidth: 32, frameHeight: 40 });
+    // this.load.spritesheet('propsA', 'assets/spritesheets/tilesets/decorative/propsA.png', { frameWidth: 32, frameHeight: 32 });
 
     this.tileSets.forEach((tileset) => {
       this.load.image(tileset.id, tileset.path);
@@ -53,6 +55,7 @@ export default class BaseScene extends Phaser.Scene {
     this.createLayers();
     this.createColliders();
     this.createPortals();
+    this.createPickups();
     this.createSpawnPoints();
     this.createCamera();
     this.insertPlayerToSpawnPoint(data.fromScene);
@@ -102,6 +105,28 @@ export default class BaseScene extends Phaser.Scene {
     return this.layers;
   }
 
+  private createPickups() {
+    this.pickupsGroup = this.physics.add.staticGroup();
+    // const pickupsLayer = this.map.getObjectLayer('Pickups')['objects'];
+    // pickupsLayer.forEach(object => {
+    //   const sprite = object as Phaser.GameObjects.Sprite;
+    //   const obj = this.pickupsGroup.create(object.x, object.y, 'propsA', 0);
+    //   obj.setOrigin(0);
+    //   obj.setDepth(9);
+    //   obj.body.width = object.width;
+    //   obj.body.height = object.height;
+    // });
+
+    const pickupsGameObjects = this.map.createFromObjects('Pickups', { key: 'propsA' });
+    pickupsGameObjects.forEach((object) => {
+      const sprite = object as Phaser.GameObjects.Sprite;
+      sprite.setDepth(9);
+      // sprite.setFrame(1);
+      this.physics.world.enable(sprite);
+      this.pickupsGroup.add(sprite);
+    });
+  }
+
   /**
    * Creates Portals which indicates locations where the Player enters to different Scene
    */
@@ -126,13 +151,6 @@ export default class BaseScene extends Phaser.Scene {
    * Creates spawn points which indicates locations where the Player appears on the map when it switches the Scene
    */
   private createSpawnPoints() {
-    // const foo = this.map.createFromObjects('Text', {});
-    // foo.forEach((object) => {
-    //   const sprite = object as Phaser.GameObjects.Sprite;
-    //   sprite.setVisible(true);
-    //   this.spawnGroup.add(sprite);
-    // });
-
     this.spawnGroup = this.physics.add.staticGroup();
     const spawnPointGameObjects = this.map.createFromObjects('SpawnPoints', {});
 

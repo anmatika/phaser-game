@@ -9,7 +9,7 @@ export default class Outdoors1Scene extends BaseScene {
         'assets/tilesets/grassland/decorative.png',
         'assets/tilesets/town/houses.png',
         'assets/tilesets/decorative/fence.png',
-        'assets/tilesets/decorative/fence.png',
+        'assets/tilesets/decorative/propsA.png',
         'assets/tilesets/grassland/MainLev_autotiling.png'
       ],
       layers: [

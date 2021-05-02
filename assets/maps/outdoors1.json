@@ -107,6 +107,53 @@
         }, 
         {
          "draworder":"topdown",
+         "id":13,
+         "name":"Pickups",
+         "objects":[
+                {
+                 "gid":4775,
+                 "height":32,
+                 "id":8,
+                 "name":"pot",
+                 "rotation":0,
+                 "type":"pickup",
+                 "visible":true,
+                 "width":32,
+                 "x":396.666666666667,
+                 "y":564
+                }, 
+                {
+                 "gid":4775,
+                 "height":32,
+                 "id":9,
+                 "name":"pot2",
+                 "rotation":0,
+                 "type":"pickup",
+                 "visible":true,
+                 "width":32,
+                 "x":475.5,
+                 "y":546.5
+                }, 
+                {
+                 "gid":4842,
+                 "height":32,
+                 "id":10,
+                 "name":"pot3",
+                 "rotation":0,
+                 "type":"pickup",
+                 "visible":true,
+                 "width":32,
+                 "x":546.5,
+                 "y":574
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":8,
          "name":"SpawnPoints",
          "objects":[
@@ -152,8 +199,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":13,
- "nextobjectid":5,
+ "nextlayerid":15,
+ "nextobjectid":11,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.5.0",
@@ -249,6 +296,19 @@
          "name":"houses",
          "spacing":0,
          "tilecount":1280,
+         "tileheight":32,
+         "tilewidth":32
+        }, 
+        {
+         "columns":10,
+         "firstgid":4765,
+         "image":"..\/tilesets\/decorative\/propsA.png",
+         "imageheight":768,
+         "imagewidth":320,
+         "margin":0,
+         "name":"propsA",
+         "spacing":0,
+         "tilecount":240,
          "tileheight":32,
          "tilewidth":32
         }],
