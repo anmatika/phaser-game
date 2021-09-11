@@ -1,8 +1,8 @@
-#  Phaser 2D top down RPG Game
+#  Phaser 3 top down 2D RPG Game
 
 ## Setup
 
-`yarn install`
+`yarn`
 
-## RUN
+## Run
 `yarn start`
