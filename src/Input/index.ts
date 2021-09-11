@@ -21,25 +21,25 @@ class Input {
     scene,
   }) {
     this.scene = scene;
-    this.keys = new Keys(scene)
+    this.keys = new Keys(scene);
     this.cursors = this.scene.input.keyboard.createCursorKeys();
   }
 
   public get isLeftDown(): boolean {
     return this.cursors.left.isDown
-      || this.keys.A.isDown
+      || this.keys.A.isDown;
   }
   public get isRightDown(): boolean {
     return this.cursors.right.isDown
-      || this.keys.D.isDown
+      || this.keys.D.isDown;
   }
   public get isDownDown(): boolean {
     return this.cursors.down.isDown
-      || this.keys.S.isDown
+      || this.keys.S.isDown;
   }
   public get isUpDown(): boolean {
     return this.cursors.up.isDown
-      || this.keys.W.isDown
+      || this.keys.W.isDown;
   }
 }
 

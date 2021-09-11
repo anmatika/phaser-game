@@ -42,7 +42,7 @@ export default class BaseScene extends Phaser.Scene {
 
     this.load.tilemapTiledJSON(this.mapKey, this.mapPath);
     this.load.spritesheet('player', 'assets/spritesheets/player2.png', { frameWidth: 32, frameHeight: 40 });
-    // this.load.spritesheet('propsA', 'assets/spritesheets/tilesets/decorative/propsA.png', { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('propsA', 'assets/spritesheets/tilesets/decorative/propsA.png', { frameWidth: 32, frameHeight: 32 });
 
     this.tileSets.forEach((tileset) => {
       this.load.image(tileset.id, tileset.path);
@@ -107,21 +107,11 @@ export default class BaseScene extends Phaser.Scene {
 
   private createPickups() {
     this.pickupsGroup = this.physics.add.staticGroup();
-    // const pickupsLayer = this.map.getObjectLayer('Pickups')['objects'];
-    // pickupsLayer.forEach(object => {
-    //   const sprite = object as Phaser.GameObjects.Sprite;
-    //   const obj = this.pickupsGroup.create(object.x, object.y, 'propsA', 0);
-    //   obj.setOrigin(0);
-    //   obj.setDepth(9);
-    //   obj.body.width = object.width;
-    //   obj.body.height = object.height;
-    // });
 
-    const pickupsGameObjects = this.map.createFromObjects('Pickups', { key: 'propsA' });
+    const pickupsGameObjects = this.map.createFromObjects('Pickups', { key: 'propsA', frame: 0 });
     pickupsGameObjects.forEach((object) => {
       const sprite = object as Phaser.GameObjects.Sprite;
       sprite.setDepth(9);
-      // sprite.setFrame(1);
       this.physics.world.enable(sprite);
       this.pickupsGroup.add(sprite);
     });
