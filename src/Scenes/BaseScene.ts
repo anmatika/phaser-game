@@ -60,7 +60,8 @@ export default class BaseScene extends Phaser.Scene {
     this.createCamera();
     this.insertPlayerToSpawnPoint(data.fromScene);
 
-    console.log('tilemap', this.cache.tilemap.get(this.mapKey).data);
+    // console.log('tilemap', this.cache.tilemap.get(this.mapKey).data);
+    console.log(this.textures.get('propsA').getFrameNames());
   }
 
   public update(): void {
@@ -111,6 +112,8 @@ export default class BaseScene extends Phaser.Scene {
     const pickupsGameObjects = this.map.createFromObjects('Pickups', { key: 'propsA', frame: 0 });
     pickupsGameObjects.forEach((object) => {
       const sprite = object as Phaser.GameObjects.Sprite;
+      console.log(sprite.frame.name);
+
       sprite.setDepth(9);
       this.physics.world.enable(sprite);
       this.pickupsGroup.add(sprite);
