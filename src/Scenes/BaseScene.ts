@@ -42,7 +42,7 @@ export default class BaseScene extends Phaser.Scene {
 
     this.load.tilemapTiledJSON(this.mapKey, this.mapPath);
     this.load.spritesheet('player', 'assets/spritesheets/player2.png', { frameWidth: 32, frameHeight: 40 });
-    this.load.spritesheet('propsA', 'assets/spritesheets/tilesets/decorative/propsA.png', { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('propsA', 'assets/tilesets/decorative/propsA.png', { frameWidth: 32, frameHeight: 32 });
 
     this.tileSets.forEach((tileset) => {
       this.load.image(tileset.id, tileset.path);
@@ -109,14 +109,21 @@ export default class BaseScene extends Phaser.Scene {
   private createPickups() {
     this.pickupsGroup = this.physics.add.staticGroup();
 
-    const pickupsGameObjects = this.map.createFromObjects('Pickups', { key: 'propsA', frame: 0 });
+    const pickupsGameObjects = this.map.createFromObjects('Pickups', { key: 'propsA', frame: 10 });
     pickupsGameObjects.forEach((object) => {
       const sprite = object as Phaser.GameObjects.Sprite;
-      console.log(sprite.frame.name);
 
-      sprite.setDepth(9);
-      this.physics.world.enable(sprite);
+      sprite.setDepth(1);
       this.pickupsGroup.add(sprite);
+    });
+
+    this.physics.add.overlap(this.player.sprite, this.pickupsGroup, (player, pickup) => {
+      console.log('collides with game object', player, pickup, this.portalGroup);
+      const sprite = pickup as Phaser.GameObjects.Sprite;
+      sprite.removeInteractive();
+      sprite.setVisible(false);
+
+      this.pickupsGroup.remove(sprite);
     });
   }
 
