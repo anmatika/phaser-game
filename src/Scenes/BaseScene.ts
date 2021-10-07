@@ -50,18 +50,23 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   protected create(data: SceneData): void {
-
-    this.player = new Player({ scene: this, speed: 175, position: { x: 350, y: 550 } });
+    this.createPlayer();
     this.createLayers();
     this.createColliders();
     this.createPortals();
+    this.createPortalsOverlap();
     this.createPickups();
+    this.createPickupsOverlap();
     this.createSpawnPoints();
     this.createCamera();
     this.insertPlayerToSpawnPoint(data.fromScene);
 
     // console.log('tilemap', this.cache.tilemap.get(this.mapKey).data);
     console.log(this.textures.get('propsA').getFrameNames());
+  }
+
+  private createPlayer() {
+    this.player = new Player({ scene: this, speed: 175, position: { x: 350, y: 550 } });
   }
 
   public update(): void {
@@ -106,10 +111,14 @@ export default class BaseScene extends Phaser.Scene {
     return this.layers;
   }
 
+  /**
+   * Creates game objects which can be picked up
+   */
   private createPickups() {
     this.pickupsGroup = this.physics.add.staticGroup();
 
     const pickupsGameObjects = this.map.createFromObjects('Pickups', { key: 'propsA', frame: 10 });
+    // const pickupsGameObjects = this.map.createFromObjects('Pickups', { id: 4775 });
     pickupsGameObjects.forEach((object) => {
       const sprite = object as Phaser.GameObjects.Sprite;
 
@@ -117,6 +126,9 @@ export default class BaseScene extends Phaser.Scene {
       this.pickupsGroup.add(sprite);
     });
 
+  }
+
+  private createPickupsOverlap() {
     this.physics.add.overlap(this.player.sprite, this.pickupsGroup, (player, pickup) => {
       console.log('collides with game object', player, pickup, this.portalGroup);
       const sprite = pickup as Phaser.GameObjects.Sprite;
@@ -140,9 +152,13 @@ export default class BaseScene extends Phaser.Scene {
       this.portalGroup.add(sprite);
     });
 
-    this.physics.add.overlap(this.player.sprite, this.portalGroup, (player, portal) => {
-      console.log('collides', player, portal, this.portalGroup);
+  }
 
+  /**
+   * Initializes overlapping callback of player and portal
+   */
+  private createPortalsOverlap() {
+    this.physics.add.overlap(this.player.sprite, this.portalGroup, (player, portal) => {
       this.scene.start(portal.data.list.toScene, { fromScene: this.key });
     });
   }
