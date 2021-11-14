@@ -111,10 +111,24 @@ export default class BaseScene extends Phaser.Scene {
     return this.layers;
   }
 
+  private createPickups() {
+    this.pickupsGroup = this.physics.add.staticGroup();
+
+    const objectLayerNames = this.map.getObjectLayerNames().filter(name => name === 'Pickups')
+    objectLayerNames.forEach(objectLayerName => {
+      const objectLayer = this.map.getObjectLayer(objectLayerName)
+      objectLayer.objects.forEach(tiledObject => {
+
+        const frame = tiledObject.properties?.find(p => p.name === 'frame').value;
+        this.pickupsGroup.get(tiledObject.x ?? 0, tiledObject.y ?? 0, 'propsA', frame ?? 10).setDepth(2)
+      })
+    })
+  }
+
   /**
    * Creates game objects which can be picked up
    */
-  private createPickups() {
+  private createPickups2() {
     this.pickupsGroup = this.physics.add.staticGroup();
 
     const pickupsGameObjects = this.map.createFromObjects('Pickups', { key: 'propsA', frame: 10 });

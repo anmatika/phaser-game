@@ -74,8 +74,8 @@
             "scale": 1.7891666666666666,
             "selectedLayer": 8,
             "viewCenter": {
-                "x": 159.85095482068004,
-                "y": 239.4969725197951
+                "x": 159.57149510945504,
+                "y": 239.49697251979512
             }
         },
         "maps/house1.json#furniture": {
@@ -117,8 +117,8 @@
             "scale": 1.7970833333333331,
             "selectedLayer": 9,
             "viewCenter": {
-                "x": 159.70322281474614,
-                "y": 239.55483422211918
+                "x": 159.98145142592165,
+                "y": 239.5548342221192
             }
         },
         "maps/house1.upstairs.json#furniture": {
@@ -145,8 +145,8 @@
             "scale": 1,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 528.5,
-                "y": 463.5
+                "x": 562,
+                "y": 577.5
             }
         },
         "maps/outdoors1.json#MainLev2.0": {
@@ -155,7 +155,12 @@
         "maps/outdoors1.json#MainLev_autotiling": {
             "scaleInDock": 1
         },
+        "maps/outdoors1.json#collectibles": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
         "maps/outdoors1.json#decorative": {
+            "dynamicWrapping": false,
             "scaleInDock": 1
         },
         "maps/outdoors1.json#fence": {
@@ -170,7 +175,11 @@
         "maps/outdoors1.json#houses_outside_shadows": {
             "scaleInDock": 1
         },
+        "maps/outdoors1.json#pots": {
+            "dynamicWrapping": true
+        },
         "maps/outdoors1.json#propsA": {
+            "dynamicWrapping": false,
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
@@ -233,7 +242,7 @@
             "scaleInDock": 1
         }
     },
-    "last.exportedFilePath": "C:/git/phaser-game/assets/maps",
+    "last.exportedFilePath": "/home/antti/git/phaser-game/assets/maps",
     "last.externalTilesetPath": "C:/git/phaser-game/src/assets",
     "last.imagePath": "C:/git/phaser-game/assets/tilesets/decorative",
     "map.height": 25,
@@ -246,11 +255,11 @@
         "maps/house1.upstairs.json"
     ],
     "project": "rpg.tiled-project",
-    "property.type": "string",
+    "property.type": "int",
     "recentFiles": [
+        "maps/outdoors1.json",
         "maps/house1.json",
         "maps/house1.upstairs.json",
-        "maps/outdoors1.json",
         "maps/outdoors1.tmx",
         "maps/house1 Upstairs.json",
         "maps/house1Upstairs.json",
