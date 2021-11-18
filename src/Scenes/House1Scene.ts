@@ -1,4 +1,5 @@
 import 'phaser';
+import { SceneData } from '../types/Scene.types';
 import BaseScene from './BaseScene';
 export default class House1Scene extends BaseScene {
   constructor() {

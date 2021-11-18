@@ -6,6 +6,8 @@ import Portal from './Portal';
 import SpawnPoint from './SpawnPoint';
 import TileSet from './TileSet';
 import { Physics } from 'phaser';
+import { BaseSceneArgs, SceneData } from '../types/Scene.types';
+import { TileMapLayerProperty } from '../types/Map.types'
 
 export default class BaseScene extends Phaser.Scene {
   public physics!: Phaser.Physics.Arcade.ArcadePhysics
@@ -61,8 +63,6 @@ export default class BaseScene extends Phaser.Scene {
     this.createCamera();
     this.insertPlayerToSpawnPoint(data.fromScene);
 
-    // console.log('tilemap', this.cache.tilemap.get(this.mapKey).data);
-    console.log(this.textures.get('propsA').getFrameNames());
   }
 
   private createPlayer() {

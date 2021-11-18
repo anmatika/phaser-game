@@ -1,6 +1,8 @@
 import Input from '../Input';
+import HealthBar from '../Hud/HealthBar'
+import { PlayerArgs } from '../types/Player.types';
 
-declare type Position = {
+export type Postion = {
   x: number,
   y: number
 }
@@ -9,7 +11,7 @@ class Player {
   public sprite: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody
   private input: Input
   private speed: number
-  private position: Position
+  public position: Postion
   private scene: Phaser.Scene
 
   constructor({
@@ -19,6 +21,8 @@ class Player {
     this.speed = speed;
     this.position = position;
     this.input = new Input({ scene });
+    const healthBar = new HealthBar(this.scene, this.position.x, this.position.y, 100)
+    console.log('healthbar', healthBar)
 
     this.sprite = this.scene.physics.add.sprite(this.position?.x ?? 50, this.position?.y ?? 400, 'player')
       .setCollideWorldBounds(true)
