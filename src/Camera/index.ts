@@ -16,7 +16,8 @@ class Camera {
     this.player = player;
     this.setupCamera();
     this.setUpZoom();
-    const healthBar = new HealthBar(this.scene, this.player.position.x, this.player.position.y, 100)
+
+    const healthBar = new HealthBar(this.scene, this.scene.cameras.main.x, this.scene.cameras.main.x, 100)
     console.log('healthbar', healthBar)
   }
 

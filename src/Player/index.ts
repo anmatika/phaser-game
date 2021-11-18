@@ -21,8 +21,6 @@ class Player {
     this.speed = speed;
     this.position = position;
     this.input = new Input({ scene });
-    const healthBar = new HealthBar(this.scene, this.position.x, this.position.y, 100)
-    console.log('healthbar', healthBar)
 
     this.sprite = this.scene.physics.add.sprite(this.position?.x ?? 50, this.position?.y ?? 400, 'player')
       .setCollideWorldBounds(true)
