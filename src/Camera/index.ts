@@ -2,6 +2,7 @@ import HealthBar from '../Hud/HealthBar';
 import Layer from '../Scenes/Layer';
 import { CameraArgs } from '../types/Camera.types'
 import { IPlayer } from '../types/Player.types'
+import ItemContainer from '../Hud/ItemContainer'
 
 class Camera {
   private scene!: Phaser.Scene
@@ -18,7 +19,9 @@ class Camera {
     this.setUpZoom();
 
     const healthBar = new HealthBar(this.scene, this.scene.cameras.main.x, this.scene.cameras.main.x, 100)
+    const itemContainer = new ItemContainer(this.scene, this.scene.cameras.main.x, this.scene.cameras.main.y + 300)
     console.log('healthbar', healthBar)
+    console.log('itemcontainer', itemContainer)
   }
 
   setupCamera(): void {
