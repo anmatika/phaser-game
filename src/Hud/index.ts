@@ -1,5 +1,5 @@
 import 'phaser';
-class ItemContainer extends Phaser.GameObjects.Container {
+class Hud extends Phaser.GameObjects.Container {
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y);
     console.log('xy', x, y);
@@ -18,4 +18,4 @@ class ItemContainer extends Phaser.GameObjects.Container {
   }
 }
 
-export default ItemContainer;
+export default Hud;
