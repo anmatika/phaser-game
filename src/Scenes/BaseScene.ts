@@ -7,7 +7,7 @@ import SpawnPoint from './SpawnPoint';
 import TileSet from './TileSet';
 import { Physics } from 'phaser';
 import { BaseSceneArgs, SceneData } from '../types/Scene.types';
-import { TileMapLayerProperty } from '../types/Map.types'
+import { TileMapLayerProperty } from '../types/Map.types';
 
 export default class BaseScene extends Phaser.Scene {
   public physics!: Phaser.Physics.Arcade.ArcadePhysics
@@ -114,15 +114,15 @@ export default class BaseScene extends Phaser.Scene {
   private createPickups() {
     this.pickupsGroup = this.physics.add.staticGroup();
 
-    const objectLayerNames = this.map.getObjectLayerNames().filter(name => name === 'Pickups')
+    const objectLayerNames = this.map.getObjectLayerNames().filter(name => name === 'Pickups');
     objectLayerNames.forEach(objectLayerName => {
-      const objectLayer = this.map.getObjectLayer(objectLayerName)
+      const objectLayer = this.map.getObjectLayer(objectLayerName);
       objectLayer.objects.forEach(tiledObject => {
 
         const frame = tiledObject.properties?.find(p => p.name === 'frame').value;
-        this.pickupsGroup.get(tiledObject.x ?? 0, tiledObject.y ?? 0, 'propsA', frame ?? 10).setDepth(2)
-      })
-    })
+        this.pickupsGroup.get(tiledObject.x ?? 0, tiledObject.y ?? 0, 'propsA', frame ?? 10).setDepth(2);
+      });
+    });
   }
 
   /**
