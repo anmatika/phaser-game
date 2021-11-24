@@ -100,7 +100,7 @@
         {
          "draworder":"topdown",
          "id":13,
-         "name":"Collectibles",
+         "name":"Collectables",
          "objects":[
                 {
                  "gid":4775,

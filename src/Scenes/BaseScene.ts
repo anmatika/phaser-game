@@ -15,7 +15,7 @@ export default class BaseScene extends Phaser.Scene {
   private map!: Phaser.Tilemaps.Tilemap
   private portalGroup!: Physics.Arcade.StaticGroup
   private spawnGroup!: Physics.Arcade.StaticGroup
-  private collectibles!: Physics.Arcade.StaticGroup
+  private collectables!: Physics.Arcade.StaticGroup
   private mapPath: string
   private mapKey!: string
   private layers: Layer[]
@@ -112,27 +112,27 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   private createCollectibles() {
-    this.collectibles = this.physics.add.staticGroup();
+    this.collectables = this.physics.add.staticGroup();
 
-    const objectLayerNames = this.map.getObjectLayerNames().filter(name => name === 'Collectibles');
+    const objectLayerNames = this.map.getObjectLayerNames().filter(name => name === 'Collectables');
     objectLayerNames.forEach(objectLayerName => {
       const objectLayer = this.map.getObjectLayer(objectLayerName);
       objectLayer.objects.forEach(tiledObject => {
 
         const frame = tiledObject.properties?.find(p => p.name === 'frame').value;
-        this.collectibles.get(tiledObject.x ?? 0, tiledObject.y ?? 0, 'propsA', frame ?? 10).setDepth(2);
+        this.collectables.get(tiledObject.x ?? 0, tiledObject.y ?? 0, 'propsA', frame ?? 10).setDepth(2);
       });
     });
   }
 
   private createCollectiblesOverlap() {
-    this.physics.add.overlap(this.player.sprite, this.collectibles, (player, pickup) => {
+    this.physics.add.overlap(this.player.sprite, this.collectables, (player, pickup) => {
       console.log('collides with game object', player, pickup, this.portalGroup);
       const sprite = pickup as Phaser.GameObjects.Sprite;
       sprite.removeInteractive();
       sprite.setVisible(false);
 
-      this.collectibles.remove(sprite);
+      this.collectables.remove(sprite);
     });
   }
 
