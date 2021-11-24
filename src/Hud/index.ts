@@ -11,10 +11,25 @@ class Hud extends Phaser.GameObjects.Container {
   }
 
   setup(): void {
-    const text = this.scene.add.text(0, 0, 'Foo', { fontSize: '20px', color: 'white' });
+    const container = this.createImageContainer();
 
-    const container = this.scene.add.container(0, 0, text);
     this.add(container);
+  }
+
+  createImageContainer(): Phaser.GameObjects.Container {
+    const text = this.scene.add.text(0, 0, '0', { fontSize: '20px', color: 'white' });
+    const pot = this.scene.add.image(text.width + 5, -15, 'propsA', 10)
+      .setOrigin(0)
+      .setScale(1.3);
+    const container = this.scene.add.container(0, 0, [text, pot]);
+
+    return container;
+
+  }
+
+  addTo(): void {
+
+
   }
 }
 

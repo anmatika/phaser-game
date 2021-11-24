@@ -100,7 +100,7 @@
         {
          "draworder":"topdown",
          "id":13,
-         "name":"Pickups",
+         "name":"Collectibles",
          "objects":[
                 {
                  "gid":4775,

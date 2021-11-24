@@ -15,7 +15,7 @@ export default class BaseScene extends Phaser.Scene {
   private map!: Phaser.Tilemaps.Tilemap
   private portalGroup!: Physics.Arcade.StaticGroup
   private spawnGroup!: Physics.Arcade.StaticGroup
-  private pickupsGroup!: Physics.Arcade.StaticGroup
+  private collectibles!: Physics.Arcade.StaticGroup
   private mapPath: string
   private mapKey!: string
   private layers: Layer[]
@@ -57,8 +57,8 @@ export default class BaseScene extends Phaser.Scene {
     this.createColliders();
     this.createPortals();
     this.createPortalsOverlap();
-    this.createPickups();
-    this.createPickupsOverlap();
+    this.createCollectibles();
+    this.createCollectiblesOverlap();
     this.createSpawnPoints();
     this.createCamera();
     this.insertPlayerToSpawnPoint(data.fromScene);
@@ -111,45 +111,28 @@ export default class BaseScene extends Phaser.Scene {
     return this.layers;
   }
 
-  private createPickups() {
-    this.pickupsGroup = this.physics.add.staticGroup();
+  private createCollectibles() {
+    this.collectibles = this.physics.add.staticGroup();
 
-    const objectLayerNames = this.map.getObjectLayerNames().filter(name => name === 'Pickups');
+    const objectLayerNames = this.map.getObjectLayerNames().filter(name => name === 'Collectibles');
     objectLayerNames.forEach(objectLayerName => {
       const objectLayer = this.map.getObjectLayer(objectLayerName);
       objectLayer.objects.forEach(tiledObject => {
 
         const frame = tiledObject.properties?.find(p => p.name === 'frame').value;
-        this.pickupsGroup.get(tiledObject.x ?? 0, tiledObject.y ?? 0, 'propsA', frame ?? 10).setDepth(2);
+        this.collectibles.get(tiledObject.x ?? 0, tiledObject.y ?? 0, 'propsA', frame ?? 10).setDepth(2);
       });
     });
   }
 
-  /**
-   * Creates game objects which can be picked up
-   */
-  private createPickups2() {
-    this.pickupsGroup = this.physics.add.staticGroup();
-
-    const pickupsGameObjects = this.map.createFromObjects('Pickups', { key: 'propsA', frame: 10 });
-    // const pickupsGameObjects = this.map.createFromObjects('Pickups', { id: 4775 });
-    pickupsGameObjects.forEach((object) => {
-      const sprite = object as Phaser.GameObjects.Sprite;
-
-      sprite.setDepth(1);
-      this.pickupsGroup.add(sprite);
-    });
-
-  }
-
-  private createPickupsOverlap() {
-    this.physics.add.overlap(this.player.sprite, this.pickupsGroup, (player, pickup) => {
+  private createCollectiblesOverlap() {
+    this.physics.add.overlap(this.player.sprite, this.collectibles, (player, pickup) => {
       console.log('collides with game object', player, pickup, this.portalGroup);
       const sprite = pickup as Phaser.GameObjects.Sprite;
       sprite.removeInteractive();
       sprite.setVisible(false);
 
-      this.pickupsGroup.remove(sprite);
+      this.collectibles.remove(sprite);
     });
   }
 
