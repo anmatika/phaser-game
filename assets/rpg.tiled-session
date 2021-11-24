@@ -255,7 +255,7 @@
         "maps/house1.upstairs.json"
     ],
     "project": "rpg.tiled-project",
-    "property.type": "int",
+    "property.type": "string",
     "recentFiles": [
         "maps/outdoors1.json",
         "maps/house1.json",

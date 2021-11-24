@@ -8,6 +8,7 @@ import TileSet from './TileSet';
 import { Physics } from 'phaser';
 import { BaseSceneArgs, SceneData } from '../types/Scene.types';
 import { TileMapLayerProperty } from '../types/Map.types';
+import Collectables from '../Groups/Collectables';
 
 export default class BaseScene extends Phaser.Scene {
   public physics!: Phaser.Physics.Arcade.ArcadePhysics
@@ -15,7 +16,7 @@ export default class BaseScene extends Phaser.Scene {
   private map!: Phaser.Tilemaps.Tilemap
   private portalGroup!: Physics.Arcade.StaticGroup
   private spawnGroup!: Physics.Arcade.StaticGroup
-  private collectables!: Physics.Arcade.StaticGroup
+  private collectables!: Collectables
   private mapPath: string
   private mapKey!: string
   private layers: Layer[]
@@ -57,7 +58,7 @@ export default class BaseScene extends Phaser.Scene {
     this.createColliders();
     this.createPortals();
     this.createPortalsOverlap();
-    this.createCollectibles();
+    this.createCollectables();
     this.createCollectiblesOverlap();
     this.createSpawnPoints();
     this.createCamera();
@@ -85,6 +86,7 @@ export default class BaseScene extends Phaser.Scene {
     let depth = 1;
     for (let i = this.layers.length - 1; i >= 0; i--) {
       const layer = this.layers[i];
+      console.log('layer', layer);
       const tilesetIds = this.tileSets.map(c => c.id);
       const tilesetImages = tilesetIds.map(id => this.map.addTilesetImage(id));
       if (tilesetImages.some(i => i == null)) {
@@ -111,23 +113,16 @@ export default class BaseScene extends Phaser.Scene {
     return this.layers;
   }
 
-  private createCollectibles() {
-    this.collectables = this.physics.add.staticGroup();
+  private createCollectables() {
+    this.collectables = new Collectables(this);
+    const objectLayer = this.map.getObjectLayer('Collectables');
 
-    const objectLayerNames = this.map.getObjectLayerNames().filter(name => name === 'Collectables');
-    objectLayerNames.forEach(objectLayerName => {
-      const objectLayer = this.map.getObjectLayer(objectLayerName);
-      objectLayer.objects.forEach(tiledObject => {
+    this.collectables.addFromLayer(objectLayer);
 
-        const frame = tiledObject.properties?.find(p => p.name === 'frame').value;
-        this.collectables.get(tiledObject.x ?? 0, tiledObject.y ?? 0, 'propsA', frame ?? 10).setDepth(2);
-      });
-    });
   }
 
   private createCollectiblesOverlap() {
     this.physics.add.overlap(this.player.sprite, this.collectables, (player, pickup) => {
-      console.log('collides with game object', player, pickup, this.portalGroup);
       const sprite = pickup as Phaser.GameObjects.Sprite;
       sprite.removeInteractive();
       sprite.setVisible(false);
