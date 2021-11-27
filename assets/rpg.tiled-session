@@ -74,8 +74,8 @@
             "scale": 1.7891666666666666,
             "selectedLayer": 8,
             "viewCenter": {
-                "x": 159.85095482068004,
-                "y": 239.4969725197951
+                "x": 159.57149510945504,
+                "y": 239.49697251979512
             }
         },
         "maps/house1.json#furniture": {
@@ -146,7 +146,7 @@
             "selectedLayer": 5,
             "viewCenter": {
                 "x": 545,
-                "y": 477
+                "y": 476.5
             }
         },
         "maps/outdoors1.json#MainLev2.0": {
@@ -242,7 +242,7 @@
             "scaleInDock": 1
         }
     },
-    "last.exportedFilePath": "C:/git/phaser-game/assets/maps",
+    "last.exportedFilePath": "/home/antti/git/phaser-game/assets/maps",
     "last.externalTilesetPath": "C:/git/phaser-game/src/assets",
     "last.imagePath": "C:/git/phaser-game/assets/tilesets/decorative",
     "map.height": 25,

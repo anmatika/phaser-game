@@ -22,6 +22,7 @@ export default class BaseScene extends Phaser.Scene {
   private layers: Layer[]
   private tileSets: TileSet[]
   private key: string
+  private camera!: Camera
 
   constructor({ key, mapPath, layers, tileSets }: BaseSceneArgs) {
     super({ key });
@@ -122,10 +123,11 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   private createCollectiblesOverlap() {
-    this.physics.add.overlap(this.player.sprite, this.collectables, (player, pickup) => {
-      const sprite = pickup as Phaser.GameObjects.Sprite;
+    this.physics.add.overlap(this.player.sprite, this.collectables, (player, collectable) => {
+      const sprite = collectable as Phaser.GameObjects.Sprite;
       sprite.removeInteractive();
       sprite.setVisible(false);
+      this.camera.hud.updateScore(1, collectable.name)
 
       this.collectables.remove(sprite);
     });
@@ -190,7 +192,7 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   private createCamera() {
-    new Camera({ scene: this, backgroundLayer: this.layers.find(l => l.isBackground), player: this.player });
+    this.camera = new Camera({ scene: this, backgroundLayer: this.layers.find(l => l.isBackground), player: this.player });
   }
 
   private insertPlayerToSpawnPoint(fromScene) {

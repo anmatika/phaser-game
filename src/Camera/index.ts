@@ -8,6 +8,8 @@ class Camera {
   private scene!: Phaser.Scene
   private backgroundLayer!: Layer
   private player!: IPlayer
+  public hud: Hud
+
 
   constructor({
     scene, backgroundLayer, player
@@ -21,9 +23,7 @@ class Camera {
 
     const healthBar = new HealthBar(this.scene, this.scene.cameras.main.x, this.scene.cameras.main.x, 100);
 
-    const hud = new Hud(this.scene, this.scene.cameras.main.x, this.scene.cameras.main.worldView.height );
-    console.log('healthbar', healthBar);
-    console.log('itemcontainer', hud);
+    this.hud = new Hud(this.scene, this.scene.cameras.main.x, this.scene.cameras.main.worldView.height);
   }
 
   setupCamera(): void {

@@ -129,7 +129,7 @@
                  "gid":4775,
                  "height":32,
                  "id":9,
-                 "name":"pot2",
+                 "name":"pot",
                  "properties":[
                         {
                          "name":"frame",
@@ -152,7 +152,7 @@
                  "gid":4776,
                  "height":32,
                  "id":11,
-                 "name":"pot3",
+                 "name":"pot2",
                  "properties":[
                         {
                          "name":"frame",
