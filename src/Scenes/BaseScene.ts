@@ -118,8 +118,9 @@ export default class BaseScene extends Phaser.Scene {
     this.collectables = new Collectables(this);
     const objectLayer = this.map.getObjectLayer('Collectables');
 
-    this.collectables.addFromLayer(objectLayer);
-
+    if (objectLayer) {
+      this.collectables.addFromLayer(objectLayer);
+    }
   }
 
   private createCollectiblesOverlap() {
