@@ -1,4 +1,5 @@
 import 'phaser';
+import Score from '../Score';
 
 
 function isText(gameObject: Phaser.GameObjects.GameObject): gameObject is Phaser.GameObjects.Text {
@@ -56,13 +57,19 @@ class Hud extends Phaser.GameObjects.Container {
 
   }
 
-  updateScore(score: number, name: string): void {
+  updateScore(name: string): void {
     const container = this.getByName('hud') as Phaser.GameObjects.Container
     console.log('container', container)
     const text: Phaser.GameObjects.Text = container.list[0] as Phaser.GameObjects.Text;
     const pot: Phaser.GameObjects.Image = container.list[1] as Phaser.GameObjects.Image;
     const text2: Phaser.GameObjects.Text = container.list[2] as Phaser.GameObjects.Text;
     const pot2: Phaser.GameObjects.Image = container.list[3] as Phaser.GameObjects.Image;
+
+    const score = Score.scores.find(s => s.name === name)?.value
+
+    if (!score) {
+      throw new Error('Score not found')
+    }
 
     switch (name) {
       case 'pot':

@@ -6,8 +6,8 @@
     "activeFile": "maps/outdoors1.json",
     "expandedProjectPaths": [
         ".",
-        "C:/git/phaser-game/src/assets",
-        "maps"
+        "maps",
+        "C:/git/phaser-game/src/assets"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -257,9 +257,9 @@
     "project": "rpg.tiled-project",
     "property.type": "string",
     "recentFiles": [
-        "maps/outdoors1.json",
         "maps/house1.json",
         "maps/house1.upstairs.json",
+        "maps/outdoors1.json",
         "maps/outdoors1.tmx",
         "maps/house1 Upstairs.json",
         "maps/house1Upstairs.json",
