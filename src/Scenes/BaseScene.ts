@@ -68,6 +68,7 @@ export default class BaseScene extends Phaser.Scene {
     this.createSpawnPoints();
     this.createCamera();
     this.insertPlayerToSpawnPoint(data.fromScene);
+    this.camera.hud.updateScores()
 
   }
 

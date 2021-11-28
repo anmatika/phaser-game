@@ -23,7 +23,11 @@ class Camera {
 
     const healthBar = new HealthBar(this.scene, this.scene.cameras.main.x, this.scene.cameras.main.x, 100);
 
-    this.hud = new Hud(this.scene, this.scene.cameras.main.x, this.scene.cameras.main.worldView.height);
+
+    // this.hud = new Hud(this.scene, this.scene.cameras.main.x, this.scene.cameras.main.worldView.height);
+    this.hud = new Hud(this.scene, this.scene.cameras.main.x, this.scene.cameras.main.midPoint.y * 2 - 200);
+    // this.hud = new Hud(this.scene, this.scene.cameras.main.x, 941);
+    console.log('hud', this.hud, this.scene, this.scene.cameras.main.x, this.scene.cameras.main)
   }
 
   setupCamera(): void {

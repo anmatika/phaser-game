@@ -9,6 +9,8 @@ function isImage(gameObject: Phaser.GameObjects.GameObject): gameObject is Phase
   return (gameObject as Phaser.GameObjects.Image).setTexture !== undefined;
 }
 
+type HudObjects = [Phaser.GameObjects.Text, Phaser.GameObjects.Image, Phaser.GameObjects.Text, Phaser.GameObjects.Image]
+
 class Hud extends Phaser.GameObjects.Container {
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y);
@@ -58,13 +60,7 @@ class Hud extends Phaser.GameObjects.Container {
   }
 
   updateScore(name: string): void {
-    const container = this.getByName('hud') as Phaser.GameObjects.Container
-    console.log('container', container)
-    const text: Phaser.GameObjects.Text = container.list[0] as Phaser.GameObjects.Text;
-    const pot: Phaser.GameObjects.Image = container.list[1] as Phaser.GameObjects.Image;
-    const text2: Phaser.GameObjects.Text = container.list[2] as Phaser.GameObjects.Text;
-    const pot2: Phaser.GameObjects.Image = container.list[3] as Phaser.GameObjects.Image;
-
+    const [text, pot, text2, pot2] = this.getHudObjects()
     const score = Score.scores.find(s => s.name === name)?.value
 
     if (!score) {
@@ -79,7 +75,31 @@ class Hud extends Phaser.GameObjects.Container {
         text2.setText(score.toString())
         break;
     }
+  }
 
+  updateScores(): void {
+    if (Score.scores === undefined) {
+      return
+    }
+    const [text, pot, text2, pot2] = this.getHudObjects()
+
+    const score = Score.scores.find(s => s.name === 'pot')?.value
+    const score2 = Score.scores.find(s => s.name === 'pot2')?.value
+
+    text.setText(score?.toString() ?? '0')
+    text2.setText(score2?.toString() ?? '0')
+
+  }
+
+  getHudObjects(): HudObjects {
+    const container = this.getByName('hud') as Phaser.GameObjects.Container
+    console.log('container', container)
+    const text: Phaser.GameObjects.Text = container.list[0] as Phaser.GameObjects.Text;
+    const pot: Phaser.GameObjects.Image = container.list[1] as Phaser.GameObjects.Image;
+    const text2: Phaser.GameObjects.Text = container.list[2] as Phaser.GameObjects.Text;
+    const pot2: Phaser.GameObjects.Image = container.list[3] as Phaser.GameObjects.Image;
+
+    return [text, pot, text2, pot2]
   }
 
 }
