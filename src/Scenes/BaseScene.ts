@@ -9,7 +9,8 @@ import { Physics } from 'phaser';
 import { BaseSceneArgs, SceneData } from '../types/Scene.types';
 import { TileMapLayerProperty } from '../types/Map.types';
 import Collectables from '../Groups/Collectables';
-import Score from '../Score'
+import Collection from '../Collection'
+import Collectable from '../Collectable/Collectable';
 
 
 
@@ -26,7 +27,6 @@ export default class BaseScene extends Phaser.Scene {
   private tileSets: TileSet[]
   private key: string
   private camera!: Camera
-  private scores!: Score[]
 
   constructor({ key, mapPath, layers, tileSets }: BaseSceneArgs) {
     super({ key });
@@ -133,7 +133,7 @@ export default class BaseScene extends Phaser.Scene {
       const sprite = collectable as Phaser.GameObjects.Sprite;
       sprite.removeInteractive();
       sprite.setVisible(false);
-      Score.updateScores(collectable.name)
+      Collection.collect(collectable.name)
       this.camera.hud.updateScore(collectable.name)
       this.collectables.remove(sprite);
     });

@@ -1,5 +1,5 @@
 import 'phaser';
-import Score from '../Score';
+import Collection from '../Collection';
 
 
 function isText(gameObject: Phaser.GameObjects.GameObject): gameObject is Phaser.GameObjects.Text {
@@ -61,7 +61,7 @@ class Hud extends Phaser.GameObjects.Container {
 
   updateScore(name: string): void {
     const [text, pot, text2, pot2] = this.getHudObjects()
-    const score = Score.scores.find(s => s.name === name)?.value
+    const score = Collection.items.find(s => s.name === name)?.value
 
     if (!score) {
       throw new Error('Score not found')
@@ -78,13 +78,13 @@ class Hud extends Phaser.GameObjects.Container {
   }
 
   updateScores(): void {
-    if (Score.scores === undefined) {
+    if (Collection.items === undefined) {
       return
     }
     const [text, pot, text2, pot2] = this.getHudObjects()
 
-    const score = Score.scores.find(s => s.name === 'pot')?.value
-    const score2 = Score.scores.find(s => s.name === 'pot2')?.value
+    const score = Collection.items.find(s => s.name === 'pot')?.value
+    const score2 = Collection.items.find(s => s.name === 'pot2')?.value
 
     text.setText(score?.toString() ?? '0')
     text2.setText(score2?.toString() ?? '0')
