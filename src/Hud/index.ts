@@ -1,5 +1,5 @@
 import 'phaser';
-import Score from '../Score';
+import Scores from '../Scores';
 
 
 function isText(gameObject: Phaser.GameObjects.GameObject): gameObject is Phaser.GameObjects.Text {
@@ -36,7 +36,7 @@ class Hud extends Phaser.GameObjects.Container {
         .setScale(1.3),
       text: this.scene.add.text(0, 0, '0', { fontSize: '20px', color: 'white' })
 
-    }
+    };
 
     const pot2 = {
       image: this.scene.add.image(65, -15, 'propsA', 11)
@@ -44,7 +44,7 @@ class Hud extends Phaser.GameObjects.Container {
         .setOrigin(0)
         .setScale(1.3),
       text: this.scene.add.text(60, 0, '0', { fontSize: '20px', color: 'white' })
-    }
+    };
 
     // const pot2text = this.scene.add.text(pottext.x + 65, 0, '0', { fontSize: '20px', color: 'white' });
     // const pot2 = this.scene.add.image(pot2text.x + 5, -15, 'propsA', 11)
@@ -53,53 +53,53 @@ class Hud extends Phaser.GameObjects.Container {
     //   .setScale(1.3);
 
     const container = this.scene.add.container(0, 0, [pot.text, pot.image, pot2.text, pot2.image]);
-    container.setName('hud')
+    container.setName('hud');
 
     return container;
 
   }
 
   updateScore(name: string): void {
-    const [text, pot, text2, pot2] = this.getHudObjects()
-    const score = Score.scores.find(s => s.name === name)?.value
+    const [text, pot, text2, pot2] = this.getHudObjects();
+    const score = Scores.scores.find(s => s.name === name)?.value;
 
     if (!score) {
-      throw new Error('Score not found')
+      throw new Error('Score not found');
     }
 
     switch (name) {
-      case 'pot':
-        text.setText(score.toString())
-        break;
-      case 'pot2':
-        text2.setText(score.toString())
-        break;
+    case 'pot':
+      text.setText(score.toString());
+      break;
+    case 'pot2':
+      text2.setText(score.toString());
+      break;
     }
   }
 
   updateScores(): void {
-    if (Score.scores === undefined) {
-      return
+    if (Scores.scores === undefined) {
+      return;
     }
-    const [text, pot, text2, pot2] = this.getHudObjects()
+    const [text, pot, text2, pot2] = this.getHudObjects();
 
-    const score = Score.scores.find(s => s.name === 'pot')?.value
-    const score2 = Score.scores.find(s => s.name === 'pot2')?.value
+    const score = Scores.scores.find(s => s.name === 'pot')?.value;
+    const score2 = Scores.scores.find(s => s.name === 'pot2')?.value;
 
-    text.setText(score?.toString() ?? '0')
-    text2.setText(score2?.toString() ?? '0')
+    text.setText(score?.toString() ?? '0');
+    text2.setText(score2?.toString() ?? '0');
 
   }
 
   getHudObjects(): HudObjects {
-    const container = this.getByName('hud') as Phaser.GameObjects.Container
-    console.log('container', container)
+    const container = this.getByName('hud') as Phaser.GameObjects.Container;
+    console.log('container', container);
     const text: Phaser.GameObjects.Text = container.list[0] as Phaser.GameObjects.Text;
     const pot: Phaser.GameObjects.Image = container.list[1] as Phaser.GameObjects.Image;
     const text2: Phaser.GameObjects.Text = container.list[2] as Phaser.GameObjects.Text;
     const pot2: Phaser.GameObjects.Image = container.list[3] as Phaser.GameObjects.Image;
 
-    return [text, pot, text2, pot2]
+    return [text, pot, text2, pot2];
   }
 
 }
