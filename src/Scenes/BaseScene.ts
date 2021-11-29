@@ -9,7 +9,7 @@ import { Physics } from 'phaser';
 import { BaseSceneArgs, SceneData } from '../types/Scene.types';
 import { TileMapLayerProperty } from '../types/Map.types';
 import Collectables from '../Groups/Collectables';
-import Collection from '../Collection'
+import Collection from '../Collection';
 import Collectable from '../Collectable/Collectable';
 
 
@@ -129,13 +129,15 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   private createCollectiblesOverlap() {
-    this.physics.add.overlap(this.player.sprite, this.collectables, (player, collectable) => {
-      const sprite = collectable as Phaser.GameObjects.Sprite;
-      sprite.removeInteractive();
-      sprite.setVisible(false);
-      Collection.collect(collectable.name)
-      this.camera.hud.updateScore(collectable.name)
-      this.collectables.remove(sprite);
+    this.physics.add.overlap(this.player.sprite, this.collectables, (player, collectable0) => {
+      const collectable = collectable0 as Collectable;
+
+      collectable.removeInteractive();
+      collectable.setVisible(false);
+      console.log('collectable', collectable);
+      Collection.collect(collectable);
+      this.camera.hud.updateScore(collectable.name);
+      this.collectables.remove(collectable);
     });
   }
 

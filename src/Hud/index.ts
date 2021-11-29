@@ -60,31 +60,31 @@ class Hud extends Phaser.GameObjects.Container {
   }
 
   updateScore(name: string): void {
-    const [text, pot, text2, pot2] = this.getHudObjects()
-    const score = Collection.items.find(s => s.name === name)?.value
+    const [text, pot, text2, pot2] = this.getHudObjects();
+    const score = Collection.getCollectablesByName(name).length;
 
     if (!score) {
       throw new Error('Score not found');
     }
 
     switch (name) {
-      case 'pot':
-        text.setText(score.toString());
-        break;
-      case 'pot2':
-        text2.setText(score.toString());
-        break;
+    case 'pot':
+      text.setText(score.toString());
+      break;
+    case 'pot2':
+      text2.setText(score.toString());
+      break;
     }
   }
 
   updateScores(): void {
-    if (Collection.items === undefined) {
-      return
+    if (Collection.collectables === undefined) {
+      return;
     }
     const [text, pot, text2, pot2] = this.getHudObjects();
 
-    const score = Collection.items.find(s => s.name === 'pot')?.value
-    const score2 = Collection.items.find(s => s.name === 'pot2')?.value
+    const score = Collection.getCollectablesByName('pot').length;
+    const score2 = Collection.getCollectablesByName('pot2').length;
 
     text.setText(score?.toString() ?? '0');
     text2.setText(score2?.toString() ?? '0');

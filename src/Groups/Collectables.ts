@@ -1,6 +1,7 @@
 
 import 'phaser';
 import Collectable from '../Collectable/Collectable';
+import Collection from '../Collection';
 
 export type CollectableProps = {
   frame?: number,
@@ -17,14 +18,18 @@ class Collectables extends Phaser.Physics.Arcade.StaticGroup {
   }
 
   public addFromLayer(layer: Phaser.Tilemaps.ObjectLayer): void {
-    layer.objects.forEach(collectableO => {
-      console.log('collectable0', collectableO)
-      const props = this.mapProperties(collectableO.properties);
-      const collectable = this.get(collectableO.x, collectableO.y, props.tileset, props.frame) as Collectable;
-      collectable.id = collectableO.id;
-      collectable.name = collectableO.name;
-      collectable.setDepth(2);
-    });
+    layer.objects.
+      filter(collectable0 => {
+        return !Collection.getCollectable(collectable0.id);
+      })
+      .forEach(collectableO => {
+        console.log('collectable0', collectableO);
+        const props = this.mapProperties(collectableO.properties);
+        const collectable = this.get(collectableO.x, collectableO.y, props.tileset, props.frame) as Collectable;
+        collectable.id = collectableO.id;
+        collectable.name = collectableO.name;
+        collectable.setDepth(2);
+      });
   }
 
   private mapProperties(propertiesList): CollectableProps {
