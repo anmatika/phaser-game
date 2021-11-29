@@ -19,7 +19,7 @@ export default class Scores {
       Scores.scores = [];
     }
 
-    if (Scores.scores.find(score => score.name === name) === undefined) {
+    if (!Scores.scores.find(score => score.name === name)) {
       Scores.scores.push({
         name: name,
         value: 0

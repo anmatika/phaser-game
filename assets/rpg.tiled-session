@@ -74,8 +74,8 @@
             "scale": 1.7891666666666666,
             "selectedLayer": 8,
             "viewCenter": {
-                "x": 159.57149510945504,
-                "y": 239.49697251979512
+                "x": 159.85095482068004,
+                "y": 239.4969725197951
             }
         },
         "maps/house1.json#furniture": {
@@ -145,8 +145,8 @@
             "scale": 1,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 545,
-                "y": 476.5
+                "x": 1599.5,
+                "y": 1599.5
             }
         },
         "maps/outdoors1.json#MainLev2.0": {

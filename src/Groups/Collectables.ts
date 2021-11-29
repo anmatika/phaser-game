@@ -20,10 +20,10 @@ class Collectables extends Phaser.Physics.Arcade.StaticGroup {
     layer.objects.forEach(collectableO => {
       console.log('collectable0', collectableO)
       const props = this.mapProperties(collectableO.properties);
-      const collectable = this.get(collectableO.x, collectableO.y, props.tileset, props.frame);
-      collectable.name = collectableO.name
+      const collectable = this.get(collectableO.x, collectableO.y, props.tileset, props.frame) as Collectable;
+      collectable.id = collectableO.id;
+      collectable.name = collectableO.name;
       collectable.setDepth(2);
-
     });
   }
 
