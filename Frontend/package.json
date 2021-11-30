@@ -31,6 +31,11 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
-    "phaser": "^3.16.2"
+    "eiows": "^3.7.3",
+    "express": "^4.17.1",
+    "http": "^0.0.1-security",
+    "phaser": "^3.16.2",
+    "socket.io": "^4.4.0",
+    "uWebSockets.js": "uNetworking/uWebSockets.js#v20.3.0"
   }
 }

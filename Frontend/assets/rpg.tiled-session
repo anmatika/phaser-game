@@ -5,9 +5,9 @@
     },
     "activeFile": "maps/outdoors1.json",
     "expandedProjectPaths": [
-        ".",
         "maps",
-        "C:/git/phaser-game/src/assets"
+        "C:/git/phaser-game/src/assets",
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -145,8 +145,8 @@
             "scale": 1,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 1599.5,
-                "y": 1599.5
+                "x": 904,
+                "y": 639
             }
         },
         "maps/outdoors1.json#MainLev2.0": {
