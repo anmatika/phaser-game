@@ -1,7 +1,9 @@
-import 'phaser';
-import OutdoorsScene from './Scenes/Outdoors1Scene';
-import InHouseScene from './Scenes/House1Scene';
-import House1Upstairs from './Scenes/House1Upstairs';
+import 'phaser'
+import OutdoorsScene from './Scenes/Outdoors1Scene'
+import InHouseScene from './Scenes/House1Scene'
+import House1Upstairs from './Scenes/House1Upstairs'
+import SocketClient from './Client/SocketClient'
+import { Socket } from 'socket.io-client'
 
 const config = {
   type: Phaser.AUTO,
@@ -30,7 +32,10 @@ const config = {
   },
   scene: [OutdoorsScene, InHouseScene, House1Upstairs],
 
-};
+}
 
-const game = new Phaser.Game(config);
-export default game;
+SocketClient.init()
+SocketClient.open()
+
+const game = new Phaser.Game(config)
+export default game
