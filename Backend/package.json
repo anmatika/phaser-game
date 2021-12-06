@@ -20,7 +20,8 @@
   },
   "scripts": {
     "start": "npm run build && node dist/app.js",
-    "start:dev": "nodemon",
+    "start:dev:no_debug": "nodemon",
+    "start:dev": "DEBUG=* nodemon",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
   }
